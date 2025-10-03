@@ -1,0 +1,22 @@
+# Cloudflare Pages redirects and rewrites
+
+# SPA Fallback - serve index.html for all routes that don't match static files
+/*    /index.html   200
+
+# API proxy to backend (if needed)
+# /api/*  https://your-backend.herokuapp.com/api/:splat  200
+
+# Redirects for old URLs or marketing campaigns
+# /signup  /  302
+# /login   /  302
+
+# Social media redirects
+/instagram  https://instagram.com/ertuno  302
+/linkedin   https://linkedin.com/company/ertuno  302
+/twitter    https://twitter.com/ertuno  302
+/youtube    https://youtube.com/@ertuno  302
+
+# Force HTTPS (Cloudflare handles this automatically, but explicit rule)
+http://ertuno.com/*  https://ertuno.com/:splat  301!
+http://www.ertuno.com/*  https://ertuno.com/:splat  301!
+https://www.ertuno.com/*  https://ertuno.com/:splat  301!

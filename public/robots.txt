@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://ertuno.com/sitemap.xml
+
+# Block access to sensitive files
+Disallow: /api/
+Disallow: /.env
+Disallow: /config/
+Disallow: /private/
+Disallow: /admin/
+
+# Allow access to assets
+Allow: /assets/
+Allow: /images/
+Allow: /icons/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.json
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Block specific bots if needed (uncomment if necessary)
+# User-agent: AhrefsBot
+# Disallow: /
+
+# User-agent: SemrushBot
+# Disallow: /
