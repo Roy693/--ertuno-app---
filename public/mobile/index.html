@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ERTUNO Mobile - WeChat + RatedPeople</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/mobile/manifest.json">
+    <meta name="theme-color" content="#8b5cf6">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/mobile/icon-192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/mobile/icon-192.png">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #1d4ed8 100%);
+            color: white;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #fbbf24, #f97316);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: 15px;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 4px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            border: none;
+            color: white;
+        }
+
+        .tab.active {
+            background: white;
+            color: #7c3aed;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Sections */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Search Section */
+        .search-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 15px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 16px;
+            placeholder-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-btn {
+            width: 100%;
+            background: #fbbf24;
+            border: none;
+            border-radius: 15px;
+            padding: 12px;
+            margin-top: 10px;
+            color: #1f2937;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Provider Cards */
+        .provider-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .provider-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+        }
+
+        .provider-info {
+            flex: 1;
+        }
+
+        .provider-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .provider-service {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .provider-rating {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .star {
+            color: #fbbf24;
+            margin-right: 2px;
+        }
+
+        .chat-btn {
+            background: #10b981;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-end;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 8px 0 0;
+        }
+
+        .message.sent .message-avatar {
+            margin: 0 0 0 8px;
+            order: 2;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.received .message-bubble {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .message.sent .message-bubble {
+            background: #fbbf24;
+            color: #1f2937;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 15px 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-input input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            color: white;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .send-btn {
+            background: #fbbf24;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .download-btn {
+            background: #10b981;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 30px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Categories */
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .category-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .category-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .category-count {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">ERTUNO</div>
+            </div>
+            <div class="tagline">WeChat incontra RatedPeople</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="tab active" onclick="showSection('home')">🏠 Home</button>
+            <button class="tab" onclick="showSection('search')">🔍 Cerca</button>
+            <button class="tab" onclick="showSection('chat')">💬 Chat</button>
+            <button class="tab" onclick="showSection('profilo')">👤 Profilo</button>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Home Section -->
+            <div id="home" class="section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">2500+</div>
+                        <div class="stat-label">Provider Verificati</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15k+</div>
+                        <div class="stat-label">Lavori Completati</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Città Italiane</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Soddisfazione</div>
+                    </div>
+                </div>
+
+                <div class="category-grid">
+                    <div class="category-card" onclick="searchCategory('casa')">
+                        <div class="category-icon">🏠</div>
+                        <div class="category-name">Casa & Giardino</div>
+                        <div class="category-count">850+ provider</div>
+                    </div>
+                    <div class="category-card" onclick="searchCategory('professionale')">
+                        <div class="category-icon">💼</div>
+                        <div class="category-name">Servizi Professionali</div>
+                        <div class="category-count">620+ provider</div>
+                    </div>
+                    <div class="category-card" onclick="searchCategory('personale')">
+                        <div class="category-icon">👥</div>
+                        <div class="category-name">Servizi Personali</div>
+                        <div class="category-count">430+ provider</div>
+                    </div>
+                    <div class="category-card" onclick="searchCategory('auto')">
+                        <div class="category-icon">🚗</div>
+                        <div class="category-name">Auto & Trasporti</div>
+                        <div class="category-count">290+ provider</div>
+                    </div>
+                </div>
+
+                <div class="download-section">
+                    <button class="download-btn" onclick="downloadApp()">
+                        <span class="download-icon">📱</span>
+                        Installa App Mobile
+                    </button>
+                    <div style="font-size: 12px; opacity: 0.7; margin-top: 10px;">
+                        ✓ Funziona offline ✓ Notifiche push ✓ GPS integrato
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Section -->
+            <div id="search" class="section">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Cosa ti serve? Es: elettricista Milano" id="searchInput">
+                    <button class="search-btn" onclick="search()">🔍 Ricerca Intelligente</button>
+                </div>
+
+                <div id="searchResults">
+                    <div class="provider-card">
+                        <div class="provider-header">
+                            <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="provider-avatar">
+                            <div class="provider-info">
+                                <div class="provider-name">Marco Elettricista ✓</div>
+                                <div class="provider-service">Impianti Elettrici</div>
+                                <div class="provider-rating">
+                                    <span class="star">⭐</span>
+                                    <span>4.9 (127 recensioni)</span>
+                                </div>
+                            </div>
+                            <button class="chat-btn" onclick="startChat('Marco')">💬 Chatta</button>
+                        </div>
+                    </div>
+
+                    <div class="provider-card">
+                        <div class="provider-header">
+                            <img src="https://ui-avatars.com/api/?name=Anna+Pulizie&background=06b6d4&color=fff" alt="Anna" class="provider-avatar">
+                            <div class="provider-info">
+                                <div class="provider-name">Anna Pulizie ✓</div>
+                                <div class="provider-service">Pulizie Domestiche</div>
+                                <div class="provider-rating">
+                                    <span class="star">⭐</span>
+                                    <span>5.0 (89 recensioni)</span>
+                                </div>
+                            </div>
+                            <button class="chat-btn" onclick="startChat('Anna')">💬 Chatta</button>
+                        </div>
+                    </div>
+
+                    <div class="provider-card">
+                        <div class="provider-header">
+                            <img src="https://ui-avatars.com/api/?name=Luigi+Idraulico&background=f59e0b&color=fff" alt="Luigi" class="provider-avatar">
+                            <div class="provider-info">
+                                <div class="provider-name">Luigi Idraulico ✓</div>
+                                <div class="provider-service">Emergenze 24/7</div>
+                                <div class="provider-rating">
+                                    <span class="star">⭐</span>
+                                    <span>4.8 (203 recensioni)</span>
+                                </div>
+                            </div>
+                            <button class="chat-btn" onclick="startChat('Luigi')">💬 Chatta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div id="chat" class="section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="provider-avatar">
+                        <div class="provider-info">
+                            <div class="provider-name">Marco Elettricista ✓</div>
+                            <div class="provider-service">Online ora</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message received">
+                            <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="message-avatar">
+                            <div class="message-bubble">
+                                Ciao! Posso aiutarti con il tuo problema elettrico. Dimmi di cosa hai bisogno!
+                            </div>
+                        </div>
+
+                        <div class="message sent">
+                            <div class="message-bubble">
+                                Ciao Marco! Il quadro elettrico salta continuamente, puoi darmi un preventivo?
+                            </div>
+                            <img src="https://ui-avatars.com/api/?name=Tu&background=6b7280&color=fff" alt="Tu" class="message-avatar">
+                        </div>
+
+                        <div class="message received">
+                            <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="message-avatar">
+                            <div class="message-bubble">
+                                Certamente! Puoi inviarmi una foto del quadro? Mi aiuterebbe a valutare meglio.
+                            </div>
+                        </div>
+
+                        <div class="message sent">
+                            <div class="message-bubble">
+                                📸 [Foto del quadro elettrico]<br><br>Ecco la foto. È urgente?
+                            </div>
+                            <img src="https://ui-avatars.com/api/?name=Tu&background=6b7280&color=fff" alt="Tu" class="message-avatar">
+                        </div>
+
+                        <div class="message received">
+                            <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="message-avatar">
+                            <div class="message-bubble">
+                                Vedo il problema! È un sovraccarico. Posso venire domani mattina alle 9:00. Preventivo: €120 (materiali inclusi)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input">
+                        <input type="text" placeholder="Scrivi un messaggio..." id="messageInput">
+                        <button class="send-btn" onclick="sendMessage()">➤</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profilo" class="section">
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <img src="https://ui-avatars.com/api/?name=Tu&background=8b5cf6&color=fff" alt="Tu" class="provider-avatar">
+                        <div class="provider-info">
+                            <div class="provider-name">Il Tuo Profilo</div>
+                            <div class="provider-service">Cliente ERTUNO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Lavori Richiesti</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Lavori Completati</div>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <div style="text-align: center; padding: 10px;">
+                        <h3 style="margin-bottom: 15px;">Impostazioni</h3>
+                        <button class="search-btn" style="margin-bottom: 10px;">🔔 Notifiche</button>
+                        <button class="search-btn" style="margin-bottom: 10px;">🌙 Tema Scuro</button>
+                        <button class="search-btn" style="margin-bottom: 10px;">🌍 Lingua</button>
+                        <button class="search-btn" style="background: #ef4444;">🚪 Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function search() {
+            const query = document.getElementById('searchInput').value;
+            if (query) {
+                alert(`Ricerca per: "${query}"\n\nTrovati 3 professionisti nella tua zona!`);
+            }
+        }
+
+        function searchCategory(category) {
+            showSection('search');
+            document.querySelector('.tab[onclick="showSection(\'search\')"]').classList.add('active');
+            document.querySelector('.tab.active').classList.remove('active');
+            document.querySelector('.tab[onclick="showSection(\'search\')"]').classList.add('active');
+            
+            const searchInput = document.getElementById('searchInput');
+            const categoryNames = {
+                'casa': 'Servizi per la casa',
+                'professionale': 'Servizi professionali', 
+                'personale': 'Servizi personali',
+                'auto': 'Auto e trasporti'
+            };
+            searchInput.value = categoryNames[category] || '';
+        }
+
+        function startChat(providerName) {
+            showSection('chat');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.tab[onclick="showSection(\'chat\')"]').classList.add('active');
+            
+            alert(`Iniziando chat con ${providerName}!`);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                
+                // Add sent message
+                const sentMessage = document.createElement('div');
+                sentMessage.className = 'message sent';
+                sentMessage.innerHTML = `
+                    <div class="message-bubble">${message}</div>
+                    <img src="https://ui-avatars.com/api/?name=Tu&background=6b7280&color=fff" alt="Tu" class="message-avatar">
+                `;
+                messagesContainer.appendChild(sentMessage);
+                
+                // Clear input
+                input.value = '';
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate response after 2 seconds
+                setTimeout(() => {
+                    const receivedMessage = document.createElement('div');
+                    receivedMessage.className = 'message received';
+                    receivedMessage.innerHTML = `
+                        <img src="https://ui-avatars.com/api/?name=Marco+Elettricista&background=4f46e5&color=fff" alt="Marco" class="message-avatar">
+                        <div class="message-bubble">Ricevuto! Ti rispondo subito...</div>
+                    `;
+                    messagesContainer.appendChild(receivedMessage);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 2000);
+            }
+        }
+
+        function downloadApp() {
+            // Create a simple manifest-based download
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/mobile/sw.js');
+                
+                // Trigger install prompt
+                let deferredPrompt;
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    deferredPrompt = e;
+                    
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            alert('App installata con successo! 🎉');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            } else {
+                alert('Salva questa pagina nella schermata home per un\'esperienza app-like! 📱');
+            }
+        }
+
+        // Allow Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Allow Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+
+        // Add some mobile-specific touches
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent zoom on input focus
+            document.addEventListener('touchstart', function() {});
+            
+            // Smooth scrolling
+            document.querySelectorAll('.content').forEach(element => {
+                element.style.webkitOverflowScrolling = 'touch';
+            });
+        });
+    </script>
+</body>
+</html>

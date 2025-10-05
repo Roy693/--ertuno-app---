@@ -169,6 +169,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <Button
                 variant="secondary"
                 size="lg"
+                onClick={() => window.open('/mobile/', '_blank')}
                 className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
               >
                 <Smartphone className="w-5 h-5 mr-2" />
@@ -486,18 +487,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <Button
                 variant="primary"
                 size="lg"
+                onClick={() => window.open('/mobile/', '_blank')}
                 className="bg-green-500 hover:bg-green-400 text-white font-semibold px-8 py-4 text-lg"
               >
                 <Download className="w-5 h-5 mr-2" />
-                Download APK (Android)
+                Apri App Mobile
               </Button>
               <Button
                 variant="secondary"
                 size="lg"
+                onClick={() => window.open('/mobile/', '_blank')}
                 className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
               >
                 <Globe className="w-5 h-5 mr-2" />
-                Versione Web (iOS)
+                Versione Web PWA
               </Button>
             </div>
 
