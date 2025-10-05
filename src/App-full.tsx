@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { AuthModal } from './components/auth/AuthModal';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
-import { BrowseRequests } from './pages/BrowseRequests';
+import { ServiceSearch } from './pages/ServiceSearch';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider, useTheme } from './hooks/useTheme';
+import { SupportWidget } from './components/support/SupportWidget';
+import { CookieConsent } from './components/privacy/CookieConsent';
+import { updateCookiePreferences, setUserId } from './lib/analytics';
+import { cssVars } from './styles/theme';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -33,6 +37,22 @@ const AppContent: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [showCookieConsent, setShowCookieConsent] = useState(false);
+
+  // Check cookie consent status on load
+  useEffect(() => {
+    const hasConsent = localStorage.getItem('ertuno_cookie_consent');
+    if (!hasConsent) {
+      setShowCookieConsent(true);
+    }
+  }, []);
+
+  // Set analytics user ID when user logs in
+  useEffect(() => {
+    if (user?.uid) {
+      setUserId(user.uid);
+    }
+  }, [user]);
 
   const handleLoginClick = () => {
     setAuthMode('login');
@@ -54,21 +74,50 @@ const AppContent: React.FC = () => {
     }
   };
 
-  const handleLearnMore = () => {
-    // Scroll to features section or navigate to about page
-    const featuresSection = document.querySelector('#features');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth' });
+  const handleBecomeProvider = () => {
+    if (user) {
+      // User is logged in, redirect to provider setup/dashboard
+      return;
+    } else {
+      // User not logged in, show signup modal with provider context
+      setAuthMode('signup');
+      setAuthModalOpen(true);
     }
+  };
+
+  const handleProviderSelect = (provider: any) => {
+    console.log('Selected provider:', provider);
+    // Handle provider selection logic
+  };
+
+  const handleMessageProvider = (provider: any) => {
+    console.log('Message provider:', provider);
+    // Handle messaging logic
+  };
+
+  const handleBookService = (provider: any) => {
+    console.log('Book service with:', provider);
+    // Handle booking logic
+  };
+
+  // Handle cookie consent
+  const handleCookieAccept = (preferences: any) => {
+    localStorage.setItem('ertuno_cookie_consent', JSON.stringify(preferences));
+    updateCookiePreferences(preferences);
+    setShowCookieConsent(false);
   };
 
   return (
     <>
+      {/* Inject CSS Variables */}
+      <style>{cssVars}</style>
+
       {/* Header - Only show on public pages */}
       {!user && (
         <Header
           onLoginClick={handleLoginClick}
           onSignupClick={handleSignupClick}
+          onBecomeProvider={handleBecomeProvider}
           theme={theme as 'light' | 'dark'}
           onThemeChange={toggleTheme}
         />
@@ -85,7 +134,7 @@ const AppContent: React.FC = () => {
               ) : (
                 <LandingPage
                   onGetStarted={handleGetStarted}
-                  onLearnMore={handleLearnMore}
+                  onBecomeProvider={handleBecomeProvider}
                 />
               )
             }
@@ -99,11 +148,13 @@ const AppContent: React.FC = () => {
             }
           />
           <Route
-            path="/browse"
+            path="/services"
             element={
-              <ProtectedRoute>
-                <BrowseRequests />
-              </ProtectedRoute>
+              <ServiceSearch
+                onProviderSelect={handleProviderSelect}
+                onMessageProvider={handleMessageProvider}
+                onBookService={handleBookService}
+              />
             }
           />
           {/* Fallback route */}
@@ -120,6 +171,14 @@ const AppContent: React.FC = () => {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authMode}
       />
+
+      {/* Support Widget */}
+      <SupportWidget />
+
+      {/* Cookie Consent */}
+      {showCookieConsent && (
+        <CookieConsent onAccept={handleCookieAccept} />
+      )}
     </>
   );
 };
