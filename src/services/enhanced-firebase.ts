@@ -369,7 +369,7 @@ export class AIMatchingService {
     // Additional bonuses
     if (provider.isVerified) {
       score += 0.05;
-      reasons.push('Verified professional');
+      reasons.push('Trusted Provider');
     }
 
     return {

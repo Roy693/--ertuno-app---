@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, createContext } from 'react';
 import type { ReactNode } from 'react';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { AuthService } from '../services/firebase';
+import { AuthService } from '../services/authService';
 import type { User, AuthState } from '../types';
 
 // Auth Context
@@ -9,7 +9,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   error: string | null;
-  signUp: (email: string, password: string, name: string) => Promise<void>;
+  signUp: (email: string, password: string, name: string, role?: 'citizen' | 'provider') => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
@@ -58,10 +58,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, name: string) => {
+  const signUp = async (email: string, password: string, name: string, role: 'citizen' | 'provider' = 'citizen') => {
     try {
       setAuthState(prev => ({ ...prev, loading: true, error: null }));
-      const user = await AuthService.signUp(email, password, name);
+      const user = await AuthService.signUp(email, password, name, role);
       setAuthState(prev => ({ ...prev, user, loading: false }));
     } catch (error: any) {
       setAuthState(prev => ({ 

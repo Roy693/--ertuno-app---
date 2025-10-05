@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
+import { LanguageSelector } from '../ui/LanguageSelector';
 import { NAV_ITEMS } from '../../utils/constants';
+import { useLanguage } from '../../hooks/useLanguage';
 
 interface HeaderProps {
   onLoginClick: () => void;
@@ -19,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onThemeChange
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -47,13 +50,16 @@ export const Header: React.FC<HeaderProps> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item.name}
+                {t(item.key)}
               </motion.a>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Language Selector */}
+            <LanguageSelector variant="minimal" />
+
             {/* Theme Toggle */}
             <motion.button
               onClick={onThemeChange}
@@ -66,10 +72,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Auth Buttons */}
             <Button variant="ghost" onClick={onLoginClick}>
-              Sign In
+              {t('auth.signin')}
             </Button>
             <Button variant="primary" onClick={onSignupClick}>
-              Get Started
+              {t('auth.getstarted')}
             </Button>
           </div>
 
@@ -100,9 +106,12 @@ export const Header: React.FC<HeaderProps> = ({
               className="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
-              {item.name}
+              {t(item.key)}
             </a>
           ))}
+
+          {/* Mobile Language Selector */}
+          <LanguageSelector variant="mobile" />
 
           {/* Mobile Theme Toggle */}
           <button
@@ -116,10 +125,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" fullWidth onClick={onLoginClick}>
-              Sign In
+              {t('auth.signin')}
             </Button>
             <Button variant="primary" fullWidth onClick={onSignupClick}>
-              Get Started
+              {t('auth.getstarted')}
             </Button>
           </div>
         </div>

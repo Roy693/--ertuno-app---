@@ -5,6 +5,8 @@ export interface User {
   name: string;
   avatar?: string;
   createdAt: string;
+  // User role system
+  role: 'citizen' | 'provider';
   // Professional provider fields
   isProfessional?: boolean;
   verificationStatus?: 'pending' | 'verified' | 'rejected';
@@ -42,7 +44,7 @@ export interface Service {
   userId: string;
 }
 
-// Service Request Types (RatedPeople-style)
+// Service Request Types (Professional Services Marketplace)
 export interface ServiceRequest {
   id: string;
   title: string;
@@ -110,7 +112,7 @@ export interface NavItem {
   icon?: string;
 }
 
-// Chat Types (WeChat-style)
+// Chat Types (Live Messaging System)
 export interface ChatMessage {
   id: string;
   conversationId: string;

@@ -1,7 +1,7 @@
 {
-  "name": "ERTUNO - Creative Collaboration Platform",
+  "name": "ERTUNO - Live Messaging & Professional Services",
   "short_name": "ERTUNO",
-  "description": "A tech-forward platform that blends secure backend architecture with frontend artistry",
+  "description": "Connect with verified service providers across Europe instantly. Live messaging, professional services, mobile-first.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

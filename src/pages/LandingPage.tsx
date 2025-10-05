@@ -16,6 +16,7 @@ import {
   Globe
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { PWAInstallButton } from '../components/ui/PWAInstallButton';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -72,17 +73,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     {
       name: "Sofia Chen",
       role: "Graphic Designer",
-      content: "La chat WeChat-style rende tutto semplice. I clienti adorano la comunicazione immediata!",
+      content: "La Live Messaging rende tutto semplice. I clienti adorano la comunicazione immediata!",
       rating: 5,
       image: "https://ui-avatars.com/api/?name=Sofia+Chen&background=f59e0b&color=fff"
     }
   ];
 
   const serviceCategories = [
-    { name: "Casa & Giardino", count: "850+ provider", icon: "🏠" },
-    { name: "Servizi Professionali", count: "620+ provider", icon: "💼" },
-    { name: "Servizi Personali", count: "430+ provider", icon: "👥" },
-    { name: "Auto & Trasporti", count: "290+ provider", icon: "🚗" }
+    { name: "Casa & Giardino", count: "850+ professionisti", icon: "🏠" },
+    { name: "Servizi Professionali", count: "620+ professionisti", icon: "💼" },
+    { name: "Servizi Personali", count: "430+ professionisti", icon: "👥" },
+    { name: "Auto & Trasporti", count: "290+ professionisti", icon: "🚗" }
   ];
 
   useEffect(() => {
@@ -93,7 +94,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   }, [testimonials.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-900 to-indigo-900">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -105,14 +106,44 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               transition={{ duration: 0.8 }}
               className="flex items-center justify-center mb-8"
             >
-              <div className="flex items-center space-x-3">
-                {/* Tuno Icon (Not Rocket) */}
-                <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-2xl">
-                  <span className="text-2xl font-bold text-white">T</span>
+              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-3xl px-8 py-6 border border-white/20 shadow-2xl">
+                {/* Tuno Fruit Logo - Larger for prominence */}
+                <motion.div 
+                  className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Tuno Fruit Body */}
+                    <defs>
+                      <linearGradient id="tunoGradientHero" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#FF4757" />
+                        <stop offset="50%" stopColor="#FF6B35" />
+                        <stop offset="100%" stopColor="#FFA502" />
+                      </linearGradient>
+                    </defs>
+                    <ellipse cx="50" cy="55" rx="25" ry="30" fill="url(#tunoGradientHero)" />
+                    {/* Texture dots pattern */}
+                    <circle cx="40" cy="40" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    <circle cx="60" cy="38" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    <circle cx="35" cy="55" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    <circle cx="65" cy="52" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    <circle cx="42" cy="70" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    <circle cx="58" cy="72" r="2.5" fill="#E55A4E" opacity="0.7" />
+                    {/* Green leaf accent */}
+                    <path d="M50 20 C45 15, 35 20, 35 30 C35 40, 45 45, 50 40 C55 45, 65 40, 65 30 C65 20, 55 15, 50 20 Z" fill="#4CAF50" />
+                  </svg>
+                </motion.div>
+                
+                {/* Brand Text */}
+                <div className="text-center sm:text-left">
+                  <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight">
+                    ER<span className="text-orange-400">TUNO</span>
+                  </h1>
+                  <p className="text-lg sm:text-xl text-purple-200 font-medium mt-2">
+                    Live Messaging & Professional Services
+                  </p>
                 </div>
-                <h1 className="text-6xl font-bold text-white tracking-tight">
-                  ER<span className="text-yellow-400">TUNO</span>
-                </h1>
               </div>
             </motion.div>
 
@@ -122,7 +153,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl text-purple-100 max-w-3xl mx-auto mb-12"
             >
-              WeChat incontra RatedPeople. Chat istantanea con professionisti verificati. 
+              Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. 
               Trova, chatta, risolvi. Tutto in un'app.
             </motion.p>
 
@@ -134,19 +165,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{stats.providers.toLocaleString()}+</div>
+                <div className="text-3xl font-bold text-orange-400">{stats.providers.toLocaleString()}+</div>
                 <div className="text-purple-200">Provider Verificati</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{stats.completedJobs.toLocaleString()}+</div>
+                <div className="text-3xl font-bold text-orange-400">{stats.completedJobs.toLocaleString()}+</div>
                 <div className="text-purple-200">Lavori Completati</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{stats.cities}+</div>
+                <div className="text-3xl font-bold text-orange-400">{stats.cities}+</div>
                 <div className="text-purple-200">Città Italiane</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">{stats.satisfaction}%</div>
+                <div className="text-3xl font-bold text-orange-400">{stats.satisfaction}%</div>
                 <div className="text-purple-200">Soddisfazione</div>
               </div>
             </motion.div>
@@ -180,7 +211,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* Smart Search Section - Ricerca Intelligente */}
+      {/* Intelligent Match Section - Ricerca Intelligente */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/10 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -191,7 +222,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-white mb-4">
-              <Search className="w-10 h-10 inline mr-3 text-yellow-400" />
+              <Search className="w-10 h-10 inline mr-3 text-teal-400" />
               Ricerca Intelligente
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto">
@@ -209,12 +240,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
                     <MessageCircle className="w-6 h-6 text-black" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">Chat Istantanea</h3>
-                    <p className="text-purple-200">Come WeChat, ma per lavori</p>
+                    <p className="text-purple-200">Messaging istantaneo per professionisti</p>
                   </div>
                 </div>
                 <p className="text-purple-100">
@@ -225,7 +256,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
               <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center shadow-lg">
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -257,7 +288,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <p className="text-gray-500 mb-4">
                     "Ho bisogno di un elettricista per sostituire un quadro elettrico a Milano"
                   </p>
-                  <Button variant="primary" className="bg-purple-600 hover:bg-purple-700">
+                  <Button variant="primary" className="bg-orange-500 hover:bg-orange-400 shadow-lg">
                     Trova Provider →
                   </Button>
                 </div>
@@ -278,7 +309,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-white mb-4">
-              <Shield className="w-10 h-10 inline mr-3 text-green-400" />
+              <Shield className="w-10 h-10 inline mr-3 text-teal-400" />
               Provider Verificati
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto">
@@ -327,14 +358,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   <div className="flex-1">
                     <div className="flex items-center space-x-2">
                       <h3 className="font-semibold text-gray-900">{provider.name}</h3>
-                      {provider.verified && <CheckCircle className="w-4 h-4 text-green-500" />}
+                      {provider.verified && <CheckCircle className="w-4 h-4 text-teal-500" />}
                     </div>
                     <p className="text-sm text-gray-600">{provider.specialty}</p>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                    <Star className="w-4 h-4 text-orange-500 fill-current" />
                     <span className="font-semibold">{provider.rating}</span>
                     <span className="text-gray-500 text-sm">({provider.reviews})</span>
                   </div>
@@ -349,7 +380,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* Real-time Chat Preview (WeChat-style) */}
+      {/* Real-time Chat Preview (Live Messaging) */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white/10 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -361,7 +392,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             <h2 className="text-4xl font-bold text-white mb-4">
               <MessageCircle className="w-10 h-10 inline mr-3 text-blue-400" />
-              Chat Come WeChat
+              Live Messaging ERTUNO
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto">
               Comunicazione istantanea, foto, vocali, posizione. L'esperienza chat che conosci e ami.
@@ -476,7 +507,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-4">
-              <Smartphone className="w-10 h-10 inline mr-3 text-green-400" />
+              <Smartphone className="w-10 h-10 inline mr-3 text-teal-400" />
               Scarica l'App Mobile
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto mb-8">
@@ -484,15 +515,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button
+              <PWAInstallButton
                 variant="primary"
                 size="lg"
-                onClick={() => window.open('/mobile/', '_blank')}
                 className="bg-green-500 hover:bg-green-400 text-white font-semibold px-8 py-4 text-lg"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Apri App Mobile
-              </Button>
+              />
               <Button
                 variant="secondary"
                 size="lg"
@@ -500,7 +527,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
               >
                 <Globe className="w-5 h-5 mr-2" />
-                Versione Web PWA
+                Versione Web Mobile
               </Button>
             </div>
 
@@ -587,7 +614,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 variant="secondary"
                 size="lg"
                 onClick={onLearnMore}
-                className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-12 py-6 text-xl"
+                className="bg-teal-500 hover:bg-teal-400 text-white border-teal-400 px-12 py-6 text-xl shadow-2xl"
               >
                 <Clock className="w-6 h-6 mr-2" />
                 Prenota Demo

@@ -20,7 +20,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     email: '',
     password: '',
     name: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'citizen' as 'citizen' | 'provider'
   });
 
   const { signIn, signUp, signInWithGoogle, signInWithFacebook, loading, error, clearError } = useAuth();
@@ -41,12 +42,24 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     try {
       if (mode === 'login') {
         await signIn(formData.email, formData.password);
+        // Success for login - user will be redirected by auth state change
       } else {
-        await signUp(formData.email, formData.password, formData.name);
+        await signUp(formData.email, formData.password, formData.name, formData.role);
+        // Success for signup - show welcome message
+        setTimeout(() => {
+          console.log('✅ Registration successful!', { 
+            email: formData.email, 
+            name: formData.name, 
+            role: formData.role 
+          });
+        }, 100);
       }
+      
+      // Close modal on success - dashboard redirect will be handled by auth state
       onClose();
     } catch (error) {
-      // Error is handled by useAuth hook
+      // Error is handled by useAuth hook and displayed in UI
+      console.error('❌ Authentication failed:', error);
     }
   };
 
@@ -65,7 +78,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   const toggleMode = () => {
     setMode(prev => prev === 'login' ? 'signup' : 'login');
-    setFormData({ email: '', password: '', name: '', confirmPassword: '' });
+    setFormData({ 
+      email: '', 
+      password: '', 
+      name: '', 
+      confirmPassword: '',
+      role: 'citizen'
+    });
     clearError();
   };
 
@@ -106,6 +125,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
           {/* Content */}
           <div className="px-6 py-6">
+            {/* Mock Mode Notice */}
+            {import.meta.env.VITE_FIREBASE_API_KEY === 'demo-key-replace-with-real-firebase-key' && (
+              <motion.div
+                className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg flex items-center"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <div className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0">🚧</div>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  Demo Mode: Using mock authentication. All data is stored locally.
+                </p>
+              </motion.div>
+            )}
+
             {/* Error Message */}
             {error && (
               <motion.div
@@ -155,24 +188,73 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === 'signup' && (
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Full Name
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                      placeholder="Enter your full name"
-                    />
+                <>
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Full Name
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
                   </div>
-                </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                      I want to:
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'citizen' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="citizen"
+                          checked={formData.role === 'citizen'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col">
+                          <div className="flex items-center">
+                            <div className="text-lg">🏠</div>
+                            <div className="ml-2">
+                              <div className="text-sm font-medium text-gray-900 dark:text-white">Find Services</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Hire professionals</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                      
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'provider' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="provider"
+                          checked={formData.role === 'provider'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col">
+                          <div className="flex items-center">
+                            <div className="text-lg">🔧</div>
+                            <div className="ml-2">
+                              <div className="text-sm font-medium text-gray-900 dark:text-white">Offer Services</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Provide professional services</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </>
               )}
 
               <div>

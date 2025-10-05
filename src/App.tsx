@@ -6,8 +6,11 @@ import { AuthModal } from './components/auth/AuthModal';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { BrowseRequests } from './pages/BrowseRequests';
+import { About } from './pages/About';
+import { Services } from './pages/Services';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider, useTheme } from './hooks/useTheme';
+import { LanguageProvider } from './hooks/useLanguage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -106,6 +109,8 @@ const AppContent: React.FC = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
@@ -127,15 +132,17 @@ const AppContent: React.FC = () => {
 // Main App Component with Providers
 const App: React.FC = () => {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <Router>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-            <AppContent />
-          </div>
-        </Router>
-      </AuthProvider>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <Router>
+            <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+              <AppContent />
+            </div>
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 };
 

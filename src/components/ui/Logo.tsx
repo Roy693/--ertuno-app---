@@ -48,36 +48,28 @@ export const Logo: React.FC<LogoProps> = ({
         transition={{ duration: 0.8 }}
       >
         <svg viewBox="0 0 100 100" className="w-full h-full" fill="currentColor">
-          {/* ERTUNO Abstract Icon - Interconnected nodes forming an "E" */}
+          {/* ERTUNO Tuno Fruit Icon */}
           <defs>
-            <linearGradient id={`gradient-${variant}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0ea5e9" />
-              <stop offset="50%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#facc15" />
+            <linearGradient id={`tunoGradient-${variant}`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FF4757" />
+              <stop offset="50%" stopColor="#FF6B35" />
+              <stop offset="100%" stopColor="#FFA502" />
             </linearGradient>
           </defs>
           
-          {/* Main structure - Abstract "E" with connected nodes */}
-          <circle cx="20" cy="25" r="4" fill={`url(#gradient-${variant})`} />
-          <circle cx="45" cy="25" r="4" fill={`url(#gradient-${variant})`} />
-          <circle cx="70" cy="25" r="4" fill={`url(#gradient-${variant})`} />
+          {/* Tuno Fruit Body */}
+          <ellipse cx="50" cy="55" rx="25" ry="30" fill={`url(#tunoGradient-${variant})`} />
           
-          <circle cx="20" cy="50" r="4" fill={`url(#gradient-${variant})`} />
-          <circle cx="45" cy="50" r="4" fill={`url(#gradient-${variant})`} />
+          {/* Texture dots pattern */}
+          <circle cx="40" cy="40" r="2" fill="#E55A4E" opacity="0.6" />
+          <circle cx="60" cy="38" r="2" fill="#E55A4E" opacity="0.6" />
+          <circle cx="35" cy="55" r="2" fill="#E55A4E" opacity="0.6" />
+          <circle cx="65" cy="52" r="2" fill="#E55A4E" opacity="0.6" />
+          <circle cx="42" cy="70" r="2" fill="#E55A4E" opacity="0.6" />
+          <circle cx="58" cy="72" r="2" fill="#E55A4E" opacity="0.6" />
           
-          <circle cx="20" cy="75" r="4" fill={`url(#gradient-${variant})`} />
-          <circle cx="45" cy="75" r="4" fill={`url(#gradient-${variant})`} />
-          <circle cx="70" cy="75" r="4" fill={`url(#gradient-${variant})`} />
-          
-          {/* Connection lines */}
-          <line x1="20" y1="25" x2="70" y2="25" stroke={`url(#gradient-${variant})`} strokeWidth="2" />
-          <line x1="20" y1="50" x2="45" y2="50" stroke={`url(#gradient-${variant})`} strokeWidth="2" />
-          <line x1="20" y1="75" x2="70" y2="75" stroke={`url(#gradient-${variant})`} strokeWidth="2" />
-          <line x1="20" y1="25" x2="20" y2="75" stroke={`url(#gradient-${variant})`} strokeWidth="3" />
-          
-          {/* Additional connection nodes */}
-          <line x1="45" y1="25" x2="45" y2="75" stroke={`url(#gradient-${variant})`} strokeWidth="1" opacity="0.5" />
-          <line x1="20" y1="50" x2="70" y2="25" stroke={`url(#gradient-${variant})`} strokeWidth="1" opacity="0.3" />
+          {/* Green leaf accent */}
+          <path d="M50 20 C45 15, 35 20, 35 30 C35 40, 45 45, 50 40 C55 45, 65 40, 65 30 C65 20, 55 15, 50 20 Z" fill="#4CAF50" />
         </svg>
       </motion.div>
 

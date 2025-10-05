@@ -25,7 +25,7 @@ const facebookProvider = new FacebookAuthProvider();
 
 // Auth Service
 export class AuthService {
-  static async signUp(email: string, password: string, name: string): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'citizen' | 'provider' = 'citizen'): Promise<User> {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const firebaseUser = userCredential.user;
@@ -35,7 +35,11 @@ export class AuthService {
         id: firebaseUser.uid,
         email: firebaseUser.email!,
         name,
+        role,
         createdAt: new Date().toISOString(),
+        // Set professional fields for providers
+        isProfessional: role === 'provider',
+        verificationStatus: role === 'provider' ? 'pending' : undefined,
       };
 
       await setDoc(doc(db, 'users', firebaseUser.uid), userData);
@@ -77,6 +81,7 @@ export class AuthService {
           email: firebaseUser.email!,
           name: firebaseUser.displayName || 'Google User',
           avatar: firebaseUser.photoURL || undefined,
+          role: 'citizen', // Default role for social login
           createdAt: new Date().toISOString(),
         };
 
@@ -105,6 +110,7 @@ export class AuthService {
           email: firebaseUser.email!,
           name: firebaseUser.displayName || 'Facebook User',
           avatar: firebaseUser.photoURL || undefined,
+          role: 'citizen', // Default role for social login
           createdAt: new Date().toISOString(),
         };
 

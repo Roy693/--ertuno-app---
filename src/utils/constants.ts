@@ -31,8 +31,8 @@ export const SOCIAL_LINKS = {
 
 // Navigation Items
 export const NAV_ITEMS = [
-  { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Home', href: '/', key: 'nav.home' },
+  { name: 'Services', href: '/services', key: 'nav.services' },
+  { name: 'About', href: '/about', key: 'nav.about' },
+  { name: 'Contact', href: '/contact', key: 'nav.contact' },
 ] as const;
