@@ -207,6 +207,78 @@ const getTranslation = (key: string, lang: LanguageCode): string => {
       de: 'Mobile Web-Version'
     },
 
+    // Settings
+    'settings.title': {
+      it: 'Impostazioni',
+      en: 'Settings',
+      es: 'Configuración',
+      fr: 'Paramètres',
+      de: 'Einstellungen'
+    },
+    'settings.preferences': {
+      it: 'Preferenze Account',
+      en: 'Account Preferences',
+      es: 'Preferencias de Cuenta',
+      fr: 'Préférences du Compte',
+      de: 'Konto-Einstellungen'
+    },
+    'settings.role': {
+      it: 'Gestione Ruolo',
+      en: 'Role Management',
+      es: 'Gestión de Roles',
+      fr: 'Gestion des Rôles',
+      de: 'Rollenverwaltung'
+    },
+    'settings.security': {
+      it: 'Impostazioni Sicurezza',
+      en: 'Security Settings',
+      es: 'Configuración de Seguridad',
+      fr: 'Paramètres de Sécurité',
+      de: 'Sicherheitseinstellungen'
+    },
+    'settings.sessions': {
+      it: 'Info Sessione',
+      en: 'Session Info',
+      es: 'Información de Sesión',
+      fr: 'Informations de Session',
+      de: 'Sitzungsinfo'
+    },
+    'settings.delete': {
+      it: 'Elimina Account',
+      en: 'Delete Account',
+      es: 'Eliminar Cuenta',
+      fr: 'Supprimer le Compte',
+      de: 'Konto Löschen'
+    },
+    'settings.provider_dashboard': {
+      it: 'Dashboard Provider',
+      en: 'Provider Dashboard',
+      es: 'Panel de Proveedor',
+      fr: 'Tableau de Bord Fournisseur',
+      de: 'Anbieter-Dashboard'
+    },
+    'settings.poster_dashboard': {
+      it: 'Dashboard Richiedente',
+      en: 'Poster Dashboard',
+      es: 'Panel de Solicitante',
+      fr: 'Tableau de Bord Demandeur',
+      de: 'Anfragender-Dashboard'
+    },
+    'settings.provider_account': {
+      it: 'Account Provider',
+      en: 'Provider Account',
+      es: 'Cuenta de Proveedor',
+      fr: 'Compte Fournisseur',
+      de: 'Anbieter-Konto'
+    },
+    'settings.seeker_account': {
+      it: 'Cercatore Servizi',
+      en: 'Service Seeker',
+      es: 'Buscador de Servicios',
+      fr: 'Demandeur de Services',
+      de: 'Dienstleistungssucher'
+    },
+
     // About page
     'about.title': {
       it: 'Chi Siamo',

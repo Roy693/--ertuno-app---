@@ -1,14 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin, Twitter, Youtube, Heart } from 'lucide-react';
+import { Instagram, Linkedin, Twitter, Youtube, Heart, Settings, Shield, User, Trash2, Clock } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 import { APP_CONFIG, SOCIAL_LINKS } from '../../utils/constants';
+import { useAuth } from '../../hooks/useAuth';
+import { useLanguage } from '../../hooks/useLanguage';
 
 interface FooterProps {
   theme: 'light' | 'dark';
 }
 
 export const Footer: React.FC<FooterProps> = ({ theme }) => {
+  const { user } = useAuth();
+  const { t } = useLanguage();
+
   const socialIcons = [
     { name: 'Instagram', icon: Instagram, href: SOCIAL_LINKS.instagram },
     { name: 'LinkedIn', icon: Linkedin, href: SOCIAL_LINKS.linkedin },
@@ -37,10 +42,35 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
     ],
   };
 
+  // Dynamic Settings links based on user role
+  const getSettingsLinks = () => {
+    if (!user) return [];
+
+    const baseSettings = [
+      { name: t('settings.preferences'), href: '/settings/preferences', icon: User },
+      { name: t('settings.security'), href: '/settings/security', icon: Shield },
+      { name: t('settings.sessions'), href: '/settings/sessions', icon: Clock },
+      { name: t('settings.delete'), href: '/settings/delete', icon: Trash2 },
+    ];
+
+    // Add role-specific settings
+    const roleSettings = user.isProfessional 
+      ? [{ name: t('settings.provider_dashboard'), href: '/settings/provider', icon: Settings }]
+      : [{ name: t('settings.poster_dashboard'), href: '/settings/poster', icon: Settings }];
+
+    return [
+      { name: t('settings.role'), href: '/settings/role', icon: User },
+      ...roleSettings,
+      ...baseSettings,
+    ];
+  };
+
+  const settingsLinks = getSettingsLinks();
+
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${user ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-8`}>
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Logo 
@@ -129,6 +159,43 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
               ))}
             </ul>
           </div>
+
+          {/* Settings Links - Only visible when user is logged in */}
+          {user && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+                {t('settings.title')}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {settingsLinks.map((link) => (
+                  <li key={link.name}>
+                    <motion.a
+                      href={link.href}
+                      className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200 flex items-center space-x-2"
+                      whileHover={{ x: 2 }}
+                    >
+                      <link.icon className="w-3 h-3" />
+                      <span>{link.name}</span>
+                    </motion.a>
+                  </li>
+                ))}
+              </ul>
+              
+              {/* User Role Badge */}
+              <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex items-center space-x-2">
+                  <div className={`w-2 h-2 rounded-full ${user.isProfessional ? 'bg-orange-500' : 'bg-teal-500'}`}></div>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    {user.isProfessional ? t('settings.provider_account') : t('settings.seeker_account')}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* Bottom Section */}

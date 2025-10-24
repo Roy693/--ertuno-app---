@@ -4,8 +4,8 @@ export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:50
 // App Configuration
 export const APP_CONFIG = {
   name: 'ERTUNO',
-  tagline: 'Creative Collaboration Platform',
-  description: 'A tech-forward platform that blends secure backend architecture with frontend artistry',
+  tagline: 'The Holy Site of Holding Treasure',
+  description: 'Where the future of connections, traders, and deals finds its sacred home - the ultimate platform that holds the dreams of endless possibilities',
   version: '1.0.0',
   domain: 'ertuno.com',
 } as const;
