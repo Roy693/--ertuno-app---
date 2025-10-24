@@ -51,9 +51,10 @@ export const Logo: React.FC<LogoProps> = ({
         transition={{ duration: 0.3 }}
       >
         <img 
-          src="/assets/ertuno-logo.png" 
+          src="/assets/ertuno-logo.png?t=1729807000" 
           alt="ERTUNO - Creative Collaboration Platform"
           className="w-full h-full object-contain"
+          key="ertuno-logo-2024-png"
         />
       </motion.div>
 
