@@ -21,77 +21,75 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
     { name: 'YouTube', icon: Youtube, href: SOCIAL_LINKS.youtube },
   ];
 
-  const getFooterLinks = () => ({
+  const footerLinks = {
     product: [
       { 
-        name: t('footer.features'), 
+        name: 'Funzionalità', 
         href: '/features',
-        description: t('footer.features.description'),
-        tagline: t('footer.features.tagline')
+        description: 'Messaggistica live, marketplace dei servizi, verifica professionale — costruito per la collaborazione in tempo reale e la fiducia.',
+        tagline: 'Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. Trova, chatta, risolvi. Tutto in un\'app.'
       },
       { 
-        name: t('footer.pricing'), 
+        name: 'Prezzi', 
         href: '/pricing',
-        description: t('footer.pricing.description')
+        description: 'Gratuito per i richiedenti. Commissioni per i provider. Trasparente, scalabile, amico del fondatore.'
       },
       { 
-        name: t('footer.api'), 
+        name: 'API', 
         href: '/api',
-        description: t('footer.api.description')
+        description: 'API RESTful per integrazioni di terze parti. Endpoint sicuri per pubblicazione lavori, ruoli utente e messaggistica.'
       },
       { 
-        name: t('footer.documentation'), 
+        name: 'Documentazione', 
         href: '/docs',
-        description: t('footer.documentation.description')
+        description: 'Guide tecniche, tutorial di integrazione e diagrammi di flusso backend per sviluppatori e architetti.'
       },
     ],
     company: [
       { 
-        name: t('footer.about'), 
+        name: 'Chi Siamo', 
         href: '/about',
-        description: t('footer.about.description')
+        description: 'Il sito sacro dove connessioni, trader e deal prosperano. ERTUNO è costruito su grinta siciliana e tecnologia globale.'
       },
       { 
-        name: t('footer.blog'), 
+        name: 'Blog', 
         href: '/blog',
-        description: t('footer.blog.description')
+        description: 'Storie di successo, approfondimenti del settore e aggiornamenti della piattaforma dal team ERTUNO.'
       },
       { 
-        name: t('footer.careers'), 
+        name: 'Carriere', 
         href: '/careers',
-        description: t('footer.careers.description')
+        description: 'Unisciti alla missione sacra. Opportunità remote e europee disponibili per costruttori, designer e strateghi.'
       },
       { 
-        name: t('footer.contact'), 
+        name: 'Contatti', 
         href: '/contact',
-        description: t('footer.contact.description')
+        description: 'Mettiti in contatto: hello@ertuno.com — rispondiamo velocemente e costruiamo insieme.'
       },
     ],
     legal: [
       { 
-        name: t('footer.privacy'), 
+        name: 'Privacy Policy', 
         href: '/privacy',
-        description: t('footer.privacy.description')
+        description: 'Protezione dei dati conforme al GDPR e privacy degli utenti. Non vendiamo mai i tuoi dati.'
       },
       { 
-        name: t('footer.terms'), 
+        name: 'Termini di Servizio', 
         href: '/terms',
-        description: t('footer.terms.description')
+        description: 'Termini di utilizzo della piattaforma e accordi di servizio.'
       },
       { 
-        name: t('footer.cookies'), 
+        name: 'Cookie Policy', 
         href: '/cookies',
-        description: t('footer.cookies.description')
+        description: 'Gestisci le preferenze. Usiamo i cookie per migliorare le prestazioni, non per tracciare.'
       },
       { 
-        name: t('footer.gdpr'), 
+        name: 'GDPR', 
         href: '/gdpr',
-        description: t('footer.gdpr.description')
+        description: 'Piena conformità alle leggi europee sulla protezione dei dati. I tuoi diritti sono rispettati.'
       },
     ],
-  });
-
-  const footerLinks = getFooterLinks();
+  };
 
   // Dynamic Settings links based on user role
   const getSettingsLinks = () => {
@@ -140,17 +138,17 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
             {/* Mission Statement */}
             <div className="bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-lg p-4 mb-6 border border-orange-100 dark:border-orange-800/30">
               <p className="text-sm text-gray-700 dark:text-gray-300 font-medium italic">
-                "Built on Sicilian grit and global tech — connecting European talent with opportunity through sacred bonds of trust and innovation."
+                "Costruito su grinta siciliana e tecnologia globale — collegando il talento europeo con le opportunità attraverso legami sacri di fiducia e innovazione."
               </p>
             </div>
             
             {/* Contact Info */}
             <div className="mb-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
               <div className="text-sm text-gray-700 dark:text-gray-300">
-                <div className="font-semibold mb-1">Connect With Us:</div>
+                <div className="font-semibold mb-1">Mettiti in Contatto:</div>
                 <div>📧 hello@ertuno.com</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  We respond fast and build together
+                  Rispondiamo velocemente e costruiamo insieme
                 </div>
               </div>
             </div>
@@ -177,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Product Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              {t('footer.product')}
+              Prodotto
             </h3>
             <ul className="space-y-4">
               {footerLinks.product.map((link) => (
@@ -210,7 +208,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Company Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              {t('footer.company')}
+              Azienda
             </h3>
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
@@ -235,7 +233,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Legal Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              {t('footer.legal')}
+              Legale
             </h3>
             <ul className="space-y-4">
               {footerLinks.legal.map((link) => (
@@ -266,7 +264,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
               className="border-l-2 border-orange-200 dark:border-orange-800 pl-4"
             >
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-                {t('settings.title')}
+                Impostazioni
               </h3>
               
               {/* User Role Badge */}
