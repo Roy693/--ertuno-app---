@@ -118,8 +118,8 @@ const AppContent: React.FC = () => {
         </Routes>
       </main>
 
-      {/* Footer - Only show on public pages */}
-      {!user && <Footer theme={theme as 'light' | 'dark'} />}
+      {/* Footer - Show on all pages */}
+      <Footer theme={theme as 'light' | 'dark'} />
 
       {/* Auth Modal */}
       <AuthModal

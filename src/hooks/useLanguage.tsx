@@ -279,6 +279,210 @@ const getTranslation = (key: string, lang: LanguageCode): string => {
       de: 'Dienstleistungssucher'
     },
 
+    // Footer sections
+    'footer.product': {
+      it: 'Prodotto',
+      en: 'Product',
+      es: 'Producto',
+      fr: 'Produit',
+      de: 'Produkt'
+    },
+    'footer.company': {
+      it: 'Azienda',
+      en: 'Company',
+      es: 'Empresa',
+      fr: 'Entreprise',
+      de: 'Unternehmen'
+    },
+    'footer.legal': {
+      it: 'Legale',
+      en: 'Legal',
+      es: 'Legal',
+      fr: 'Légal',
+      de: 'Rechtliches'
+    },
+
+    // Product section
+    'footer.features': {
+      it: 'Funzionalità',
+      en: 'Features',
+      es: 'Características',
+      fr: 'Fonctionnalités',
+      de: 'Funktionen'
+    },
+    'footer.features.tagline': {
+      it: 'Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. Trova, chatta, risolvi. Tutto in un\'app.',
+      en: 'Live Messaging meets Trusted Providers. Instant chat with verified professionals. Find, chat, solve. All in one app.',
+      es: 'Live Messaging se encuentra con Trusted Providers. Chat instantáneo con profesionales verificados. Encuentra, chatea, resuelve. Todo en una app.',
+      fr: 'Live Messaging rencontre Trusted Providers. Chat instantané avec des professionnels vérifiés. Trouvez, chattez, résolvez. Tout en une app.',
+      de: 'Live Messaging trifft auf Trusted Providers. Sofort-Chat mit verifizierten Fachleuten. Finden, chatten, lösen. Alles in einer App.'
+    },
+    'footer.features.description': {
+      it: 'Messaggistica live, marketplace dei servizi, verifica professionale — costruito per la collaborazione in tempo reale e la fiducia.',
+      en: 'Live messaging, service marketplace, professional verification — built for real-time collaboration and trust.',
+      es: 'Mensajería en vivo, marketplace de servicios, verificación profesional — construido para la colaboración en tiempo real y la confianza.',
+      fr: 'Messagerie en direct, marketplace de services, vérification professionnelle — conçu pour la collaboration en temps réel et la confiance.',
+      de: 'Live-Messaging, Service-Marktplatz, professionelle Verifizierung — entwickelt für Echtzeit-Zusammenarbeit und Vertrauen.'
+    },
+    'footer.pricing': {
+      it: 'Prezzi',
+      en: 'Pricing',
+      es: 'Precios',
+      fr: 'Tarifs',
+      de: 'Preise'
+    },
+    'footer.pricing.description': {
+      it: 'Gratuito per i richiedenti. Commissioni per i provider. Trasparente, scalabile, amico del fondatore.',
+      en: 'Free for seekers. Commission-based for providers. Transparent, scalable, founder-friendly.',
+      es: 'Gratis para los solicitantes. Basado en comisiones para los proveedores. Transparente, escalable, amigable para fundadores.',
+      fr: 'Gratuit pour les demandeurs. Basé sur commission pour les fournisseurs. Transparent, évolutif, convivial pour les fondateurs.',
+      de: 'Kostenlos für Suchende. Provisionsbasiert für Anbieter. Transparent, skalierbar, gründerfreundlich.'
+    },
+    'footer.api': {
+      it: 'API',
+      en: 'API',
+      es: 'API',
+      fr: 'API',
+      de: 'API'
+    },
+    'footer.api.description': {
+      it: 'API RESTful per integrazioni di terze parti. Endpoint sicuri per pubblicazione lavori, ruoli utente e messaggistica.',
+      en: 'RESTful API for third-party integrations. Secure endpoints for job posting, user roles, and messaging.',
+      es: 'API RESTful para integraciones de terceros. Endpoints seguros para publicación de trabajos, roles de usuario y mensajería.',
+      fr: 'API RESTful pour les intégrations tierces. Points de terminaison sécurisés pour la publication d\'emplois, les rôles d\'utilisateur et la messagerie.',
+      de: 'RESTful API für Drittanbieter-Integrationen. Sichere Endpunkte für Stellenausschreibungen, Benutzerrollen und Messaging.'
+    },
+    'footer.documentation': {
+      it: 'Documentazione',
+      en: 'Documentation',
+      es: 'Documentación',
+      fr: 'Documentation',
+      de: 'Dokumentation'
+    },
+    'footer.documentation.description': {
+      it: 'Guide tecniche, tutorial di integrazione e diagrammi di flusso backend per sviluppatori e architetti.',
+      en: 'Technical guides, integration tutorials, and backend flowcharts for developers and architects.',
+      es: 'Guías técnicas, tutoriales de integración y diagramas de flujo de backend para desarrolladores y arquitectos.',
+      fr: 'Guides techniques, tutoriels d\'intégration et diagrammes de flux backend pour développeurs et architectes.',
+      de: 'Technische Anleitungen, Integrations-Tutorials und Backend-Flussdiagramme für Entwickler und Architekten.'
+    },
+
+    // Company section
+    'footer.about': {
+      it: 'Chi Siamo',
+      en: 'About',
+      es: 'Acerca de',
+      fr: 'À propos',
+      de: 'Über uns'
+    },
+    'footer.about.description': {
+      it: 'Il sito sacro dove connessioni, trader e deal prosperano. ERTUNO è costruito su grinta siciliana e tecnologia globale.',
+      en: 'The holy site where connections, traders, and deals flourish. ERTUNO is built on Sicilian grit and global tech.',
+      es: 'El sitio sagrado donde las conexiones, comerciantes y acuerdos florecen. ERTUNO está construido sobre determinación siciliana y tecnología global.',
+      fr: 'Le site sacré où les connexions, les traders et les accords prospèrent. ERTUNO est construit sur la détermination sicilienne et la technologie mondiale.',
+      de: 'Die heilige Stätte, wo Verbindungen, Händler und Deals gedeihen. ERTUNO basiert auf sizilianischer Entschlossenheit und globaler Technologie.'
+    },
+    'footer.blog': {
+      it: 'Blog',
+      en: 'Blog',
+      es: 'Blog',
+      fr: 'Blog',
+      de: 'Blog'
+    },
+    'footer.blog.description': {
+      it: 'Storie di successo, approfondimenti del settore e aggiornamenti della piattaforma dal team ERTUNO.',
+      en: 'Success stories, industry insights, and platform updates from the ERTUNO team.',
+      es: 'Historias de éxito, perspectivas de la industria y actualizaciones de la plataforma del equipo ERTUNO.',
+      fr: 'Histoires de réussite, perspectives de l\'industrie et mises à jour de la plateforme de l\'équipe ERTUNO.',
+      de: 'Erfolgsgeschichten, Brancheneinblicke und Plattform-Updates vom ERTUNO-Team.'
+    },
+    'footer.careers': {
+      it: 'Carriere',
+      en: 'Careers',
+      es: 'Carreras',
+      fr: 'Carrières',
+      de: 'Karriere'
+    },
+    'footer.careers.description': {
+      it: 'Unisciti alla missione sacra. Opportunità remote e europee disponibili per costruttori, designer e strateghi.',
+      en: 'Join the sacred mission. Remote and European opportunities available for builders, designers, and strategists.',
+      es: 'Únete a la misión sagrada. Oportunidades remotas y europeas disponibles para constructores, diseñadores y estrategas.',
+      fr: 'Rejoignez la mission sacrée. Opportunités à distance et européennes disponibles pour les constructeurs, designers et stratèges.',
+      de: 'Schließe dich der heiligen Mission an. Remote- und europäische Möglichkeiten für Entwickler, Designer und Strategen verfügbar.'
+    },
+    'footer.contact': {
+      it: 'Contatti',
+      en: 'Contact',
+      es: 'Contacto',
+      fr: 'Contact',
+      de: 'Kontakt'
+    },
+    'footer.contact.description': {
+      it: 'Mettiti in contatto: hello@ertuno.com — rispondiamo velocemente e costruiamo insieme.',
+      en: 'Get in touch: hello@ertuno.com — we respond fast and build together.',
+      es: 'Ponte en contacto: hello@ertuno.com — respondemos rápido y construimos juntos.',
+      fr: 'Entrez en contact: hello@ertuno.com — nous répondons rapidement et construisons ensemble.',
+      de: 'Kontaktiere uns: hello@ertuno.com — wir antworten schnell und bauen gemeinsam auf.'
+    },
+
+    // Legal section
+    'footer.privacy': {
+      it: 'Privacy Policy',
+      en: 'Privacy Policy',
+      es: 'Política de Privacidad',
+      fr: 'Politique de Confidentialité',
+      de: 'Datenschutzrichtlinie'
+    },
+    'footer.privacy.description': {
+      it: 'Protezione dei dati conforme al GDPR e privacy degli utenti. Non vendiamo mai i tuoi dati.',
+      en: 'GDPR-compliant data protection and user privacy. We never sell your data.',
+      es: 'Protección de datos conforme al GDPR y privacidad del usuario. Nunca vendemos tus datos.',
+      fr: 'Protection des données conforme au GDPR et confidentialité des utilisateurs. Nous ne vendons jamais vos données.',
+      de: 'DSGVO-konforme Datenschutz und Benutzerprivatsphäre. Wir verkaufen niemals Ihre Daten.'
+    },
+    'footer.terms': {
+      it: 'Termini di Servizio',
+      en: 'Terms of Service',
+      es: 'Términos de Servicio',
+      fr: 'Conditions de Service',
+      de: 'Nutzungsbedingungen'
+    },
+    'footer.terms.description': {
+      it: 'Termini di utilizzo della piattaforma e accordi di servizio.',
+      en: 'Platform usage terms and service agreements.',
+      es: 'Términos de uso de la plataforma y acuerdos de servicio.',
+      fr: 'Conditions d\'utilisation de la plateforme et accords de service.',
+      de: 'Plattform-Nutzungsbedingungen und Service-Vereinbarungen.'
+    },
+    'footer.cookies': {
+      it: 'Cookie Policy',
+      en: 'Cookie Policy',
+      es: 'Política de Cookies',
+      fr: 'Politique des Cookies',
+      de: 'Cookie-Richtlinie'
+    },
+    'footer.cookies.description': {
+      it: 'Gestisci le preferenze. Usiamo i cookie per migliorare le prestazioni, non per tracciare.',
+      en: 'Manage preferences. We use cookies to improve performance, not to track.',
+      es: 'Gestionar preferencias. Usamos cookies para mejorar el rendimiento, no para rastrear.',
+      fr: 'Gérer les préférences. Nous utilisons des cookies pour améliorer les performances, pas pour suivre.',
+      de: 'Einstellungen verwalten. Wir verwenden Cookies zur Leistungsverbesserung, nicht zur Verfolgung.'
+    },
+    'footer.gdpr': {
+      it: 'GDPR',
+      en: 'GDPR',
+      es: 'GDPR',
+      fr: 'RGPD',
+      de: 'DSGVO'
+    },
+    'footer.gdpr.description': {
+      it: 'Piena conformità alle leggi europee sulla protezione dei dati. I tuoi diritti sono rispettati.',
+      en: 'Full compliance with European data protection laws. Your rights are respected.',
+      es: 'Cumplimiento completo con las leyes europeas de protección de datos. Tus derechos son respetados.',
+      fr: 'Conformité complète aux lois européennes de protection des données. Vos droits sont respectés.',
+      de: 'Vollständige Einhaltung der europäischen Datenschutzgesetze. Ihre Rechte werden respektiert.'
+    },
+
     // About page
     'about.title': {
       it: 'Chi Siamo',
