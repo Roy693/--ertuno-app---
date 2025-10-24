@@ -2,7 +2,8 @@
 
 ## 🚀 Project Overview
 - **Name**: ERTUNO  
-- **Vision**: A scalable, AI-powered platform that blends live messaging with trusted professional services marketplace
+- **Vision**: The Holy Site of Holding Treasure - Where the future of connections, traders, and deals finds its sacred home
+- **Tagline**: The ultimate platform that holds the dreams of endless possibilities
 - **Core Features**: Live Messaging, service request marketplace, professional verification, mobile-first design
 
 ## 🌐 URLs
@@ -98,8 +99,18 @@
 - ✅ **SEO URL Structure**: Subdirectory language routing (/it/, /en/, /es/, /fr/, /de/)
 - ✅ **LocalStorage Persistence**: User language preferences saved across sessions
 - ✅ **Browser Detection**: Automatic language detection from browser settings
-- ✅ **Comprehensive Translations**: Navigation, authentication, hero content, features, stats
+- ✅ **Comprehensive Translations**: Navigation, authentication, hero content, features, stats, settings
 - ✅ **Real-time Language Switching**: Instant UI updates without page reload
+
+### ⚙️ Dynamic Settings & Brand Vision
+- ✅ **New Premium Logo**: Represents the ultimate connection platform for service and demand
+- ✅ **Sacred Brand Identity**: "The Holy Site of Holding Treasure" tagline reflecting platform's destiny
+- ✅ **Dynamic Footer Settings**: Role-based settings section (Provider/Poster specific)
+- ✅ **Authentication Aware**: Settings section hides when user not logged in
+- ✅ **Role Management**: Account Preferences, Security Settings, Session Info, Delete Account
+- ✅ **User Role Badges**: Visual indicators for Provider/Service Seeker accounts
+- ✅ **Multilingual Settings**: Complete i18n support for all settings links
+- ✅ **Responsive Grid**: Dynamic layout adapting to authentication status
 
 ### 🛡️ SEO & Performance
 - ✅ Complete meta tag optimization for social sharing
@@ -256,7 +267,7 @@ interface Conversation {
 - **Status**: ✅ Production Ready - Full Live Messaging & Professional Services Integration
 - **Build**: ✅ Optimized production build (294KB main bundle)
 - **Tech Stack**: React + TypeScript + Firebase + Tailwind CSS
-- **Last Updated**: 2025-10-05 (EU Multilingual System Completed)
+- **Last Updated**: 2025-10-24 (Brand Vision & Dynamic Settings Completed)
 
 ## 🎯 Performance Metrics
 - **Bundle Size**: ~500KB total (gzipped: ~150KB)
@@ -276,6 +287,7 @@ ERTUNO has successfully evolved from a simple landing page into a **comprehensiv
 ✅ **Mobile-first responsive design** with dark mode support  
 ✅ **Firebase-powered backend** with real-time synchronization  
 ✅ **EU Multilingual Support** with 5 languages and SEO optimization  
+✅ **Dynamic Settings & Brand Vision** - The Holy Site of Holding Treasure  
 
 The platform is now ready for professional deployment and can scale to support thousands of users with Live Messaging, service requests, and professional interactions.
 

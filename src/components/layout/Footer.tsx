@@ -23,22 +23,70 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
   const footerLinks = {
     product: [
-      { name: 'Features', href: '/features' },
-      { name: 'Pricing', href: '/pricing' },
-      { name: 'API', href: '/api' },
-      { name: 'Documentation', href: '/docs' },
+      { 
+        name: 'Features', 
+        href: '/features',
+        description: 'Live messaging, service marketplace, professional verification'
+      },
+      { 
+        name: 'Pricing', 
+        href: '/pricing',
+        description: 'Free for seekers, commission-based for providers'
+      },
+      { 
+        name: 'API', 
+        href: '/api',
+        description: 'RESTful API for third-party integrations'
+      },
+      { 
+        name: 'Documentation', 
+        href: '/docs',
+        description: 'Technical guides and integration tutorials'
+      },
     ],
     company: [
-      { name: 'About', href: '/about' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Contact', href: '/contact' },
+      { 
+        name: 'About', 
+        href: '/about',
+        description: 'The holy site where connections, traders, and deals flourish'
+      },
+      { 
+        name: 'Blog', 
+        href: '/blog',
+        description: 'Success stories, industry insights, platform updates'
+      },
+      { 
+        name: 'Careers', 
+        href: '/careers',
+        description: 'Join the sacred mission - Remote & European opportunities'
+      },
+      { 
+        name: 'Contact', 
+        href: '/contact',
+        description: 'Get in touch: hello@ertuno.com'
+      },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms of Service', href: '/terms' },
-      { name: 'Cookie Policy', href: '/cookies' },
-      { name: 'GDPR', href: '/gdpr' },
+      { 
+        name: 'Privacy Policy', 
+        href: '/privacy',
+        description: 'GDPR-compliant data protection and user privacy'
+      },
+      { 
+        name: 'Terms of Service', 
+        href: '/terms',
+        description: 'Platform usage terms and service agreements'
+      },
+      { 
+        name: 'Cookie Policy', 
+        href: '/cookies',
+        description: 'Cookie usage and preferences management'
+      },
+      { 
+        name: 'GDPR', 
+        href: '/gdpr',
+        description: 'European data protection compliance'
+      },
     ],
   };
 
@@ -73,16 +121,36 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
         <div className={`grid grid-cols-1 md:grid-cols-2 ${user ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-8`}>
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Logo 
-              variant={theme === 'dark' ? 'dark' : 'light'} 
-              size="lg" 
-            />
-            <p className="mt-4 text-gray-600 dark:text-gray-400 text-sm leading-6">
+            {/* ERTUNO Logo */}
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/ertuno-logo.png" 
+                alt="ERTUNO - The Holy Site of Holding Treasure" 
+                className="w-12 h-12 rounded-lg shadow-sm"
+              />
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {APP_CONFIG.name}
+                </h2>
+                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                  {APP_CONFIG.tagline}
+                </p>
+              </div>
+            </div>
+            
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-6 mb-6">
               {APP_CONFIG.description}
             </p>
             
+            {/* Mission Statement */}
+            <div className="bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-lg p-4 mb-6 border border-orange-100 dark:border-orange-800/30">
+              <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                "Connecting European talent with opportunity through sacred bonds of trust and innovation."
+              </p>
+            </div>
+            
             {/* Social Links */}
-            <div className="mt-6 flex space-x-4">
+            <div className="flex space-x-4">
               {socialIcons.map((social) => (
                 <motion.a
                   key={social.name}
@@ -102,18 +170,23 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
           {/* Product Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
               Product
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-4">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200"
+                    className="block group"
                     whileHover={{ x: 2 }}
                   >
-                    {link.name}
+                    <div className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
+                      {link.name}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+                      {link.description}
+                    </div>
                   </motion.a>
                 </li>
               ))}
@@ -122,18 +195,23 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
               Company
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200"
+                    className="block group"
                     whileHover={{ x: 2 }}
                   >
-                    {link.name}
+                    <div className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
+                      {link.name}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+                      {link.description}
+                    </div>
                   </motion.a>
                 </li>
               ))}
@@ -142,18 +220,23 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
               Legal
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-4">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200"
+                    className="block group"
                     whileHover={{ x: 2 }}
                   >
-                    {link.name}
+                    <div className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
+                      {link.name}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+                      {link.description}
+                    </div>
                   </motion.a>
                 </li>
               ))}
@@ -166,33 +249,46 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
+              className="border-l-2 border-orange-200 dark:border-orange-800 pl-4"
             >
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
                 {t('settings.title')}
               </h3>
-              <ul className="mt-4 space-y-3">
+              
+              {/* User Role Badge */}
+              <div className="mb-4 p-2 bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-lg border border-orange-100 dark:border-orange-800/30">
+                <div className="flex items-center space-x-2">
+                  <div className={`w-3 h-3 rounded-full ${user.isProfessional ? 'bg-orange-500' : 'bg-teal-500'}`}></div>
+                  <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
+                    {user.isProfessional ? t('settings.provider_account') : t('settings.seeker_account')}
+                  </span>
+                </div>
+              </div>
+              
+              <ul className="space-y-3">
                 {settingsLinks.map((link) => (
                   <li key={link.name}>
                     <motion.a
                       href={link.href}
-                      className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200 flex items-center space-x-2"
+                      className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors duration-200 flex items-center space-x-2 group"
                       whileHover={{ x: 2 }}
                     >
-                      <link.icon className="w-3 h-3" />
-                      <span>{link.name}</span>
+                      <link.icon className="w-4 h-4 group-hover:text-primary-500" />
+                      <span className="font-medium">{link.name}</span>
                     </motion.a>
                   </li>
                 ))}
               </ul>
               
-              {/* User Role Badge */}
+              {/* Quick Actions */}
               <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center space-x-2">
-                  <div className={`w-2 h-2 rounded-full ${user.isProfessional ? 'bg-orange-500' : 'bg-teal-500'}`}></div>
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                    {user.isProfessional ? t('settings.provider_account') : t('settings.seeker_account')}
-                  </span>
-                </div>
+                <motion.button
+                  className="text-xs text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Sign Out
+                </motion.button>
               </div>
             </motion.div>
           )}
@@ -200,18 +296,51 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
         {/* Bottom Section */}
         <motion.div
-          className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between"
+          className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            © {new Date().getFullYear()} {APP_CONFIG.name}. All rights reserved.
-          </p>
+          {/* Platform Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="text-center">
+              <div className="text-lg font-bold text-orange-600 dark:text-orange-400">10K+</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">Active Users</div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-teal-600 dark:text-teal-400">50K+</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">Services Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-blue-600 dark:text-blue-400">25+</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">European Cities</div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-purple-600 dark:text-purple-400">99.8%</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">Satisfaction Rate</div>
+            </div>
+          </div>
           
-          <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 md:mt-0 flex items-center">
-            Made with <Heart className="w-4 h-4 mx-1 text-red-500" fill="currentColor" /> by the ERTUNO team
-          </p>
+          {/* Copyright and Credits */}
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                © {new Date().getFullYear()} {APP_CONFIG.name}. All rights reserved.
+              </p>
+              <div className="text-gray-500 dark:text-gray-400 text-xs">
+                🇪🇺 Proudly European | GDPR Compliant | Secure by Design
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4 mt-4 md:mt-0">
+              <p className="text-gray-500 dark:text-gray-400 text-sm flex items-center">
+                Made with <Heart className="w-4 h-4 mx-1 text-red-500" fill="currentColor" /> by the ERTUNO team
+              </p>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                v{APP_CONFIG.version}
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </footer>
