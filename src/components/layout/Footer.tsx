@@ -26,66 +26,66 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
       { 
         name: 'Features', 
         href: '/features',
-        description: 'Live messaging, service marketplace, professional verification'
+        description: 'Live messaging, service marketplace, professional verification — built for real-time collaboration and trust.'
       },
       { 
         name: 'Pricing', 
         href: '/pricing',
-        description: 'Free for seekers, commission-based for providers'
+        description: 'Free for seekers. Commission-based for providers. Transparent, scalable, founder-friendly.'
       },
       { 
         name: 'API', 
         href: '/api',
-        description: 'RESTful API for third-party integrations'
+        description: 'RESTful API for third-party integrations. Secure endpoints for job posting, user roles, and messaging.'
       },
       { 
         name: 'Documentation', 
         href: '/docs',
-        description: 'Technical guides and integration tutorials'
+        description: 'Technical guides, integration tutorials, and backend flowcharts for developers and architects.'
       },
     ],
     company: [
       { 
         name: 'About', 
         href: '/about',
-        description: 'The holy site where connections, traders, and deals flourish'
+        description: 'The holy site where connections, traders, and deals flourish. ERTUNO is built on Sicilian grit and global tech.'
       },
       { 
         name: 'Blog', 
         href: '/blog',
-        description: 'Success stories, industry insights, platform updates'
+        description: 'Success stories, industry insights, and platform updates from the ERTUNO team.'
       },
       { 
         name: 'Careers', 
         href: '/careers',
-        description: 'Join the sacred mission - Remote & European opportunities'
+        description: 'Join the sacred mission. Remote and European opportunities available for builders, designers, and strategists.'
       },
       { 
         name: 'Contact', 
         href: '/contact',
-        description: 'Get in touch: hello@ertuno.com'
+        description: 'Get in touch: hello@ertuno.com — we respond fast and build together.'
       },
     ],
     legal: [
       { 
         name: 'Privacy Policy', 
         href: '/privacy',
-        description: 'GDPR-compliant data protection and user privacy'
+        description: 'GDPR-compliant data protection and user privacy. We never sell your data.'
       },
       { 
         name: 'Terms of Service', 
         href: '/terms',
-        description: 'Platform usage terms and service agreements'
+        description: 'Platform usage terms and service agreements.'
       },
       { 
         name: 'Cookie Policy', 
         href: '/cookies',
-        description: 'Cookie usage and preferences management'
+        description: 'Manage preferences. We use cookies to improve performance, not to track.'
       },
       { 
         name: 'GDPR', 
         href: '/gdpr',
-        description: 'European data protection compliance'
+        description: 'Full compliance with European data protection laws. Your rights are respected.'
       },
     ],
   };
@@ -122,21 +122,13 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             {/* ERTUNO Logo */}
-            <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src="/ertuno-logo.png" 
-                alt="ERTUNO - The Holy Site of Holding Treasure" 
-                className="w-12 h-12 rounded-lg shadow-sm"
-              />
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {APP_CONFIG.name}
-                </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                  {APP_CONFIG.tagline}
-                </p>
-              </div>
-            </div>
+            <Logo 
+              variant={theme === 'dark' ? 'dark' : 'light'} 
+              size="lg" 
+              showText={true}
+              showTagline={true}
+              className="mb-6"
+            />
             
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-6 mb-6">
               {APP_CONFIG.description}
@@ -144,9 +136,20 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
             
             {/* Mission Statement */}
             <div className="bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-lg p-4 mb-6 border border-orange-100 dark:border-orange-800/30">
-              <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">
-                "Connecting European talent with opportunity through sacred bonds of trust and innovation."
+              <p className="text-sm text-gray-700 dark:text-gray-300 font-medium italic">
+                "Built on Sicilian grit and global tech — connecting European talent with opportunity through sacred bonds of trust and innovation."
               </p>
+            </div>
+            
+            {/* Contact Info */}
+            <div className="mb-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
+              <div className="text-sm text-gray-700 dark:text-gray-300">
+                <div className="font-semibold mb-1">Connect With Us:</div>
+                <div>📧 hello@ertuno.com</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  We respond fast and build together
+                </div>
+              </div>
             </div>
             
             {/* Social Links */}
