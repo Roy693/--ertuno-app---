@@ -9,6 +9,7 @@ import { Dashboard } from './pages/Dashboard';
 import { BrowseRequests } from './pages/BrowseRequests';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
+import { Research } from './pages/Research';
 import { TermsOfService } from './pages/TermsOfService';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider, useTheme } from './hooks/useTheme';
@@ -125,6 +126,7 @@ const AppContent: React.FC = () => {
           />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/research" element={<Research />} />
           <Route path="/terms" element={<TermsOfService />} />
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" />} />

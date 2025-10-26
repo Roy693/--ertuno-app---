@@ -22,7 +22,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     password: '',
     name: '',
     confirmPassword: '',
-    role: 'citizen' as 'citizen' | 'provider'
+    role: 'citizen' as 'citizen' | 'provider' | 'academic' | 'researcher'
   });
 
   const { signIn, signUp, signInWithGoogle, signInWithFacebook, loading, error, clearError } = useAuth();
@@ -265,6 +265,46 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                             <div className="ml-2">
                               <div className="text-sm font-medium text-gray-900 dark:text-white">Offer Services</div>
                               <div className="text-xs text-gray-500 dark:text-gray-400">Provide professional services</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                      
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'academic' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="academic"
+                          checked={formData.role === 'academic'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col">
+                          <div className="flex items-center">
+                            <div className="text-lg">🎓</div>
+                            <div className="ml-2">
+                              <div className="text-sm font-medium text-gray-900 dark:text-white">Academic</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Professor/Institution</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                      
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'researcher' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="researcher"
+                          checked={formData.role === 'researcher'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col">
+                          <div className="flex items-center">
+                            <div className="text-lg">🔬</div>
+                            <div className="ml-2">
+                              <div className="text-sm font-medium text-gray-900 dark:text-white">Researcher</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">PhD/Research fellow</div>
                             </div>
                           </div>
                         </div>

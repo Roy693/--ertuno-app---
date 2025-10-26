@@ -77,6 +77,13 @@ const getTranslation = (key: string, lang: LanguageCode): string => {
       fr: 'Contact',
       de: 'Kontakt'
     },
+    'nav.research': {
+      it: 'Università & Ricerca',
+      en: 'Universities & Research',
+      es: 'Universidades e Investigación',
+      fr: 'Universités et Recherche',
+      de: 'Universitäten & Forschung'
+    },
     'nav.language': {
       it: 'Lingua',
       en: 'Language',
@@ -497,6 +504,71 @@ const getTranslation = (key: string, lang: LanguageCode): string => {
       es: 'ERTUNO está construido para velocidad, confianza y simplicidad. Conectamos ciudadanos con proveedores de servicios verificados en toda Europa—instantáneamente.',
       fr: 'ERTUNO est conçu pour la rapidité, la confiance et la simplicité. Nous connectons les citoyens avec des fournisseurs de services vérifiés à travers l\'Europe—instantanément.',
       de: 'ERTUNO ist für Geschwindigkeit, Vertrauen und Einfachheit gebaut. Wir verbinden Bürger mit verifizierten Dienstleistern in ganz Europa—sofort.'
+    },
+
+    // Research & Academic Section
+    'research.title': {
+      it: 'ERTUNO x Ricerca',
+      en: 'ERTUNO x Research',
+      es: 'ERTUNO x Investigación',
+      fr: 'ERTUNO x Recherche',
+      de: 'ERTUNO x Forschung'
+    },
+    'research.subtitle': {
+      it: 'Connettere il mondo accademico con l\'innovazione professionale',
+      en: 'Connecting academia with professional innovation',
+      es: 'Conectando la academia con la innovación profesional',
+      fr: 'Connecter le monde académique avec l\'innovation professionnelle',
+      de: 'Die Wissenschaft mit beruflicher Innovation verbinden'
+    },
+    'research.mission.title': {
+      it: 'La Nostra Missione Accademica',
+      en: 'Our Academic Mission',
+      es: 'Nuestra Misión Académica',
+      fr: 'Notre Mission Académique',
+      de: 'Unsere Akademische Mission'
+    },
+    'research.mission.description': {
+      it: 'Creiamo un ponte tra università, laboratori di ricerca e professionisti verificati, facilitando collaborazioni che trasformano la conoscenza teorica in soluzioni pratiche e innovative.',
+      en: 'We create a bridge between universities, research labs and verified professionals, facilitating collaborations that transform theoretical knowledge into practical and innovative solutions.',
+      es: 'Creamos un puente entre universidades, laboratorios de investigación y profesionales verificados, facilitando colaboraciones que transforman el conocimiento teórico en soluciones prácticas e innovadoras.',
+      fr: 'Nous créons un pont entre les universités, les laboratoires de recherche et les professionnels vérifiés, facilitant les collaborations qui transforment les connaissances théoriques en solutions pratiques et innovantes.',
+      de: 'Wir schaffen eine Brücke zwischen Universitäten, Forschungslabors und verifizierten Fachkräften und erleichtern Kooperationen, die theoretisches Wissen in praktische und innovative Lösungen verwandeln.'
+    },
+    'research.benefits.title': {
+      it: 'Vantaggi per le Istituzioni',
+      en: 'Benefits for Institutions',
+      es: 'Beneficios para las Instituciones',
+      fr: 'Avantages pour les Institutions',
+      de: 'Vorteile für Institutionen'
+    },
+    'research.cta.title': {
+      it: 'Vuoi diventare partner accademico?',
+      en: 'Want to become an academic partner?',
+      es: '¿Quieres convertirte en socio académico?',
+      fr: 'Vous voulez devenir partenaire académique?',
+      de: 'Möchten Sie akademischer Partner werden?'
+    },
+    'research.cta.description': {
+      it: 'Inviaci una proposta o prenota una demo per scoprire come ERTUNO può potenziare la ricerca e l\'innovazione della tua istituzione.',
+      en: 'Send us a proposal or book a demo to discover how ERTUNO can enhance your institution\'s research and innovation.',
+      es: 'Envíanos una propuesta o reserva una demo para descubrir cómo ERTUNO puede potenciar la investigación e innovación de tu institución.',
+      fr: 'Envoyez-nous une proposition ou réservez une démo pour découvrir comment ERTUNO peut améliorer la recherche et l\'innovation de votre institution.',
+      de: 'Senden Sie uns einen Vorschlag oder buchen Sie eine Demo, um zu entdecken, wie ERTUNO die Forschung und Innovation Ihrer Institution verbessern kann.'
+    },
+    'research.cta.proposal': {
+      it: 'Invia Proposta',
+      en: 'Send Proposal',
+      es: 'Enviar Propuesta',
+      fr: 'Envoyer une Proposition',
+      de: 'Vorschlag Senden'
+    },
+    'research.cta.demo': {
+      it: 'Prenota Demo',
+      en: 'Book Demo',
+      es: 'Reservar Demo',
+      fr: 'Réserver une Démo',
+      de: 'Demo Buchen'
     }
   };
 

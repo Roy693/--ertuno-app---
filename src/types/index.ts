@@ -5,8 +5,8 @@ export interface User {
   name: string;
   avatar?: string;
   createdAt: string;
-  // User role system
-  role: 'citizen' | 'provider';
+  // User role system - Extended for academic collaboration
+  role: 'citizen' | 'provider' | 'academic' | 'researcher';
   // Professional provider fields
   isProfessional?: boolean;
   verificationStatus?: 'pending' | 'verified' | 'rejected';
@@ -15,6 +15,15 @@ export interface User {
   serviceCategories?: string[];
   rating?: number;
   reviewCount?: number;
+  
+  // Academic/Research fields
+  isAcademic?: boolean;
+  institution?: string;
+  department?: string;
+  position?: string; // Professor, Researcher, PhD Student, etc.
+  researchAreas?: string[];
+  orcid?: string; // ORCID ID for researcher identification
+  academicVerification?: 'pending' | 'verified' | 'rejected';
   location?: {
     city: string;
     state: string;

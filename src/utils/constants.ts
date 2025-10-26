@@ -33,6 +33,7 @@ export const SOCIAL_LINKS = {
 export const NAV_ITEMS = [
   { name: 'Home', href: '/', key: 'nav.home' },
   { name: 'Services', href: '/services', key: 'nav.services' },
+  { name: 'Università & Ricerca', href: '/research', key: 'nav.research' },
   { name: 'About', href: '/about', key: 'nav.about' },
   { name: 'Contact', href: '/contact', key: 'nav.contact' },
 ] as const;
