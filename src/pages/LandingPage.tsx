@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { PWAInstallButton } from '../components/ui/PWAInstallButton';
+import { Logo } from '../components/ui/Logo';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -94,7 +95,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   }, [testimonials.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-violet-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -106,41 +107,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               transition={{ duration: 0.8 }}
               className="flex items-center justify-center mb-8"
             >
-              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-3xl px-8 py-6 border border-white/20 shadow-2xl">
-                {/* Tuno Fruit Logo - Larger for prominence */}
+              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 bg-white/10 backdrop-blur-sm rounded-3xl px-8 py-6 border border-white/20 shadow-2xl">
+                {/* ERTUNO Logo */}
                 <motion.div 
-                  className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="flex items-center justify-center"
+                  whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {/* Tuno Fruit Body */}
-                    <defs>
-                      <linearGradient id="tunoGradientHero" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#FF4757" />
-                        <stop offset="50%" stopColor="#FF6B35" />
-                        <stop offset="100%" stopColor="#FFA502" />
-                      </linearGradient>
-                    </defs>
-                    <ellipse cx="50" cy="55" rx="25" ry="30" fill="url(#tunoGradientHero)" />
-                    {/* Texture dots pattern */}
-                    <circle cx="40" cy="40" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    <circle cx="60" cy="38" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    <circle cx="35" cy="55" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    <circle cx="65" cy="52" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    <circle cx="42" cy="70" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    <circle cx="58" cy="72" r="2.5" fill="#E55A4E" opacity="0.7" />
-                    {/* Green leaf accent */}
-                    <path d="M50 20 C45 15, 35 20, 35 30 C35 40, 45 45, 50 40 C55 45, 65 40, 65 30 C65 20, 55 15, 50 20 Z" fill="#4CAF50" />
-                  </svg>
+                  <Logo 
+                    variant="dark" 
+                    size="xl" 
+                    showText={false}
+                    className="w-20 h-20 sm:w-24 sm:h-24"
+                  />
                 </motion.div>
                 
                 {/* Brand Text */}
                 <div className="text-center sm:text-left">
                   <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight">
-                    ER<span className="text-orange-400">TUNO</span>
+                    ER<span className="text-teal-400">TU</span><span className="text-orange-400">NO</span>
                   </h1>
-                  <p className="text-lg sm:text-xl text-purple-200 font-medium mt-2">
+                  <p className="text-lg sm:text-xl text-blue-200 font-medium mt-2">
                     Live Messaging & Professional Services
                   </p>
                 </div>
@@ -151,7 +138,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-purple-100 max-w-3xl mx-auto mb-12"
+              className="text-xl text-slate-200 max-w-3xl mx-auto mb-12"
             >
               Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. 
               Trova, chatta, risolvi. Tutto in un'app.

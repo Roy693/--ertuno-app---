@@ -7,6 +7,14 @@
 :root {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Poppins', system-ui, sans-serif;
+  
+  /* ERTUNO Brand Colors - Based on Logo Palette */
+  --ertuno-navy: #1e293b;     /* Dark blue from logo */
+  --ertuno-teal: #0f766e;     /* Teal from logo */
+  --ertuno-orange: #ea580c;   /* Orange from logo */
+  --ertuno-light-teal: #14b8a6;
+  --ertuno-light-orange: #f97316;
+  --ertuno-dark-navy: #0f172a;
 }
 
 /* Base Styles */
@@ -92,12 +100,22 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Text gradient effect */
+/* Text gradient effect - Updated with ERTUNO Brand Colors */
 .text-gradient {
-  background: linear-gradient(135deg, #0ea5e9, #ec4899, #facc15);
+  background: linear-gradient(135deg, var(--ertuno-teal), var(--ertuno-orange), var(--ertuno-light-teal));
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-x 3s ease infinite;
 }
+
+/* ERTUNO Brand Classes */
+.bg-ertuno-navy { background-color: var(--ertuno-navy); }
+.bg-ertuno-teal { background-color: var(--ertuno-teal); }
+.bg-ertuno-orange { background-color: var(--ertuno-orange); }
+.text-ertuno-navy { color: var(--ertuno-navy); }
+.text-ertuno-teal { color: var(--ertuno-teal); }
+.text-ertuno-orange { color: var(--ertuno-orange); }
+.border-ertuno-teal { border-color: var(--ertuno-teal); }
+.border-ertuno-orange { border-color: var(--ertuno-orange); }

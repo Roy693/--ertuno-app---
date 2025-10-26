@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Lock, User, AlertCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { Logo } from '../ui/Logo';
 import { useAuth } from '../../hooks/useAuth';
 
 interface AuthModalProps {
@@ -111,16 +112,32 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           transition={{ duration: 0.3 }}
         >
           {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-            <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
-              {mode === 'login' ? 'Welcome Back' : 'Create Account'}
-            </h2>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
-            >
-              <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-            </button>
+          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            {/* Logo and Title */}
+            <div className="flex items-center justify-center mb-3">
+              <Logo 
+                variant="light" 
+                size="md" 
+                showText={false}
+                className="mr-3"
+              />
+              <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
+                ERTUNO
+              </h2>
+            </div>
+            
+            {/* Welcome Text and Close Button */}
+            <div className="flex items-center justify-between">
+              <p className="text-lg text-gray-700 dark:text-gray-300">
+                {mode === 'login' ? 'Welcome Back' : 'Create Account'}
+              </p>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
+              >
+                <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+              </button>
+            </div>
           </div>
 
           {/* Content */}

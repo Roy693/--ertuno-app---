@@ -26,14 +26,14 @@ export const Logo: React.FC<LogoProps> = ({
 
   const colors = {
     light: {
-      text: 'text-gray-900',
+      text: 'text-ertuno-navy',
       tagline: 'text-gray-600',
-      gradient: 'from-orange-600 via-orange-500 to-teal-500'
+      gradient: 'from-ertuno-orange via-ertuno-light-orange to-ertuno-teal'
     },
     dark: {
       text: 'text-white',
-      tagline: 'text-gray-300',
-      gradient: 'from-orange-400 via-orange-300 to-teal-400'
+      tagline: 'text-slate-300',
+      gradient: 'from-ertuno-light-orange via-orange-400 to-ertuno-light-teal'
     }
   };
 

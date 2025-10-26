@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { Logo } from './components/ui/Logo';
 import { AuthModal } from './components/auth/AuthModal';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
@@ -19,10 +20,22 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 dark:from-slate-900 dark:via-blue-900 dark:to-teal-900">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+          {/* ERTUNO Logo */}
+          <div className="mb-8">
+            <Logo 
+              variant={loading ? 'light' : 'dark'} 
+              size="xl" 
+              showText={true}
+              showTagline={false}
+              className="animate-pulse"
+            />
+          </div>
+          
+          {/* Loading Spinner */}
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-ertuno-teal mx-auto mb-4"></div>
+          <p className="text-ertuno-navy dark:text-slate-200 font-medium">Loading your experience...</p>
         </div>
       </div>
     );
