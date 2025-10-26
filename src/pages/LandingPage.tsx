@@ -130,20 +130,26 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     ER<span className="text-teal-400">TU</span><span className="text-orange-400">NO</span>
                   </h1>
                   <p className="text-lg sm:text-xl text-blue-200 font-medium mt-2">
-                    {t('hero.tagline')}
+                    {t('hero.subtitle')}
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            <motion.p
+            {/* Poetic Description */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-slate-200 max-w-3xl mx-auto mb-12"
+              className="text-center mb-12"
             >
-              {t('hero.description')}
-            </motion.p>
+              <p className="text-xl sm:text-2xl text-slate-200 max-w-4xl mx-auto mb-6 leading-relaxed italic">
+                {t('hero.magneticDescription')}
+              </p>
+              <p className="text-lg text-blue-300 max-w-2xl mx-auto font-medium">
+                {t('hero.promise')}
+              </p>
+            </motion.div>
 
             {/* Quick Stats */}
             <motion.div
@@ -180,19 +186,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 variant="primary"
                 size="lg"
                 onClick={onGetStarted}
-                className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-8 py-4 text-lg"
+                className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-black font-bold px-10 py-5 text-lg shadow-2xl transform hover:scale-105 transition-all duration-300"
               >
-                <Zap className="w-5 h-5 mr-2" />
-{t('hero.cta.primary')}
+                <Globe className="w-6 h-6 mr-3" />
+                {t('hero.cta.primary')}
               </Button>
               <Button
                 variant="secondary"
                 size="lg"
-                onClick={() => window.open('/mobile/', '_blank')}
-                className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
+                onClick={onLearnMore}
+                className="bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 px-10 py-5 text-lg backdrop-blur-lg transform hover:scale-105 transition-all duration-300"
               >
-                <Smartphone className="w-5 h-5 mr-2" />
-{t('hero.cta.secondary')}
+                <ArrowRight className="w-5 h-5 mr-3" />
+                {t('hero.cta.secondary')}
               </Button>
             </motion.div>
           </div>
@@ -494,10 +500,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             <h2 className="text-4xl font-bold text-white mb-4">
               <Smartphone className="w-10 h-10 inline mr-3 text-teal-400" />
-              Scarica l'App Mobile
+Esperienza Mobile Suprema
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto mb-8">
-              Porta ERTUNO sempre con te. Chat, ricerca, pagamenti. Tutto dal tuo smartphone.
+L'eccellenza di ERTUNO nella tua tasca. Ovunque tu sia, l'arte del servizio ti segue.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -513,12 +519,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
               >
                 <Globe className="w-5 h-5 mr-2" />
-                Versione Web Mobile
+Versione Web Magnetica
               </Button>
             </div>
 
             <div className="text-purple-200">
-              <p>✓ Funziona offline  ✓ Notifiche push  ✓ GPS integrato  ✓ Chat sicura</p>
+              <p>✨ Magia offline  ✨ Connessioni istantanee  ✨ Navigazione intuitiva  ✨ Sicurezza assoluta</p>
             </div>
           </motion.div>
         </div>
@@ -534,7 +540,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Cosa Dicono i Nostri Utenti</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">{t('landing.testimonials.title')}</h2>
+            <p className="text-lg text-purple-200 mb-8">{t('landing.testimonials.subtitle')}</p>
           </motion.div>
 
           <AnimatePresence mode="wait">
@@ -580,11 +587,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             viewport={{ once: true }}
           >
             <h2 className="text-5xl font-bold text-white mb-6">
-              Pronto a Rivoluzionare il Tuo Business?
+              {t('landing.cta.title')}
             </h2>
             <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-              Unisciti a migliaia di professionisti che stanno già crescendo con ERTUNO.
-              Chat, lavora, fattura. Tutto in un posto.
+              {t('landing.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -594,7 +600,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-12 py-6 text-xl"
               >
                 <Users className="w-6 h-6 mr-2" />
-                Inizia Gratis Ora
+{t('landing.cta.getStarted')}
               </Button>
               <Button
                 variant="secondary"
@@ -603,7 +609,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-teal-500 hover:bg-teal-400 text-white border-teal-400 px-12 py-6 text-xl shadow-2xl"
               >
                 <Clock className="w-6 h-6 mr-2" />
-                Prenota Demo
+{t('landing.cta.learnMore')}
               </Button>
             </div>
           </motion.div>

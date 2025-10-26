@@ -74,52 +74,55 @@
   "hero": {
     "title": "ERTUNO",
     "tagline": "Live Messaging & Professional Services",
-    "subtitle": "The platform for creative collaboration",
-    "description": "Live Messaging meets Trusted Providers. Instant chat with verified professionals. Find, chat, solve. All in one app.",
+    "subtitle": "Where excellence meets trust",
+    "description": "In the beating heart of Italy, where tradition and innovation merge, ERTUNO is born. The platform that transforms every need into an authentic connection, every problem into an elegant solution.",
+    "magneticSubtitle": "From Sicily to the world, the art of excellence",
+    "magneticDescription": "Like the ancient trade routes that united peoples, ERTUNO creates invisible bridges between those who seek and those who know how to do. A network of trust woven with the golden thread of Italian expertise.",
     "cta": {
-      "primary": "Find Providers Now",
-      "secondary": "Download Mobile App"
+      "primary": "Enter the Future",
+      "secondary": "Discover the Magic"
     },
     "stats": {
       "users": "Active Users",
-      "providers": "Professionals",
+      "providers": "Professionals", 
       "requests": "Requests Solved",
       "cities": "Cities Covered"
-    }
+    },
+    "promise": "Not just a service, but a life-changing experience"
   },
   
   "features": {
-    "title": "How It Works",
-    "subtitle": "Three simple steps to get the help you need",
+    "title": "The Art of Connection",
+    "subtitle": "Like a river finding the sea, every need finds its answer",
     "step1": {
-      "title": "Search",
-      "description": "Find the right professional in your area"
+      "title": "Imagine",
+      "description": "Describe your ideal world, we find who can create it"
     },
     "step2": {
       "title": "Connect",
-      "description": "Instant chat or video call with verified experts"
+      "description": "A meeting of professional souls, where competence becomes passion"
     },
     "step3": {
-      "title": "Solve",
-      "description": "Get immediate and reliable solutions"
+      "title": "Transform",
+      "description": "Watch your dream take shape in the hands of excellence"
     },
     "benefits": {
-      "title": "Why Choose ERTUNO",
+      "title": "The DNA of ERTUNO Excellence",
       "trusted": {
-        "title": "Verified Professionals",
-        "description": "All providers are checked and certified"
+        "title": "Certified Mastery",
+        "description": "Every professional is a guardian of the art of doing well"
       },
       "instant": {
-        "title": "Instant Connection",
-        "description": "Real-time chat and video calls"
+        "title": "Instant Magic",
+        "description": "Distance vanishes, time stops, solutions are born"
       },
       "secure": {
-        "title": "Secure Payments",
-        "description": "Protected and guaranteed transactions"
+        "title": "Armored Trust",
+        "description": "Your security is our honor, your satisfaction is our mission"
       },
       "support": {
-        "title": "24/7 Support",
-        "description": "Assistance always available"
+        "title": "Service Guardians",
+        "description": "Digital angels watching over your journey 24/7"
       }
     }
   },
@@ -176,6 +179,36 @@
       "description": "Send us a proposal or book a demo to discover how ERTUNO can enhance your institution's research and innovation.",
       "proposal": "Send Proposal",
       "demo": "Book Demo"
+    }
+  },
+  
+  "landing": {
+    "search": {
+      "title": "Smart Search",
+      "description": "AI-powered matching. Describe the problem, find the perfect professional in seconds.",
+      "chatTitle": "Instant Chat",
+      "chatSubtitle": "Instant messaging for professionals",
+      "chatDescription": "Chat directly with professionals. Photos, voice messages, quotes. Zero intermediaries, zero hidden commissions.",
+      "verifiedTitle": "100% Verified",
+      "verifiedSubtitle": "Documents, reviews, portfolio",
+      "verifiedDescription": "Every professional is verified. Checked documents, real reviews, guaranteed payments.",
+      "trySearch": "Try Smart Search",
+      "searchExample": "I need an electrician to replace an electrical panel in Milan",
+      "findProvider": "Find Provider →"
+    },
+    "providers": {
+      "title": "Trusted Providers",
+      "subtitle": "Verified professionals ready to help you"
+    },
+    "testimonials": {
+      "title": "Voices from the Heart of Excellence",
+      "subtitle": "Thousands of stories speaking of transformation"
+    },
+    "cta": {
+      "title": "Your Moment Has Arrived", 
+      "description": "Join the family of visionaries who have chosen excellence. Where every connection becomes legend.",
+      "getStarted": "Embrace Destiny",
+      "learnMore": "Unveil the Secrets"
     }
   },
   

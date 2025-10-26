@@ -74,52 +74,55 @@
   "hero": {
     "title": "ERTUNO",
     "tagline": "Live Messaging & Professional Services",
-    "subtitle": "La piattaforma per la collaborazione creativa",
-    "description": "Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. Trova, chatta, risolvi. Tutto in un'app.",
+    "subtitle": "Dove l'eccellenza incontra la fiducia",
+    "description": "Nel cuore pulsante dell'Italia, dove tradizione e innovazione si fondono, nasce ERTUNO. La piattaforma che trasforma ogni bisogno in una connessione autentica, ogni problema in una soluzione elegante.",
+    "magneticSubtitle": "Dalla Sicilia al mondo, l'arte dell'eccellenza",
+    "magneticDescription": "Come le antiche rotte commerciali che univano i popoli, ERTUNO crea ponti invisibili tra chi cerca e chi sa fare. Una rete di fiducia tessuta con il filo d'oro della competenza italiana.",
     "cta": {
-      "primary": "Trova Provider Ora", 
-      "secondary": "Scarica App Mobile"
+      "primary": "Entra nel Futuro",
+      "secondary": "Scopri la Magia"
     },
     "stats": {
       "users": "Utenti Attivi",
       "providers": "Professionisti",
-      "requests": "Richieste Risolte",
+      "requests": "Richieste Risolte", 
       "cities": "Città Coperte"
-    }
+    },
+    "promise": "Non solo un servizio, ma un'esperienza che cambia la vita"
   },
   
   "features": {
-    "title": "Come Funziona",
-    "subtitle": "Tre semplici passi per ottenere l'aiuto di cui hai bisogno",
+    "title": "L'Arte della Connessione",
+    "subtitle": "Come un fiume che trova il mare, così ogni bisogno trova la sua risposta",
     "step1": {
-      "title": "Cerca",
-      "description": "Trova il professionista giusto nella tua zona"
+      "title": "Immagina",
+      "description": "Descrivi il tuo mondo ideale, noi troviamo chi può crearlo"
     },
     "step2": {
       "title": "Connetti",
-      "description": "Chat istantanea o videocall con esperti verificati"
+      "description": "Un incontro di anime professionali, dove la competenza diventa passione"
     },
     "step3": {
-      "title": "Risolvi",
-      "description": "Ottieni soluzioni immediate e affidabili"
+      "title": "Trasforma",
+      "description": "Guarda il tuo sogno prendere forma nelle mani dell'eccellenza"
     },
     "benefits": {
-      "title": "Perché Scegliere ERTUNO",
+      "title": "Il DNA dell'Eccellenza ERTUNO",
       "trusted": {
-        "title": "Professionisti Verificati",
-        "description": "Tutti i provider sono controllati e certificati"
+        "title": "Maestria Certificata",
+        "description": "Ogni professionista è un custode dell'arte del fare bene"
       },
       "instant": {
-        "title": "Connessione Istantanea",
-        "description": "Chat e video call in tempo reale"
+        "title": "Magia Istantanea",
+        "description": "La distanza si annulla, il tempo si ferma, la soluzione nasce"
       },
       "secure": {
-        "title": "Pagamenti Sicuri",
-        "description": "Transazioni protette e garantite"
+        "title": "Fiducia Blindata",
+        "description": "La tua sicurezza è il nostro onore, la tua soddisfazione è la nostra missione"
       },
       "support": {
-        "title": "Supporto 24/7",
-        "description": "Assistenza sempre disponibile"
+        "title": "Guardiani del Servizio",
+        "description": "Angeli digitali che vegliano sul tuo percorso 24 ore su 24"
       }
     }
   },
@@ -334,7 +337,7 @@
     "search": {
       "title": "Ricerca Intelligente",
       "description": "AI-powered matching. Descrivi il problema, trova il professionista perfetto in secondi.",
-      "chatTitle": "Chat Istantanea",
+      "chatTitle": "Chat Istantanea", 
       "chatSubtitle": "Messaging istantaneo per professionisti",
       "chatDescription": "Chatta direttamente con i professionisti. Foto, vocali, preventivi. Zero intermediari, zero commissioni nascoste.",
       "verifiedTitle": "100% Verificati",
@@ -349,14 +352,14 @@
       "subtitle": "Professionisti verificati pronti ad aiutarti"
     },
     "testimonials": {
-      "title": "Cosa Dicono i Nostri Utenti", 
-      "subtitle": "Migliaia di storie di successo ogni giorno"
+      "title": "Voci dal Cuore dell'Eccellenza",
+      "subtitle": "Migliaia di storie che parlano di trasformazione"
     },
     "cta": {
-      "title": "Pronto a Iniziare?",
-      "description": "Unisciti a migliaia di utenti che hanno già trovato i loro professionisti ideali.",
-      "getStarted": "Inizia Subito",
-      "learnMore": "Scopri Come Funziona"
+      "title": "Il Tuo Momento è Arrivato",
+      "description": "Unisciti alla famiglia di visionari che hanno scelto l'eccellenza. Dove ogni connessione diventa leggenda.",
+      "getStarted": "Abbraccia il Destino",
+      "learnMore": "Svela i Segreti"
     }
   }
 }
