@@ -14,6 +14,7 @@ import {
   Shield,
   Clock
 } from 'lucide-react';
+import { BackButton } from '../components/ui/BackButton';
 
 export const Services: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -130,6 +131,11 @@ export const Services: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 pt-20">
+      {/* Back Button */}
+      <div className="absolute top-24 left-4 z-10">
+        <BackButton className="text-white hover:bg-white/10" />
+      </div>
+      
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">

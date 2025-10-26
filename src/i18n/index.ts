@@ -236,7 +236,9 @@ export function translateKey(
  */
 export async function initializeI18n(): Promise<void> {
   try {
-    await loadTranslations(DEFAULT_LANGUAGE);
+    // Preload both languages
+    await loadTranslations('it');
+    await loadTranslations('en');
     console.log('i18n system initialized successfully');
   } catch (error) {
     console.error('Failed to initialize i18n system:', error);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, FileText, Shield, Users, AlertTriangle, Scale, Mail } from 'lucide-react';
 import { Logo } from '../components/ui/Logo';
+import { BackButton } from '../components/ui/BackButton';
 
 export const TermsOfService: React.FC = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -40,7 +41,10 @@ export const TermsOfService: React.FC = () => {
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <Logo variant="light" size="md" showText={true} />
+            <div className="flex items-center space-x-4">
+              <BackButton />
+              <Logo variant="light" size="md" showText={true} />
+            </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Effective Date: October 24, 2025
             </div>

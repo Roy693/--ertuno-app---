@@ -5,7 +5,7 @@ import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { LanguageSelector } from '../ui/LanguageSelector';
 import { NAV_ITEMS } from '../../utils/constants';
-import { useI18n } from '../../hooks/useI18n';
+
 
 interface HeaderProps {
   onLoginClick: () => void;
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onThemeChange
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useI18n();
+
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {t(item.key)}
+                {item.name}
               </motion.a>
             ))}
           </nav>
@@ -72,10 +72,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Auth Buttons */}
             <Button variant="ghost" onClick={onLoginClick}>
-              {t('auth.signin')}
+              Accedi
             </Button>
             <Button variant="primary" onClick={onSignupClick}>
-              {t('auth.getstarted')}
+              Inizia Ora
             </Button>
           </div>
 
@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
-              {t(item.key)}
+              {item.name}
             </a>
           ))}
 
@@ -125,10 +125,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" fullWidth onClick={onLoginClick}>
-              {t('auth.signin')}
+              Accedi
             </Button>
             <Button variant="primary" fullWidth onClick={onSignupClick}>
-              {t('auth.getstarted')}
+              Inizia Ora
             </Button>
           </div>
         </div>
