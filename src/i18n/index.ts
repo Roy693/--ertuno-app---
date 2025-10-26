@@ -42,26 +42,149 @@ export async function loadTranslations(languageCode: LanguageCode): Promise<Tran
     return translationsCache[languageCode]!;
   }
 
-  try {
-    // Dynamic import based on language code
-    const translations = await import(`./locales/${languageCode}.json`);
-    const translationData = translations.default;
-    
-    // Cache the loaded translations
-    translationsCache[languageCode] = translationData;
-    
-    return translationData;
-  } catch (error) {
-    console.warn(`Failed to load translations for ${languageCode}:`, error);
-    
-    // Fallback to default language if not already loading it
-    if (languageCode !== DEFAULT_LANGUAGE) {
-      return await loadTranslations(DEFAULT_LANGUAGE);
+  // Use inline translations for immediate loading
+  const translations = getInlineTranslations(languageCode);
+  translationsCache[languageCode] = translations;
+  return translations;
+}
+
+/**
+ * Get inline translations (faster loading for development)
+ */
+function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
+  const itTranslations = {
+    nav: {
+      home: 'Home',
+      about: 'Chi Siamo',
+      services: 'Servizi',
+      research: 'Università & Ricerca',
+      contact: 'Contatti',
+      language: 'Lingua'
+    },
+    auth: {
+      signin: 'Accedi',
+      signup: 'Registrati',
+      getstarted: 'Inizia Ora'
+    },
+    hero: {
+      subtitle: 'Dove l\'eccellenza incontra la fiducia',
+      magneticDescription: 'Come le antiche rotte commerciali che univano i popoli, ERTUNO crea ponti invisibili tra chi cerca e chi sa fare. Una rete di fiducia tessuta con il filo d\'oro della competenza italiana.',
+      promise: 'Non solo un servizio, ma un\'esperienza che cambia la vita',
+      stats: {
+        providers: 'Professionisti',
+        requests: 'Richieste Risolte',
+        cities: 'Città Coperte',
+        users: 'Utenti Soddisfatti'
+      },
+      cta: {
+        primary: 'Entra nel Futuro',
+        secondary: 'Scopri la Magia'
+      }
+    },
+    landing: {
+      search: {
+        title: 'Ricerca Intelligente',
+        description: 'AI-powered matching. Descrivi il problema, trova il professionista perfetto in secondi.',
+        chatTitle: 'Chat Istantanea',
+        chatSubtitle: 'Messaging istantaneo per professionisti',
+        chatDescription: 'Chatta direttamente con i professionisti. Foto, vocali, preventivi. Zero intermediari, zero commissioni nascoste.',
+        verifiedTitle: '100% Verificati',
+        verifiedSubtitle: 'Documenti, recensioni, portfolio',
+        verifiedDescription: 'Ogni professionista è verificato. Documenti controllati, recensioni vere, pagamenti garantiti.',
+        trySearch: 'Prova la Ricerca Intelligente',
+        searchExample: 'Ho bisogno di un elettricista per sostituire un quadro elettrico a Milano',
+        findProvider: 'Trova Provider →'
+      },
+      testimonials: {
+        title: 'Voci dal Cuore dell\'Eccellenza',
+        subtitle: 'Migliaia di storie che parlano di trasformazione'
+      },
+      cta: {
+        title: 'Il Tuo Momento è Arrivato',
+        description: 'Unisciti alla famiglia di visionari che hanno scelto l\'eccellenza. Dove ogni connessione diventa leggenda.',
+        getStarted: 'Abbraccia il Destino',
+        learnMore: 'Svela i Segreti'
+      }
+    },
+    cookies: {
+      banner: {
+        title: 'Utilizziamo i Cookie',
+        message: 'Utilizziamo cookie tecnici necessari per il funzionamento del sito e cookie di analisi per migliorare la tua esperienza.',
+        acceptAll: 'Accetta Tutti',
+        rejectAll: 'Rifiuta Tutti',
+        customize: 'Personalizza',
+        viewPolicy: 'Visualizza Cookie Policy'
+      }
     }
-    
-    // Return empty object as last resort
-    return {};
-  }
+  };
+
+  const enTranslations = {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      services: 'Services',
+      research: 'Universities & Research',
+      contact: 'Contact',
+      language: 'Language'
+    },
+    auth: {
+      signin: 'Sign In',
+      signup: 'Sign Up',
+      getstarted: 'Get Started'
+    },
+    hero: {
+      subtitle: 'Where excellence meets trust',
+      magneticDescription: 'Like the ancient trade routes that united peoples, ERTUNO creates invisible bridges between those who seek and those who know how to do. A network of trust woven with the golden thread of Italian expertise.',
+      promise: 'Not just a service, but a life-changing experience',
+      stats: {
+        providers: 'Professionals',
+        requests: 'Requests Solved',
+        cities: 'Cities Covered',
+        users: 'Satisfied Users'
+      },
+      cta: {
+        primary: 'Enter the Future',
+        secondary: 'Discover the Magic'
+      }
+    },
+    landing: {
+      search: {
+        title: 'Smart Search',
+        description: 'AI-powered matching. Describe the problem, find the perfect professional in seconds.',
+        chatTitle: 'Instant Chat',
+        chatSubtitle: 'Instant messaging for professionals',
+        chatDescription: 'Chat directly with professionals. Photos, voice messages, quotes. Zero intermediaries, zero hidden commissions.',
+        verifiedTitle: '100% Verified',
+        verifiedSubtitle: 'Documents, reviews, portfolio',
+        verifiedDescription: 'Every professional is verified. Checked documents, real reviews, guaranteed payments.',
+        trySearch: 'Try Smart Search',
+        searchExample: 'I need an electrician to replace an electrical panel in Milan',
+        findProvider: 'Find Provider →'
+      },
+      testimonials: {
+        title: 'Voices from the Heart of Excellence',
+        subtitle: 'Thousands of stories speaking of transformation'
+      },
+      cta: {
+        title: 'Your Moment Has Arrived',
+        description: 'Join the family of visionaries who have chosen excellence. Where every connection becomes legend.',
+        getStarted: 'Embrace Destiny',
+        learnMore: 'Unveil the Secrets'
+      }
+    },
+    cookies: {
+      banner: {
+        title: 'We Use Cookies',
+        message: 'We use necessary technical cookies for site functionality and analytics cookies to improve your experience.',
+        acceptAll: 'Accept All',
+        rejectAll: 'Reject All',
+        customize: 'Customize',
+        viewPolicy: 'View Cookie Policy'
+      }
+    }
+  };
+
+  return languageCode === 'it' ? itTranslations : enTranslations;
 }
 
 /**

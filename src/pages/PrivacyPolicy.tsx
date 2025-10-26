@@ -14,6 +14,7 @@ import {
   Globe
 } from 'lucide-react';
 import { useI18n } from '../hooks/useI18n';
+import { BackButton } from '../components/ui/BackButton';
 
 export const PrivacyPolicy: React.FC = () => {
   const { t } = useI18n();
@@ -96,6 +97,11 @@ export const PrivacyPolicy: React.FC = () => {
       </section>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        
+        {/* Back Navigation */}
+        <div className="mb-8">
+          <BackButton />
+        </div>
         
         {/* Data Controller Section */}
         <motion.section
