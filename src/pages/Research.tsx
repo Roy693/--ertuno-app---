@@ -17,10 +17,10 @@ import {
   Calendar
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import { useLanguage } from '../hooks/useLanguage';
+import { useI18n } from '../hooks/useI18n';
 
 export const Research: React.FC = () => {
-  const { t } = useLanguage();
+  const { t } = useI18n();
 
   const benefits = [
     {

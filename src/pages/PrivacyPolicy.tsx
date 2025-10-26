@@ -13,10 +13,10 @@ import {
   Clock,
   Globe
 } from 'lucide-react';
-import { useLanguage } from '../hooks/useLanguage';
+import { useI18n } from '../hooks/useI18n';
 
 export const PrivacyPolicy: React.FC = () => {
-  const { t } = useLanguage();
+  const { t } = useI18n();
 
   const dataTypes = [
     {

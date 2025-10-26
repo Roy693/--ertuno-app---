@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Twitter, Youtube, Heart, Settings, Shield, User, T
 import { Logo } from '../ui/Logo';
 import { APP_CONFIG, SOCIAL_LINKS } from '../../utils/constants';
 import { useAuth } from '../../hooks/useAuth';
-import { useLanguage } from '../../hooks/useLanguage';
+import { useI18n } from '../../hooks/useI18n';
 
 interface FooterProps {
   theme: 'light' | 'dark';
@@ -12,7 +12,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ theme }) => {
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t } = useI18n();
 
   const socialIcons = [
     { name: 'Instagram', icon: Instagram, href: SOCIAL_LINKS.instagram },
