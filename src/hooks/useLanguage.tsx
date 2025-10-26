@@ -569,6 +569,122 @@ const getTranslation = (key: string, lang: LanguageCode): string => {
       es: 'Reservar Demo',
       fr: 'Réserver une Démo',
       de: 'Demo Buchen'
+    },
+
+    // Cookie Consent Banner
+    'cookies.banner.title': {
+      it: 'Utilizziamo i Cookie',
+      en: 'We Use Cookies',
+      es: 'Usamos Cookies',
+      fr: 'Nous Utilisons des Cookies',
+      de: 'Wir Verwenden Cookies'
+    },
+    'cookies.banner.message': {
+      it: 'Utilizziamo cookie tecnici necessari per il funzionamento del sito e cookie di analisi per migliorare la tua esperienza. Puoi gestire le tue preferenze sui cookie in qualsiasi momento.',
+      en: 'We use necessary technical cookies for site functionality and analytics cookies to improve your experience. You can manage your cookie preferences at any time.',
+      es: 'Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y cookies de análisis para mejorar tu experiencia. Puedes gestionar tus preferencias de cookies en cualquier momento.',
+      fr: 'Nous utilisons des cookies techniques nécessaires au fonctionnement du site et des cookies d\'analyse pour améliorer votre expérience. Vous pouvez gérer vos préférences de cookies à tout moment.',
+      de: 'Wir verwenden notwendige technische Cookies für die Website-Funktionalität und Analyse-Cookies zur Verbesserung Ihres Erlebnisses. Sie können Ihre Cookie-Einstellungen jederzeit verwalten.'
+    },
+    'cookies.banner.acceptAll': {
+      it: 'Accetta Tutti',
+      en: 'Accept All',
+      es: 'Aceptar Todo',
+      fr: 'Accepter Tout',
+      de: 'Alle Akzeptieren'
+    },
+    'cookies.banner.rejectAll': {
+      it: 'Rifiuta Tutti',
+      en: 'Reject All',
+      es: 'Rechazar Todo',
+      fr: 'Rejeter Tout',
+      de: 'Alle Ablehnen'
+    },
+    'cookies.banner.customize': {
+      it: 'Personalizza',
+      en: 'Customize',
+      es: 'Personalizar',
+      fr: 'Personnaliser',
+      de: 'Anpassen'
+    },
+    'cookies.banner.viewPolicy': {
+      it: 'Visualizza Cookie Policy',
+      en: 'View Cookie Policy',
+      es: 'Ver Política de Cookies',
+      fr: 'Voir Politique des Cookies',
+      de: 'Cookie-Richtlinie Anzeigen'
+    },
+
+    // Cookie Settings Modal
+    'cookies.settings.title': {
+      it: 'Impostazioni Cookie',
+      en: 'Cookie Settings',
+      es: 'Configuración de Cookies',
+      fr: 'Paramètres des Cookies',
+      de: 'Cookie-Einstellungen'
+    },
+    'cookies.settings.description': {
+      it: 'Puoi scegliere quali categorie di cookie consentire. I cookie necessari sono sempre abilitati per garantire il funzionamento del sito.',
+      en: 'You can choose which cookie categories to allow. Necessary cookies are always enabled to ensure site functionality.',
+      es: 'Puedes elegir qué categorías de cookies permitir. Las cookies necesarias están siempre habilitadas para garantizar el funcionamiento del sitio.',
+      fr: 'Vous pouvez choisir quelles catégories de cookies autoriser. Les cookies nécessaires sont toujours activés pour assurer le fonctionnement du site.',
+      de: 'Sie können wählen, welche Cookie-Kategorien Sie zulassen möchten. Notwendige Cookies sind immer aktiviert, um die Website-Funktionalität zu gewährleisten.'
+    },
+    'cookies.category.necessary': {
+      it: 'Cookie Necessari',
+      en: 'Necessary Cookies',
+      es: 'Cookies Necesarias',
+      fr: 'Cookies Nécessaires',
+      de: 'Notwendige Cookies'
+    },
+    'cookies.category.necessary.description': {
+      it: 'Questi cookie sono essenziali per il funzionamento del sito web e non possono essere disabilitati.',
+      en: 'These cookies are essential for website functionality and cannot be disabled.',
+      es: 'Estas cookies son esenciales para el funcionamiento del sitio web y no pueden deshabilitarse.',
+      fr: 'Ces cookies sont essentiels au fonctionnement du site web et ne peuvent pas être désactivés.',
+      de: 'Diese Cookies sind für die Website-Funktionalität unerlässlich und können nicht deaktiviert werden.'
+    },
+    'cookies.category.analytics': {
+      it: 'Cookie di Analisi',
+      en: 'Analytics Cookies',
+      es: 'Cookies de Análisis',
+      fr: 'Cookies d\'Analyse',
+      de: 'Analyse-Cookies'
+    },
+    'cookies.category.analytics.description': {
+      it: 'Questi cookie ci aiutano a capire come i visitatori interagiscono con il sito raccogliendo e riportando informazioni in modo anonimo.',
+      en: 'These cookies help us understand how visitors interact with the site by collecting and reporting information anonymously.',
+      es: 'Estas cookies nos ayudan a entender cómo los visitantes interactúan con el sitio recopilando y reportando información de forma anónima.',
+      fr: 'Ces cookies nous aident à comprendre comment les visiteurs interagissent avec le site en collectant et rapportant des informations de manière anonyme.',
+      de: 'Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren, indem sie Informationen anonym sammeln und berichten.'
+    },
+    'cookies.category.marketing': {
+      it: 'Cookie di Marketing',
+      en: 'Marketing Cookies',
+      es: 'Cookies de Marketing',
+      fr: 'Cookies de Marketing',
+      de: 'Marketing-Cookies'
+    },
+    'cookies.category.marketing.description': {
+      it: 'Questi cookie sono utilizzati per tracciare i visitatori sui siti web per visualizzare annunci pertinenti e coinvolgenti.',
+      en: 'These cookies are used to track visitors across websites to display relevant and engaging advertisements.',
+      es: 'Estas cookies se utilizan para rastrear visitantes a través de sitios web para mostrar anuncios relevantes y atractivos.',
+      fr: 'Ces cookies sont utilisés pour suivre les visiteurs sur les sites web afin d\'afficher des publicités pertinentes et engageantes.',
+      de: 'Diese Cookies werden verwendet, um Besucher über Websites hinweg zu verfolgen, um relevante und ansprechende Werbung anzuzeigen.'
+    },
+    'cookies.settings.save': {
+      it: 'Salva Preferenze',
+      en: 'Save Preferences',
+      es: 'Guardar Preferencias',
+      fr: 'Sauvegarder les Préférences',
+      de: 'Einstellungen Speichern'
+    },
+    'cookies.settings.close': {
+      it: 'Chiudi',
+      en: 'Close',
+      es: 'Cerrar',
+      fr: 'Fermer',
+      de: 'Schließen'
     }
   };
 

@@ -18,6 +18,7 @@ import {
 import { Button } from '../components/ui/Button';
 import { PWAInstallButton } from '../components/ui/PWAInstallButton';
 import { Logo } from '../components/ui/Logo';
+import { useI18n } from '../hooks/useI18n';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -28,6 +29,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   onGetStarted,
   onLearnMore
 }) => {
+  const { t } = useI18n();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [stats, setStats] = useState({
     providers: 0,
@@ -128,7 +130,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     ER<span className="text-teal-400">TU</span><span className="text-orange-400">NO</span>
                   </h1>
                   <p className="text-lg sm:text-xl text-blue-200 font-medium mt-2">
-                    Live Messaging & Professional Services
+                    {t('hero.tagline')}
                   </p>
                 </div>
               </div>
@@ -140,8 +142,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl text-slate-200 max-w-3xl mx-auto mb-12"
             >
-              Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. 
-              Trova, chatta, risolvi. Tutto in un'app.
+              {t('hero.description')}
             </motion.p>
 
             {/* Quick Stats */}
@@ -153,19 +154,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-400">{stats.providers.toLocaleString()}+</div>
-                <div className="text-purple-200">Provider Verificati</div>
+                <div className="text-purple-200">{t('hero.stats.providers')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-400">{stats.completedJobs.toLocaleString()}+</div>
-                <div className="text-purple-200">Lavori Completati</div>
+                <div className="text-purple-200">{t('hero.stats.requests')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-400">{stats.cities}+</div>
-                <div className="text-purple-200">Città Italiane</div>
+                <div className="text-purple-200">{t('hero.stats.cities')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-400">{stats.satisfaction}%</div>
-                <div className="text-purple-200">Soddisfazione</div>
+                <div className="text-purple-200">{t('hero.stats.users')}</div>
               </div>
             </motion.div>
 
@@ -182,7 +183,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-8 py-4 text-lg"
               >
                 <Zap className="w-5 h-5 mr-2" />
-                Trova Provider Ora
+{t('hero.cta.primary')}
               </Button>
               <Button
                 variant="secondary"
@@ -191,7 +192,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className="bg-white/10 hover:bg-white/20 text-white border-white/20 px-8 py-4 text-lg"
               >
                 <Smartphone className="w-5 h-5 mr-2" />
-                Scarica App Mobile
+{t('hero.cta.secondary')}
               </Button>
             </motion.div>
           </div>
@@ -210,10 +211,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           >
             <h2 className="text-4xl font-bold text-white mb-4">
               <Search className="w-10 h-10 inline mr-3 text-teal-400" />
-              Ricerca Intelligente
+              {t('landing.search.title')}
             </h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-              AI-powered matching. Descrivi il problema, trova il professionista perfetto in secondi.
+              {t('landing.search.description')}
             </p>
           </motion.div>
 
@@ -231,13 +232,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <MessageCircle className="w-6 h-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">Chat Istantanea</h3>
-                    <p className="text-purple-200">Messaging istantaneo per professionisti</p>
+                    <h3 className="text-lg font-semibold text-white">{t('landing.search.chatTitle')}</h3>
+                    <p className="text-purple-200">{t('landing.search.chatSubtitle')}</p>
                   </div>
                 </div>
                 <p className="text-purple-100">
-                  Chatta direttamente con i professionisti. Foto, vocali, preventivi. 
-                  Zero intermediari, zero commissioni nascoste.
+                  {t('landing.search.chatDescription')}
                 </p>
               </div>
 
@@ -247,13 +247,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">100% Verificati</h3>
-                    <p className="text-purple-200">Documenti, recensioni, portfolio</p>
+                    <h3 className="text-lg font-semibold text-white">{t('landing.search.verifiedTitle')}</h3>
+                    <p className="text-purple-200">{t('landing.search.verifiedSubtitle')}</p>
                   </div>
                 </div>
                 <p className="text-purple-100">
-                  Ogni professionista è verificato. Documenti controllati, 
-                  recensioni vere, pagamenti garantiti.
+                  {t('landing.search.verifiedDescription')}
                 </p>
               </div>
             </motion.div>
@@ -270,13 +269,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                   <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                    Prova la Ricerca Intelligente
+                    {t('landing.search.trySearch')}
                   </h3>
                   <p className="text-gray-500 mb-4">
-                    "Ho bisogno di un elettricista per sostituire un quadro elettrico a Milano"
+                    "{t('landing.search.searchExample')}"
                   </p>
                   <Button variant="primary" className="bg-orange-500 hover:bg-orange-400 shadow-lg">
-                    Trova Provider →
+{t('landing.search.findProvider')}
                   </Button>
                 </div>
               </div>

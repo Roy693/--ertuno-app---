@@ -1,0 +1,362 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "save": "Salva",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "close": "Chiudi",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "submit": "Invia",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "reset": "Reimposta",
+    "clear": "Pulisci",
+    "select": "Seleziona",
+    "or": "o",
+    "and": "e",
+    "yes": "Sì",
+    "no": "No"
+  },
+  
+  "nav": {
+    "home": "Home",
+    "about": "Chi Siamo",
+    "services": "Servizi",
+    "research": "Università & Ricerca", 
+    "contact": "Contatti",
+    "dashboard": "Dashboard",
+    "browse": "Sfoglia",
+    "profile": "Profilo",
+    "settings": "Impostazioni",
+    "logout": "Esci",
+    "language": "Lingua"
+  },
+  
+  "auth": {
+    "signin": "Accedi",
+    "signup": "Registrati",
+    "logout": "Esci",
+    "getstarted": "Inizia Ora",
+    "login": "Accedi",
+    "register": "Registrati",
+    "forgotPassword": "Password dimenticata?",
+    "resetPassword": "Reimposta Password",
+    "newPassword": "Nuova Password",
+    "confirmPassword": "Conferma Password",
+    "email": "Email",
+    "password": "Password",
+    "name": "Nome",
+    "role": "Ruolo",
+    "citizen": "Cittadino",
+    "provider": "Fornitore",
+    "academic": "Accademico",
+    "researcher": "Ricercatore",
+    "rememberMe": "Ricordami",
+    "createAccount": "Crea Account",
+    "alreadyHaveAccount": "Hai già un account?",
+    "dontHaveAccount": "Non hai un account?",
+    "signInWith": "Accedi con",
+    "signUpWith": "Registrati con",
+    "google": "Google",
+    "facebook": "Facebook",
+    "termsAccept": "Accetto i",
+    "terms": "Termini di Servizio",
+    "privacy": "Privacy Policy",
+    "and": "e la"
+  },
+  
+  "hero": {
+    "title": "ERTUNO",
+    "tagline": "Live Messaging & Professional Services",
+    "subtitle": "La piattaforma per la collaborazione creativa",
+    "description": "Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. Trova, chatta, risolvi. Tutto in un'app.",
+    "cta": {
+      "primary": "Trova Provider Ora", 
+      "secondary": "Scarica App Mobile"
+    },
+    "stats": {
+      "users": "Utenti Attivi",
+      "providers": "Professionisti",
+      "requests": "Richieste Risolte",
+      "cities": "Città Coperte"
+    }
+  },
+  
+  "features": {
+    "title": "Come Funziona",
+    "subtitle": "Tre semplici passi per ottenere l'aiuto di cui hai bisogno",
+    "step1": {
+      "title": "Cerca",
+      "description": "Trova il professionista giusto nella tua zona"
+    },
+    "step2": {
+      "title": "Connetti",
+      "description": "Chat istantanea o videocall con esperti verificati"
+    },
+    "step3": {
+      "title": "Risolvi",
+      "description": "Ottieni soluzioni immediate e affidabili"
+    },
+    "benefits": {
+      "title": "Perché Scegliere ERTUNO",
+      "trusted": {
+        "title": "Professionisti Verificati",
+        "description": "Tutti i provider sono controllati e certificati"
+      },
+      "instant": {
+        "title": "Connessione Istantanea",
+        "description": "Chat e video call in tempo reale"
+      },
+      "secure": {
+        "title": "Pagamenti Sicuri",
+        "description": "Transazioni protette e garantite"
+      },
+      "support": {
+        "title": "Supporto 24/7",
+        "description": "Assistenza sempre disponibile"
+      }
+    }
+  },
+  
+  "services": {
+    "title": "I Nostri Servizi",
+    "subtitle": "Soluzioni professionali per ogni esigenza",
+    "categories": {
+      "home": "Casa e Giardino",
+      "tech": "Tecnologia",
+      "wellness": "Benessere",
+      "education": "Formazione",
+      "business": "Consulenza",
+      "creative": "Creatività"
+    }
+  },
+  
+  "research": {
+    "title": "Università & Ricerca",
+    "subtitle": "Collaborazione accademica per l'innovazione",
+    "hero": {
+      "title": "Potenzia la Ricerca con ERTUNO",
+      "description": "Piattaforma avanzata per la collaborazione accademica, raccolta dati e sviluppo di soluzioni innovative per università e centri di ricerca."
+    },
+    "benefits": {
+      "title": "Vantaggi per la Ricerca",
+      "dataCollection": {
+        "title": "Raccolta Dati Etica",
+        "description": "Accesso a dataset anonimi per ricerca sociale e tecnologica"
+      },
+      "collaboration": {
+        "title": "Collaborazione Globale",
+        "description": "Rete internazionale di ricercatori e istituzioni"
+      },
+      "innovation": {
+        "title": "Laboratorio di Innovazione",
+        "description": "Test di nuove tecnologie e metodologie"
+      },
+      "funding": {
+        "title": "Opportunità di Finanziamento",
+        "description": "Accesso a grant e progetti di ricerca collaborativi"
+      }
+    },
+    "partners": {
+      "title": "Partner Accademici",
+      "subtitle": "Collaboriamo con le migliori istituzioni di ricerca"
+    },
+    "institutions": {
+      "title": "Vantaggi per le Istituzioni",
+      "subtitle": "Opportunità esclusive per università e centri di ricerca"
+    },
+    "cta": {
+      "title": "Vuoi diventare partner accademico?",
+      "description": "Inviaci una proposta o prenota una demo per scoprire come ERTUNO può potenziare la ricerca e l'innovazione della tua istituzione.",
+      "proposal": "Invia Proposta",
+      "demo": "Prenota Demo"
+    }
+  },
+  
+  "footer": {
+    "company": {
+      "title": "Azienda",
+      "about": "Chi Siamo",
+      "careers": "Lavora con Noi",
+      "press": "Stampa",
+      "blog": "Blog"
+    },
+    "services": {
+      "title": "Servizi",
+      "providers": "Per Professionisti",
+      "customers": "Per Clienti",
+      "enterprise": "Enterprise",
+      "api": "API"
+    },
+    "support": {
+      "title": "Supporto",
+      "help": "Centro Assistenza",
+      "contact": "Contattaci",
+      "community": "Community",
+      "feedback": "Feedback"
+    },
+    "legal": {
+      "title": "Legale",
+      "terms": "Termini di Servizio",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "accessibility": "Accessibilità"
+    },
+    "social": {
+      "title": "Seguici",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    },
+    "copyright": "© 2024 ERTUNO. Tutti i diritti riservati.",
+    "description": "La piattaforma leader per servizi professionali e collaborazione creativa."
+  },
+  
+  "dashboard": {
+    "welcome": "Benvenuto",
+    "overview": "Panoramica",
+    "requests": "Le Mie Richieste",
+    "messages": "Messaggi",
+    "favorites": "Preferiti",
+    "history": "Cronologia",
+    "stats": {
+      "activeRequests": "Richieste Attive",
+      "completedRequests": "Richieste Completate",
+      "totalSpent": "Totale Speso",
+      "savedProviders": "Provider Salvati"
+    }
+  },
+  
+  "settings": {
+    "title": "Impostazioni",
+    "profile": "Profilo",
+    "account": "Account",
+    "privacy": "Privacy",
+    "notifications": "Notifiche",
+    "language": "Lingua",
+    "theme": "Tema",
+    "deleteAccount": "Elimina Account",
+    "deleteAccountWarning": "Attenzione: questa azione è irreversibile",
+    "confirmDelete": "Conferma Eliminazione",
+    "deleteConfirmText": "Scrivi 'ELIMINA' per confermare"
+  },
+  
+  "cookies": {
+    "banner": {
+      "title": "Utilizziamo i Cookie",
+      "message": "Utilizziamo cookie tecnici necessari per il funzionamento del sito e cookie di analisi per migliorare la tua esperienza. Puoi gestire le tue preferenze sui cookie in qualsiasi momento.",
+      "acceptAll": "Accetta Tutti",
+      "rejectAll": "Rifiuta Tutti", 
+      "customize": "Personalizza",
+      "viewPolicy": "Visualizza Cookie Policy"
+    },
+    "settings": {
+      "title": "Impostazioni Cookie",
+      "description": "Puoi scegliere quali categorie di cookie consentire. I cookie necessari sono sempre abilitati per garantire il funzionamento del sito.",
+      "save": "Salva Preferenze",
+      "close": "Chiudi"
+    },
+    "categories": {
+      "necessary": {
+        "title": "Cookie Necessari",
+        "description": "Questi cookie sono essenziali per il funzionamento del sito web e non possono essere disabilitati."
+      },
+      "analytics": {
+        "title": "Cookie di Analisi",
+        "description": "Questi cookie ci aiutano a capire come i visitatori interagiscono con il sito raccogliendo e riportando informazioni in modo anonimo."
+      },
+      "marketing": {
+        "title": "Cookie di Marketing", 
+        "description": "Questi cookie sono utilizzati per tracciare i visitatori sui siti web per visualizzare annunci pertinenti e coinvolgenti."
+      }
+    }
+  },
+  
+  "errors": {
+    "notFound": "Pagina non trovata",
+    "serverError": "Errore del server",
+    "networkError": "Errore di connessione",
+    "unauthorized": "Non autorizzato",
+    "forbidden": "Accesso negato",
+    "validationError": "Errore di validazione",
+    "required": "Campo obbligatorio",
+    "invalidEmail": "Email non valida",
+    "passwordTooShort": "Password troppo corta",
+    "passwordMismatch": "Le password non corrispondono"
+  },
+  
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Ultimo aggiornamento",
+      "gdprCompliant": "Conforme al GDPR (Regolamento UE 2016/679)"
+    },
+    "terms": {
+      "title": "Termini di Servizio",
+      "lastUpdated": "Ultimo aggiornamento"
+    },
+    "cookies": {
+      "title": "Cookie Policy", 
+      "lastUpdated": "Ultimo aggiornamento"
+    },
+    "accessibility": {
+      "title": "Dichiarazione di Accessibilità",
+      "lastUpdated": "Ultimo aggiornamento"
+    }
+  },
+  
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Siamo qui per aiutarti",
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "subject": "Oggetto",
+      "message": "Messaggio",
+      "send": "Invia Messaggio"
+    },
+    "info": {
+      "address": "Indirizzo",
+      "phone": "Telefono", 
+      "email": "Email",
+      "hours": "Orari di Ufficio"
+    }
+  },
+  
+  "landing": {
+    "search": {
+      "title": "Ricerca Intelligente",
+      "description": "AI-powered matching. Descrivi il problema, trova il professionista perfetto in secondi.",
+      "chatTitle": "Chat Istantanea",
+      "chatSubtitle": "Messaging istantaneo per professionisti",
+      "chatDescription": "Chatta direttamente con i professionisti. Foto, vocali, preventivi. Zero intermediari, zero commissioni nascoste.",
+      "verifiedTitle": "100% Verificati",
+      "verifiedSubtitle": "Documenti, recensioni, portfolio",
+      "verifiedDescription": "Ogni professionista è verificato. Documenti controllati, recensioni vere, pagamenti garantiti.",
+      "trySearch": "Prova la Ricerca Intelligente",
+      "searchExample": "Ho bisogno di un elettricista per sostituire un quadro elettrico a Milano",
+      "findProvider": "Trova Provider →"
+    },
+    "providers": {
+      "title": "Provider di Fiducia",
+      "subtitle": "Professionisti verificati pronti ad aiutarti"
+    },
+    "testimonials": {
+      "title": "Cosa Dicono i Nostri Utenti", 
+      "subtitle": "Migliaia di storie di successo ogni giorno"
+    },
+    "cta": {
+      "title": "Pronto a Iniziare?",
+      "description": "Unisciti a migliaia di utenti che hanno già trovato i loro professionisti ideali.",
+      "getStarted": "Inizia Subito",
+      "learnMore": "Scopri Come Funziona"
+    }
+  }
+}

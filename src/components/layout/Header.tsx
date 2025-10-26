@@ -5,7 +5,7 @@ import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { LanguageSelector } from '../ui/LanguageSelector';
 import { NAV_ITEMS } from '../../utils/constants';
-import { useLanguage } from '../../hooks/useLanguage';
+import { useI18n } from '../../hooks/useI18n';
 
 interface HeaderProps {
   onLoginClick: () => void;
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onThemeChange
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t } = useI18n();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

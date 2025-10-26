@@ -11,9 +11,13 @@ import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Research } from './pages/Research';
 import { TermsOfService } from './pages/TermsOfService';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider, useTheme } from './hooks/useTheme';
-import { LanguageProvider } from './hooks/useLanguage';
+import { I18nProvider } from './hooks/useI18n';
+import { CookieConsentProvider } from './hooks/useCookieConsent';
+import { CookieConsentBanner } from './components/ui/CookieConsentBanner';
+import { CookieSettingsModal } from './components/ui/CookieSettingsModal';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -128,6 +132,7 @@ const AppContent: React.FC = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/research" element={<Research />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
@@ -142,6 +147,10 @@ const AppContent: React.FC = () => {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authMode}
       />
+
+      {/* Cookie Consent Banner and Settings Modal */}
+      <CookieConsentBanner />
+      <CookieSettingsModal />
     </>
   );
 };
@@ -149,17 +158,19 @@ const AppContent: React.FC = () => {
 // Main App Component with Providers
 const App: React.FC = () => {
   return (
-    <LanguageProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <Router>
-            <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-              <AppContent />
-            </div>
-          </Router>
-        </AuthProvider>
-      </ThemeProvider>
-    </LanguageProvider>
+    <I18nProvider>
+      <CookieConsentProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <Router>
+              <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+                <AppContent />
+              </div>
+            </Router>
+          </AuthProvider>
+        </ThemeProvider>
+      </CookieConsentProvider>
+    </I18nProvider>
   );
 };
 

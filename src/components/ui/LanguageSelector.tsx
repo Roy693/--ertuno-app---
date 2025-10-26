@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Globe } from 'lucide-react';
-import { useLanguage, type LanguageCode } from '../../hooks/useLanguage';
+import { useI18n, type LanguageCode } from '../../hooks/useI18n';
 
 interface LanguageSelectorProps {
   variant?: 'default' | 'minimal' | 'mobile';
@@ -12,15 +12,15 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   variant = 'default',
   className = '' 
 }) => {
-  const { currentLanguage, setLanguage, languages, t } = useLanguage();
+  const { currentLanguage, setLanguage, supportedLanguages, t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleLanguageChange = (langCode: LanguageCode) => {
-    setLanguage(langCode);
+  const handleLanguageChange = async (langCode: LanguageCode) => {
+    await setLanguage(langCode);
     setIsOpen(false);
   };
 
-  const currentLang = languages[currentLanguage];
+  const currentLang = supportedLanguages[currentLanguage];
 
   if (variant === 'minimal') {
     return (
@@ -50,7 +50,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 transition={{ duration: 0.2 }}
                 className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50"
               >
-                {Object.values(languages).map((lang) => (
+                {Object.values(supportedLanguages).map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => handleLanguageChange(lang.code)}
@@ -97,7 +97,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
               transition={{ duration: 0.3 }}
               className="overflow-hidden bg-gray-50 dark:bg-gray-800"
             >
-              {Object.values(languages).map((lang) => (
+              {Object.values(supportedLanguages).map((lang) => (
                 <button
                   key={lang.code}
                   onClick={() => handleLanguageChange(lang.code)}
@@ -153,7 +153,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
               <div className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide bg-gray-50 dark:bg-gray-900/50">
                 {t('nav.language')}
               </div>
-              {Object.values(languages).map((lang) => (
+              {Object.values(supportedLanguages).map((lang) => (
                 <motion.button
                   key={lang.code}
                   onClick={() => handleLanguageChange(lang.code)}

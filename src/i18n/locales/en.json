@@ -1,0 +1,362 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "reset": "Reset",
+    "clear": "Clear",
+    "select": "Select",
+    "or": "or",
+    "and": "and",
+    "yes": "Yes",
+    "no": "No"
+  },
+  
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "research": "Universities & Research",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "browse": "Browse",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  
+  "auth": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "getstarted": "Get Started",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "role": "Role",
+    "citizen": "Citizen",
+    "provider": "Provider",
+    "academic": "Academic",
+    "researcher": "Researcher",
+    "rememberMe": "Remember Me",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInWith": "Sign in with",
+    "signUpWith": "Sign up with",
+    "google": "Google",
+    "facebook": "Facebook",
+    "termsAccept": "I accept the",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "and": "and"
+  },
+  
+  "hero": {
+    "title": "ERTUNO",
+    "tagline": "Live Messaging & Professional Services",
+    "subtitle": "The platform for creative collaboration",
+    "description": "Live Messaging meets Trusted Providers. Instant chat with verified professionals. Find, chat, solve. All in one app.",
+    "cta": {
+      "primary": "Find Providers Now",
+      "secondary": "Download Mobile App"
+    },
+    "stats": {
+      "users": "Active Users",
+      "providers": "Professionals",
+      "requests": "Requests Solved",
+      "cities": "Cities Covered"
+    }
+  },
+  
+  "features": {
+    "title": "How It Works",
+    "subtitle": "Three simple steps to get the help you need",
+    "step1": {
+      "title": "Search",
+      "description": "Find the right professional in your area"
+    },
+    "step2": {
+      "title": "Connect",
+      "description": "Instant chat or video call with verified experts"
+    },
+    "step3": {
+      "title": "Solve",
+      "description": "Get immediate and reliable solutions"
+    },
+    "benefits": {
+      "title": "Why Choose ERTUNO",
+      "trusted": {
+        "title": "Verified Professionals",
+        "description": "All providers are checked and certified"
+      },
+      "instant": {
+        "title": "Instant Connection",
+        "description": "Real-time chat and video calls"
+      },
+      "secure": {
+        "title": "Secure Payments",
+        "description": "Protected and guaranteed transactions"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Assistance always available"
+      }
+    }
+  },
+  
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Professional solutions for every need",
+    "categories": {
+      "home": "Home & Garden",
+      "tech": "Technology",
+      "wellness": "Wellness",
+      "education": "Education",
+      "business": "Consulting",
+      "creative": "Creative"
+    }
+  },
+  
+  "research": {
+    "title": "Universities & Research",
+    "subtitle": "Academic collaboration for innovation",
+    "hero": {
+      "title": "Enhance Research with ERTUNO",
+      "description": "Advanced platform for academic collaboration, data collection and development of innovative solutions for universities and research centers."
+    },
+    "benefits": {
+      "title": "Research Benefits",
+      "dataCollection": {
+        "title": "Ethical Data Collection",
+        "description": "Access to anonymous datasets for social and technological research"
+      },
+      "collaboration": {
+        "title": "Global Collaboration",
+        "description": "International network of researchers and institutions"
+      },
+      "innovation": {
+        "title": "Innovation Lab",
+        "description": "Testing of new technologies and methodologies"
+      },
+      "funding": {
+        "title": "Funding Opportunities",
+        "description": "Access to grants and collaborative research projects"
+      }
+    },
+    "partners": {
+      "title": "Academic Partners",
+      "subtitle": "We collaborate with the best research institutions"
+    },
+    "institutions": {
+      "title": "Benefits for Institutions",
+      "subtitle": "Exclusive opportunities for universities and research centers"
+    },
+    "cta": {
+      "title": "Want to become an academic partner?",
+      "description": "Send us a proposal or book a demo to discover how ERTUNO can enhance your institution's research and innovation.",
+      "proposal": "Send Proposal",
+      "demo": "Book Demo"
+    }
+  },
+  
+  "footer": {
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "careers": "Careers",
+      "press": "Press",
+      "blog": "Blog"
+    },
+    "services": {
+      "title": "Services",
+      "providers": "For Professionals",
+      "customers": "For Customers",
+      "enterprise": "Enterprise",
+      "api": "API"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Help Center",
+      "contact": "Contact Us",
+      "community": "Community",
+      "feedback": "Feedback"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "accessibility": "Accessibility"
+    },
+    "social": {
+      "title": "Follow Us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    },
+    "copyright": "© 2024 ERTUNO. All rights reserved.",
+    "description": "The leading platform for professional services and creative collaboration."
+  },
+  
+  "dashboard": {
+    "welcome": "Welcome",
+    "overview": "Overview",
+    "requests": "My Requests",
+    "messages": "Messages",
+    "favorites": "Favorites",
+    "history": "History",
+    "stats": {
+      "activeRequests": "Active Requests",
+      "completedRequests": "Completed Requests",
+      "totalSpent": "Total Spent",
+      "savedProviders": "Saved Providers"
+    }
+  },
+  
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "account": "Account",
+    "privacy": "Privacy",
+    "notifications": "Notifications",
+    "language": "Language",
+    "theme": "Theme",
+    "deleteAccount": "Delete Account",
+    "deleteAccountWarning": "Warning: this action is irreversible",
+    "confirmDelete": "Confirm Deletion",
+    "deleteConfirmText": "Type 'DELETE' to confirm"
+  },
+  
+  "cookies": {
+    "banner": {
+      "title": "We Use Cookies",
+      "message": "We use necessary technical cookies for site functionality and analytics cookies to improve your experience. You can manage your cookie preferences at any time.",
+      "acceptAll": "Accept All",
+      "rejectAll": "Reject All",
+      "customize": "Customize",
+      "viewPolicy": "View Cookie Policy"
+    },
+    "settings": {
+      "title": "Cookie Settings",
+      "description": "You can choose which cookie categories to allow. Necessary cookies are always enabled to ensure site functionality.",
+      "save": "Save Preferences",
+      "close": "Close"
+    },
+    "categories": {
+      "necessary": {
+        "title": "Necessary Cookies",
+        "description": "These cookies are essential for website functionality and cannot be disabled."
+      },
+      "analytics": {
+        "title": "Analytics Cookies",
+        "description": "These cookies help us understand how visitors interact with the site by collecting and reporting information anonymously."
+      },
+      "marketing": {
+        "title": "Marketing Cookies",
+        "description": "These cookies are used to track visitors across websites to display relevant and engaging advertisements."
+      }
+    }
+  },
+  
+  "errors": {
+    "notFound": "Page not found",
+    "serverError": "Server error",
+    "networkError": "Network error",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Access denied",
+    "validationError": "Validation error",
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "passwordTooShort": "Password too short",
+    "passwordMismatch": "Passwords don't match"
+  },
+  
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated",
+      "gdprCompliant": "GDPR Compliant (EU Regulation 2016/679)"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated"
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "lastUpdated": "Last updated"
+    },
+    "accessibility": {
+      "title": "Accessibility Statement",
+      "lastUpdated": "Last updated"
+    }
+  },
+  
+  "contact": {
+    "title": "Contact Us", 
+    "subtitle": "We're here to help",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email", 
+      "hours": "Office Hours"
+    }
+  },
+  
+  "landing": {
+    "search": {
+      "title": "Smart Search",
+      "description": "AI-powered matching. Describe the problem, find the perfect professional in seconds.",
+      "chatTitle": "Instant Chat",
+      "chatSubtitle": "Instant messaging for professionals",
+      "chatDescription": "Chat directly with professionals. Photos, voice messages, quotes. Zero intermediaries, zero hidden commissions.",
+      "verifiedTitle": "100% Verified",
+      "verifiedSubtitle": "Documents, reviews, portfolio",
+      "verifiedDescription": "Every professional is verified. Checked documents, real reviews, guaranteed payments.",
+      "trySearch": "Try Smart Search",
+      "searchExample": "I need an electrician to replace an electrical panel in Milan",
+      "findProvider": "Find Provider →"
+    },
+    "providers": {
+      "title": "Trusted Providers",
+      "subtitle": "Verified professionals ready to help you"
+    },
+    "testimonials": {
+      "title": "What Our Users Say",
+      "subtitle": "Thousands of success stories every day"
+    },
+    "cta": {
+      "title": "Ready to Start?",
+      "description": "Join thousands of users who have already found their ideal professionals.",
+      "getStarted": "Get Started Now",
+      "learnMore": "Learn How It Works"
+    }
+  }
+}
