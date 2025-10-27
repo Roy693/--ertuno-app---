@@ -108,7 +108,7 @@ export const Research: React.FC = () => {
               </h1>
             </div>
             <p className="text-xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed">
-              {t('research.subtitle')}
+              Unisci mondo accademico e professionale. Collaborazioni innovative, opportunità per studenti e progetti di ricerca applicata.
             </p>
           </motion.div>
         </div>
@@ -124,10 +124,10 @@ export const Research: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              {t('research.mission.title')}
+              La Nostra Missione Accademica
             </h2>
             <p className="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              {t('research.mission.description')}
+              Costruire ponti tra eccellenza accademica e innovazione professionale. Creiamo opportunità concrete per ricercatori, studenti e professionisti di collaborare in progetti che generano impatto reale nella società.
             </p>
           </motion.div>
 
@@ -166,7 +166,7 @@ export const Research: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              {t('research.benefits.title')}
+              Vantaggi per il Mondo Accademico
             </h2>
           </motion.div>
 
@@ -248,10 +248,10 @@ export const Research: React.FC = () => {
             className="bg-gradient-to-r from-teal-600/20 to-orange-600/20 backdrop-blur-sm rounded-2xl p-12 border border-white/20 text-center"
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              {t('research.cta.title')}
+              Entra nel Network Accademico ERTUNO
             </h2>
             <p className="text-xl text-slate-200 mb-8 leading-relaxed">
-              {t('research.cta.description')}
+              Proponi la tua ricerca, trova collaboratori qualificati e accedi a opportunità di finanziamento innovative.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -261,7 +261,7 @@ export const Research: React.FC = () => {
                 icon={Mail}
                 className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800"
               >
-                {t('research.cta.proposal')}
+                Proponi Progetto
               </Button>
               <Button
                 variant="outline"
@@ -269,7 +269,7 @@ export const Research: React.FC = () => {
                 icon={Calendar}
                 className="border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white"
               >
-                {t('research.cta.demo')}
+                Prenota Demo
               </Button>
             </div>
 
