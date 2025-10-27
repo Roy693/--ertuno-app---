@@ -6,14 +6,16 @@ import type { User } from '../types';
 // Unified Auth Service that switches between Firebase and Mock
 export class UnifiedAuthService {
   private static get service() {
+    // Always use Firebase Auth for production unless explicitly in mock mode
     return isMockMode() ? MockAuthService : FirebaseAuthService;
   }
 
-  static async signUp(email: string, password: string, name: string, role: 'citizen' | 'provider' = 'citizen'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'job_poster' | 'service_provider' | 'university' | 'student' = 'job_poster'): Promise<User> {
     if (isMockMode()) {
       console.log('🚧 Using Mock Auth Service - Firebase credentials not configured');
       return MockAuthService.signUp(email, password, name, role);
     }
+    console.log('🔥 Using Firebase Auth Service - Production mode');
     return FirebaseAuthService.signUp(email, password, name, role);
   }
 
@@ -22,6 +24,7 @@ export class UnifiedAuthService {
       console.log('🚧 Using Mock Auth Service - Firebase credentials not configured');
       return MockAuthService.signIn(email, password);
     }
+    console.log('🔥 Using Firebase Auth Service - Production mode');
     return FirebaseAuthService.signIn(email, password);
   }
 
@@ -30,6 +33,7 @@ export class UnifiedAuthService {
       console.log('🚧 Using Mock Auth Service - Firebase credentials not configured');
       return MockAuthService.signInWithGoogle();
     }
+    console.log('🔥 Using Firebase Auth Service - Production mode');
     return FirebaseAuthService.signInWithGoogle();
   }
 
@@ -38,6 +42,7 @@ export class UnifiedAuthService {
       console.log('🚧 Using Mock Auth Service - Firebase credentials not configured');
       return MockAuthService.signInWithFacebook();
     }
+    console.log('🔥 Using Firebase Auth Service - Production mode');
     return FirebaseAuthService.signInWithFacebook();
   }
 

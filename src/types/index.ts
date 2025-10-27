@@ -5,8 +5,8 @@ export interface User {
   name: string;
   avatar?: string;
   createdAt: string;
-  // User role system - Extended for academic collaboration
-  role: 'citizen' | 'provider' | 'academic' | 'researcher';
+  // User role system - Production role hierarchy
+  role: 'job_poster' | 'service_provider' | 'university' | 'student';
   // Professional provider fields
   isProfessional?: boolean;
   verificationStatus?: 'pending' | 'verified' | 'rejected';

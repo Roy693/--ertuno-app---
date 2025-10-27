@@ -5,7 +5,7 @@ export class MockAuthService {
   private static users: Map<string, User> = new Map();
   private static currentUser: User | null = null;
   
-  static async signUp(email: string, password: string, name: string, role: 'citizen' | 'provider' = 'citizen'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'job_poster' | 'service_provider' | 'university' | 'student' = 'job_poster'): Promise<User> {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
@@ -22,8 +22,10 @@ export class MockAuthService {
       name,
       role,
       createdAt: new Date().toISOString(),
-      isProfessional: role === 'provider',
-      verificationStatus: role === 'provider' ? 'pending' : undefined,
+      isProfessional: role === 'service_provider',
+      isAcademic: role === 'university' || role === 'student',
+      verificationStatus: (role === 'service_provider' || role === 'university') ? 'pending' : undefined,
+      academicVerification: (role === 'university' || role === 'student') ? 'pending' : undefined,
     };
     
     this.users.set(userData.id, userData);
@@ -67,7 +69,7 @@ export class MockAuthService {
       id: `google_${Date.now()}`,
       email: 'demo@gmail.com',
       name: 'Demo Google User',
-      role: 'citizen',
+      role: 'job_poster',
       avatar: 'https://ui-avatars.com/api/?name=Demo+Google&background=4285f4&color=fff',
       createdAt: new Date().toISOString(),
     };
@@ -90,7 +92,7 @@ export class MockAuthService {
       id: `facebook_${Date.now()}`,
       email: 'demo@facebook.com',
       name: 'Demo Facebook User',
-      role: 'citizen',
+      role: 'job_poster',
       avatar: 'https://ui-avatars.com/api/?name=Demo+Facebook&background=1877f2&color=fff',
       createdAt: new Date().toISOString(),
     };
