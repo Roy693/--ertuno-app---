@@ -69,6 +69,15 @@ export class UnifiedAuthService {
     return FirebaseAuthService.getCurrentUser();
   }
 
+  static async sendPasswordReset(email: string): Promise<void> {
+    if (isMockMode()) {
+      console.log('🚧 Using Mock Auth Service - Password reset email simulated');
+      return MockAuthService.sendPasswordReset(email);
+    }
+    console.log('🔥 Using Firebase Auth Service - Sending real password reset');
+    return FirebaseAuthService.sendPasswordReset(email);
+  }
+
   // Utility method to check current mode
   static getAuthMode(): 'firebase' | 'mock' {
     return isMockMode() ? 'mock' : 'firebase';

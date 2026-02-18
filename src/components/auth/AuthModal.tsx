@@ -17,6 +17,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   initialMode = 'login'
 }) => {
   const [mode, setMode] = useState<'login' | 'signup'>(initialMode);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+  const [passwordResetSent, setPasswordResetSent] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,7 +28,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     role: 'job_poster' as 'job_poster' | 'service_provider' | 'university' | 'student'
   });
 
-  const { signIn, signUp, signInWithGoogle, signInWithFacebook, loading, error, clearError } = useAuth();
+  const { signIn, signUp, signInWithGoogle, signInWithFacebook, sendPasswordReset, loading, error, clearError } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -86,7 +89,19 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       confirmPassword: '',
       role: 'job_poster'
     });
+    setShowForgotPassword(false);
+    setPasswordResetSent(false);
     clearError();
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await sendPasswordReset(forgotPasswordEmail);
+      setPasswordResetSent(true);
+    } catch (error) {
+      console.error('Error sending password reset:', error);
+    }
   };
 
   if (!isOpen) return null;
@@ -388,6 +403,72 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 {mode === 'login' ? 'Sign In' : 'Create Account'}
               </Button>
             </form>
+
+            {/* Forgot Password Link - Only show in login mode */}
+            {mode === 'login' && !showForgotPassword && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => setShowForgotPassword(true)}
+                  className="text-sm text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300"
+                >
+                  Forgot your password?
+                </button>
+              </div>
+            )}
+
+            {/* Forgot Password Form */}
+            {showForgotPassword && !passwordResetSent && (
+              <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
+                  Reset Password
+                </h3>
+                <form onSubmit={handleForgotPassword}>
+                  <input
+                    type="email"
+                    value={forgotPasswordEmail}
+                    onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-600 dark:text-white text-sm mb-3"
+                    required
+                  />
+                  <div className="flex space-x-2">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 disabled:opacity-50"
+                    >
+                      Send Reset Email
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowForgotPassword(false)}
+                      className="px-4 py-2 text-gray-600 dark:text-gray-400 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Password Reset Success Message */}
+            {passwordResetSent && (
+              <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Password reset email sent! Check your inbox.
+                </p>
+                <button
+                  onClick={() => {
+                    setShowForgotPassword(false);
+                    setPasswordResetSent(false);
+                    setForgotPasswordEmail('');
+                  }}
+                  className="mt-2 text-sm text-primary-600 hover:text-primary-500 dark:text-primary-400"
+                >
+                  Back to login
+                </button>
+              </div>
+            )}
 
             {/* Toggle Mode */}
             <div className="mt-6 text-center">

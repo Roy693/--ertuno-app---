@@ -152,4 +152,18 @@ export class MockAuthService {
       this.currentUser = null;
     }
   }
+
+  static async sendPasswordReset(email: string): Promise<void> {
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Check if user exists
+    this.loadUsers();
+    const userExists = Array.from(this.users.values()).some(u => u.email === email);
+    if (!userExists) {
+      throw new Error('No user found with this email address');
+    }
+    
+    console.log(`Mock: Password reset email sent to ${email}`);
+  }
 }

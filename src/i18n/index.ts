@@ -207,7 +207,14 @@ export function translateKey(
   fallbackLanguage: LanguageCode = DEFAULT_LANGUAGE
 ): string {
   // Get translations for current language
-  const currentTranslations = translationsCache[languageCode];
+  let currentTranslations = translationsCache[languageCode];
+  
+  // If not in cache, load inline translations immediately
+  if (!currentTranslations) {
+    currentTranslations = getInlineTranslations(languageCode);
+    translationsCache[languageCode] = currentTranslations;
+  }
+  
   if (currentTranslations) {
     const translation = getNestedValue(currentTranslations, key);
     if (translation && typeof translation === 'string') {
@@ -217,7 +224,14 @@ export function translateKey(
 
   // Fallback to default language if different
   if (languageCode !== fallbackLanguage) {
-    const fallbackTranslations = translationsCache[fallbackLanguage];
+    let fallbackTranslations = translationsCache[fallbackLanguage];
+    
+    // If fallback not in cache, load inline translations immediately
+    if (!fallbackTranslations) {
+      fallbackTranslations = getInlineTranslations(fallbackLanguage);
+      translationsCache[fallbackLanguage] = fallbackTranslations;
+    }
+    
     if (fallbackTranslations) {
       const fallbackTranslation = getNestedValue(fallbackTranslations, key);
       if (fallbackTranslation && typeof fallbackTranslation === 'string') {
@@ -226,7 +240,9 @@ export function translateKey(
     }
   }
 
-  // Return key as fallback if no translation found
+  // Log warning and return key as fallback if no translation found
+  console.warn(`Translation not found for key: ${key} (language: ${languageCode})`);
+  return key;
   console.warn(`Translation not found for key: ${key} (language: ${languageCode})`);
   return key;
 }

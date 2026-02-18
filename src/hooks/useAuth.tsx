@@ -14,6 +14,7 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signOut: () => Promise<void>;
+  sendPasswordReset: (email: string) => Promise<void>;
   clearError: () => void;
 }
 
@@ -137,6 +138,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, error: null }));
   };
 
+  const sendPasswordReset = async (email: string) => {
+    try {
+      setAuthState(prev => ({ ...prev, loading: true, error: null }));
+      await AuthService.sendPasswordReset(email);
+      setAuthState(prev => ({ ...prev, loading: false }));
+    } catch (error: any) {
+      setAuthState(prev => ({ 
+        ...prev, 
+        loading: false, 
+        error: error.message 
+      }));
+      throw error;
+    }
+  };
+
   const value: AuthContextType = {
     user: authState.user,
     loading: authState.loading,
@@ -146,6 +162,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     signInWithGoogle,
     signInWithFacebook,
     signOut,
+    sendPasswordReset,
     clearError,
   };
 

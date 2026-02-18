@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
   type User as FirebaseUser
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
@@ -155,6 +156,14 @@ export class AuthService {
   static async getIdToken(): Promise<string | null> {
     if (!auth.currentUser) return null;
     return await auth.currentUser.getIdToken();
+  }
+
+  static async sendPasswordReset(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error: any) {
+      throw new Error(error.message || 'Failed to send password reset email');
+    }
   }
 }
 
