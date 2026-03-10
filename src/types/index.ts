@@ -6,7 +6,7 @@ export interface User {
   avatar?: string;
   createdAt: string;
   // User role system - Production role hierarchy
-  role: 'job_poster' | 'service_provider' | 'university' | 'student';
+  role: 'service_requester' | 'service_provider';
   // Professional provider fields
   isProfessional?: boolean;
   verificationStatus?: 'pending' | 'verified' | 'rejected';
@@ -16,14 +16,25 @@ export interface User {
   rating?: number;
   reviewCount?: number;
   
-  // Academic/Research fields
-  isAcademic?: boolean;
-  institution?: string;
-  department?: string;
-  position?: string; // Professor, Researcher, PhD Student, etc.
-  researchAreas?: string[];
-  orcid?: string; // ORCID ID for researcher identification
-  academicVerification?: 'pending' | 'verified' | 'rejected';
+  // Service Provider specific fields
+  workAreas?: {
+    zones: string[]; // Geographic zones they serve
+    coordinates?: {
+      lat: number;
+      lng: number;
+      radius: number; // Service radius in km
+    };
+  };
+  experience?: string;
+  skills?: string[];
+  professionalDescription?: string;
+  portfolioImages?: string[];
+  completedJobs?: number;
+  earnings?: {
+    total: number;
+    thisMonth: number;
+    currency: string;
+  };
   location?: {
     city: string;
     state: string;

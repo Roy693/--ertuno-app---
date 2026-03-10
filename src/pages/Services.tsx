@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, 
@@ -12,14 +12,102 @@ import {
   ArrowRight,
   MessageCircle,
   Shield,
-  Clock
+  Clock,
+  MapPin,
+  Filter,
+  Search,
+  Loader
 } from 'lucide-react';
 import { BackButton } from '../components/ui/BackButton';
+import { ServicesService, ServiceProvider, ServiceListing } from '../services/servicesService';
 
 export const Services: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedZone, setSelectedZone] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [serviceProviders, setServiceProviders] = useState<ServiceProvider[]>([]);
+  const [serviceListings, setServiceListings] = useState<ServiceListing[]>([]);
+  const [availableZones, setAvailableZones] = useState<string[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
 
-  const serviceCategories = [
+  // Load data from Firestore
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        
+        // Load zones
+        const zones = await ServicesService.getAvailableZones();
+        setAvailableZones(zones);
+        
+        // Load service providers and listings
+        const [providers, listings] = await Promise.all([
+          ServicesService.getServiceProviders({
+            zone: selectedZone !== 'all' ? selectedZone : undefined,
+            category: selectedCategory || undefined
+          }),
+          ServicesService.getServiceListings({
+            zone: selectedZone !== 'all' ? selectedZone : undefined,
+            category: selectedCategory || undefined,
+            search: searchTerm || undefined
+          })
+        ]);
+        
+        setServiceProviders(providers);
+        setServiceListings(listings);
+      } catch (error) {
+        console.error('Failed to load services:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadData();
+  }, [selectedZone, selectedCategory, searchTerm]);
+
+  // Get service categories from the service
+  const serviceCategories = ServicesService.getServiceCategories().map(cat => ({
+    id: cat.id,
+    title: cat.name,
+    icon: getIconForCategory(cat.id),
+    color: getColorForCategory(cat.id),
+    description: getDescriptionForCategory(cat.id),
+    services: cat.subcategories.map(sub => `${sub} - Professional ${sub.toLowerCase()} services`)
+  }));
+  
+  // Helper functions for category display
+  function getIconForCategory(categoryId: string) {
+    const iconMap: { [key: string]: any } = {
+      'home_services': Home,
+      'professional_services': Monitor,
+      'personal_services': Calendar,
+      'automotive': Wrench
+    };
+    return iconMap[categoryId] || Home;
+  }
+  
+  function getColorForCategory(categoryId: string) {
+    const colorMap: { [key: string]: string } = {
+      'home_services': 'from-blue-500 to-purple-600',
+      'professional_services': 'from-indigo-500 to-blue-600',
+      'personal_services': 'from-yellow-500 to-orange-600',
+      'automotive': 'from-green-500 to-teal-600'
+    };
+    return colorMap[categoryId] || 'from-gray-500 to-gray-600';
+  }
+  
+  function getDescriptionForCategory(categoryId: string) {
+    const descriptionMap: { [key: string]: string } = {
+      'home_services': 'Professional home maintenance and repair services',
+      'professional_services': 'Business and professional consulting services',
+      'personal_services': 'Personal care and lifestyle services',
+      'automotive': 'Vehicle maintenance and automotive services'
+    };
+    return descriptionMap[categoryId] || 'Professional services';
+  }
+
+  const originalServiceCategories = [
     {
       id: 'home-repairs',
       title: 'Home Repairs',
@@ -136,8 +224,82 @@ export const Services: React.FC = () => {
         <BackButton className="text-white hover:bg-white/10" />
       </div>
       
+      {/* Search and Filter Bar */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white/10 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 items-center">
+            {/* Search Bar */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-purple-300" />
+              <input
+                type="text"
+                placeholder="Search services, skills, or providers..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-purple-200 focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+              />
+            </div>
+            
+            {/* Zone Filter */}
+            <div className="relative min-w-[200px]">
+              <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-purple-300" />
+              <select
+                value={selectedZone}
+                onChange={(e) => setSelectedZone(e.target.value)}
+                className="w-full pl-10 pr-8 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white focus:ring-2 focus:ring-yellow-400 focus:border-transparent appearance-none"
+              >
+                <option value="all" className="bg-gray-800">All Zones</option>
+                {availableZones.map(zone => (
+                  <option key={zone} value={zone} className="bg-gray-800">{zone}</option>
+                ))}
+              </select>
+            </div>
+            
+            {/* Filter Toggle */}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`px-4 py-3 rounded-lg border transition-colors ${
+                showFilters 
+                  ? 'bg-yellow-500 text-black border-yellow-500' 
+                  : 'bg-white/20 text-white border-white/30 hover:bg-white/30'
+              }`}
+            >
+              <Filter className="w-5 h-5" />
+            </button>
+          </div>
+          
+          {/* Active Filters Display */}
+          {(selectedZone !== 'all' || selectedCategory) && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {selectedZone !== 'all' && (
+                <span className="px-3 py-1 bg-yellow-500 text-black rounded-full text-sm font-medium">
+                  📍 {selectedZone}
+                  <button 
+                    onClick={() => setSelectedZone('all')}
+                    className="ml-2 hover:text-red-600"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {selectedCategory && (
+                <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-medium">
+                  🔧 {serviceCategories.find(c => c.id === selectedCategory)?.title}
+                  <button 
+                    onClick={() => setSelectedCategory(null)}
+                    className="ml-2 hover:text-red-200"
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+      
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -147,14 +309,26 @@ export const Services: React.FC = () => {
             <h1 className="text-5xl font-bold text-white mb-6">
               What can you find on ERTUNO?
             </h1>
-            <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-purple-100 mb-6 max-w-3xl mx-auto leading-relaxed">
               From home repairs to creative services, we connect you with verified professionals 
               who are ready to help. All providers are verified, rated, and ready to help.
             </p>
-            <div className="inline-flex items-center px-6 py-3 bg-yellow-500 text-black rounded-full font-semibold">
-              <CheckCircle className="w-5 h-5 mr-2" />
-              Custom requests—just post and we'll match you
-            </div>
+            
+            {/* Results Count */}
+            {!loading && (
+              <div className="inline-flex items-center px-6 py-3 bg-yellow-500 text-black rounded-full font-semibold mb-4">
+                <CheckCircle className="w-5 h-5 mr-2" />
+                {serviceProviders.length} verified professionals • {serviceListings.length} active services
+                {selectedZone !== 'all' && ` in ${selectedZone}`}
+              </div>
+            )}
+            
+            {loading && (
+              <div className="inline-flex items-center px-6 py-3 bg-white/20 text-white rounded-full font-semibold mb-4">
+                <Loader className="w-5 h-5 mr-2 animate-spin" />
+                Loading services...
+              </div>
+            )}
           </motion.div>
         </div>
       </section>

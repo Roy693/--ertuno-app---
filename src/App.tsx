@@ -7,10 +7,7 @@ import { AuthModal } from './components/auth/AuthModal';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { BrowseRequests } from './pages/BrowseRequests';
-import { JobPosterDashboard } from './pages/dashboards/JobPosterDashboard';
 import { ServiceProviderDashboard } from './pages/dashboards/ServiceProviderDashboard';
-import { UniversityDashboard } from './pages/dashboards/UniversityDashboard';
-import { StudentDashboard } from './pages/dashboards/StudentDashboard';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { Research } from './pages/Research';
@@ -62,14 +59,10 @@ const RoleDashboard: React.FC = () => {
   }
 
   switch (user.role) {
-    case 'job_poster':
-      return <JobPosterDashboard />;
+    case 'service_requester':
+      return <Dashboard />;
     case 'service_provider':
       return <ServiceProviderDashboard />;
-    case 'university':
-      return <UniversityDashboard />;
-    case 'student':
-      return <StudentDashboard />;
     default:
       // Fallback to generic dashboard for unknown roles
       return <Dashboard />;

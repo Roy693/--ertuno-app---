@@ -26,7 +26,7 @@ const facebookProvider = new FacebookAuthProvider();
 
 // Auth Service
 export class AuthService {
-  static async signUp(email: string, password: string, name: string, role: 'job_poster' | 'service_provider' | 'university' | 'student' = 'job_poster'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' = 'service_requester'): Promise<User> {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const firebaseUser = userCredential.user;
@@ -40,9 +40,7 @@ export class AuthService {
         createdAt: new Date().toISOString(),
         // Set role-specific fields
         isProfessional: role === 'service_provider',
-        isAcademic: role === 'university' || role === 'student',
-        verificationStatus: (role === 'service_provider' || role === 'university') ? 'pending' : undefined,
-        academicVerification: (role === 'university' || role === 'student') ? 'pending' : undefined,
+        verificationStatus: role === 'service_provider' ? 'pending' : undefined,
       };
 
       await setDoc(doc(db, 'users', firebaseUser.uid), userData);
@@ -84,7 +82,7 @@ export class AuthService {
           email: firebaseUser.email!,
           name: firebaseUser.displayName || 'Google User',
           avatar: firebaseUser.photoURL || undefined,
-          role: 'job_poster', // Default role for social login
+          role: 'service_requester', // Default role for social login
           createdAt: new Date().toISOString(),
         };
 
@@ -113,7 +111,7 @@ export class AuthService {
           email: firebaseUser.email!,
           name: firebaseUser.displayName || 'Facebook User',
           avatar: firebaseUser.photoURL || undefined,
-          role: 'job_poster', // Default role for social login
+          role: 'service_requester', // Default role for social login
           createdAt: new Date().toISOString(),
         };
 
