@@ -67,12 +67,15 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         services: 'Servizi',
         research: 'Università & Ricerca',
         contact: 'Contatti',
-        language: 'Lingua'
+        language: 'Lingua',
+        dashboard: 'Dashboard',
+        browse: 'Esplora'
       },
       auth: {
         signin: 'Accedi',
         signup: 'Registrati',
         getstarted: 'Inizia Ora',
+        getStarted: 'Inizia Ora',
         login: 'Accedi',
         createAccount: 'Crea Account',
         welcomeBack: 'Bentornato',
@@ -99,6 +102,172 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         enterEmail: 'Inserisci la tua email',
         enterPassword: 'Inserisci la password',
         enterFullName: 'Inserisci il tuo nome completo'
+      },
+      common: {
+        loading: 'Caricamento...',
+        save: 'Salva',
+        cancel: 'Annulla',
+        edit: 'Modifica',
+        delete: 'Elimina',
+        add: 'Aggiungi',
+        create: 'Crea',
+        update: 'Aggiorna',
+        search: 'Cerca',
+        filter: 'Filtra',
+        view: 'Visualizza',
+        close: 'Chiudi',
+        back: 'Indietro',
+        next: 'Avanti',
+        previous: 'Precedente',
+        lightMode: 'Modalità Chiara',
+        darkMode: 'Modalità Scura',
+        language: 'Lingua',
+        settings: 'Impostazioni',
+        profile: 'Profilo',
+        logout: 'Esci',
+        yes: 'Sì',
+        no: 'No',
+        ok: 'OK',
+        error: 'Errore',
+        success: 'Successo',
+        warning: 'Attenzione',
+        info: 'Informazione'
+      },
+      footer: {
+        product: 'Prodotto',
+        company: 'Azienda',
+        legal: 'Legale',
+        settings: 'Impostazioni',
+        features: 'Funzionalità',
+        featuresDesc: 'Messaggistica live, marketplace dei servizi, verifica professionale — costruito per la collaborazione in tempo reale e la fiducia.',
+        pricing: 'Prezzi',
+        pricingDesc: 'Gratuito per i richiedenti. Commissioni per i provider. Trasparente, scalabile, amico del fondatore.',
+        api: 'API',
+        apiDesc: 'API RESTful per integrazioni di terze parti. Endpoint sicuri per pubblicazione lavori, ruoli utente e messaggistica.',
+        documentation: 'Documentazione',
+        docsDesc: 'Guide tecniche, tutorial di integrazione e diagrammi di flusso backend per sviluppatori e architetti.',
+        aboutUs: 'Chi Siamo',
+        aboutDesc: 'Il sito sacro dove connessioni, trader e deal prosperano. ERTUNO è costruito su grinta siciliana e tecnologia globale.',
+        blog: 'Blog',
+        blogDesc: 'Storie di successo, approfondimenti del settore e aggiornamenti della piattaforma dal team ERTUNO.',
+        careers: 'Carriere',
+        careersDesc: 'Unisciti alla missione sacra. Opportunità remote e europee disponibili per costruttori, designer e strateghi.',
+        contact: 'Contatti',
+        contactDesc: 'Mettiti in contatto: hello@ertuno.com — rispondiamo velocemente e costruiamo insieme.',
+        privacyPolicy: 'Privacy Policy',
+        privacyDesc: 'Protezione dei dati conforme al GDPR e privacy degli utenti. Non vendiamo mai i tuoi dati.',
+        termsOfService: 'Termini di Servizio',
+        termsDesc: 'Termini di utilizzo della piattaforma e accordi di servizio.',
+        cookiePolicy: 'Cookie Policy',
+        cookieDesc: 'Gestisci le preferenze. Usiamo i cookie per migliorare le prestazioni, non per tracciare.',
+        gdpr: 'GDPR',
+        gdprDesc: 'Piena conformità alle leggi europee sulla protezione dei dati. I tuoi diritti sono rispettati.',
+        builtWith: 'Costruito con',
+        inItaly: 'in Italia',
+        allRightsReserved: 'Tutti i diritti riservati.',
+        contactTitle: 'Mettiti in Contatto',
+        contactSubtext: 'Rispondiamo velocemente e costruiamo insieme'
+      },
+      settings: {
+        preferences: 'Preferenze',
+        notifications: 'Notifiche',
+        privacy: 'Privacy',
+        security: 'Sicurezza',
+        billing: 'Fatturazione',
+        deleteAccount: 'Elimina Account',
+        account: 'Account',
+        professional: 'Professionale'
+      },
+      aboutPage: {
+        title: 'Chi Siamo',
+        subtitle: 'ERTUNO è costruito per velocità, fiducia e semplicità. Colleghiamo cittadini con fornitori di servizi verificati in tutta Europa — istantaneamente. Che tu abbia bisogno di un idraulico a Palermo o un designer a Berlino, ERTUNO trova la corrispondenza giusta in secondi.',
+        description: 'La nostra piattaforma è sicura, multilingue e ottimizzata per mobile.',
+        tagline: 'Costruita in Sicilia, progettata per il mondo.',
+        valuesDesc: 'Tutto ciò che costruiamo è guidato da quattro principi fondamentali che mettono al primo posto gli utenti.',
+        stats: {
+          activeUsers: 'Utenti Attivi',
+          citiesCovered: 'Città Coperte',
+          completedJobs: 'Lavori Completati',
+          userSatisfaction: 'Soddisfazione Utenti'
+        },
+        values: {
+          title: 'I Nostri Valori',
+          speed: {
+            title: 'Velocità',
+            description: 'Trova il professionista giusto in secondi, non giorni. La nostra piattaforma è costruita per connessioni istantanee.'
+          },
+          trust: {
+            title: 'Fiducia',
+            description: 'Ogni fornitore di servizi è verificato, valutato e controllato per la tua tranquillità.'
+          },
+          simplicity: {
+            title: 'Semplicità',
+            description: 'L\'interfaccia di chat intuitiva rende la comunicazione senza sforzo. Nessun modulo complesso o processo confuso.'
+          },
+          multilingual: {
+            title: 'Multilingue',
+            description: 'Supportiamo più lingue in tutta Europa. Abbattiamo le barriere linguistiche per un servizio migliore.'
+          }
+        }
+      },
+      servicesPage: {
+        viewServices: 'Visualizza Servizi',
+        hideServices: 'Nascondi Servizi',
+        loadingServices: 'Caricamento servizi...',
+        inZone: 'in zona'
+      },
+      researchPage: {
+        title: 'Università & Ricerca',
+        subtitle: 'La tua università ha bisogno di professionisti?',
+        mission: {
+          title: 'La Nostra Missione',
+          description: 'Colmare il divario tra ricerca accademica e applicazioni nel mondo reale attraverso collaborazioni verificate.'
+        },
+        benefits: {
+          title: 'Vantaggi per le Università',
+          profiles: 'Profili Accademici Verificati',
+          collaborations: 'Collaborazioni Inter-disciplinari',
+          matching: 'Matching Intelligente',
+          opportunities: 'Opportunità Studenti',
+          marketplace: 'Marketplace Ricerca',
+          recognition: 'Riconoscimenti Accademici'
+        },
+        partners: 'Partner Accademici',
+        cta: {
+          title: 'Inizia la Collaborazione',
+          description: 'Unisciti a centinaia di istituzioni che si fidano di ERTUNO per le partnership accademiche.',
+          proposal: 'Invia Proposta',
+          demo: 'Richiedi Demo'
+        }
+      },
+      termsPage: {
+        title: 'Termini di Servizio',
+        effectiveDate: 'Data di Entrata in Vigore: 24 ottobre 2025',
+        tableOfContents: 'Indice',
+        sections: {
+          overview: 'Panoramica',
+          acceptance: 'Accettazione',
+          description: 'Descrizione Servizio',
+          eligibility: 'Idoneità',
+          accounts: 'Account',
+          conduct: 'Condotta',
+          content: 'Contenuti',
+          services: 'Servizi',
+          fees: 'Commissioni',
+          privacy: 'Privacy',
+          termination: 'Risoluzione',
+          disclaimers: 'Esclusioni di Responsabilità',
+          limitation: 'Limitazione di Responsabilità',
+          indemnification: 'Indennizzo',
+          governing: 'Legge Applicabile',
+          changes: 'Modifiche',
+          contact: 'Contatti'
+        }
+      },
+      privacyPage: {
+        title: 'Informativa sulla Privacy',
+        effectiveDate: 'Data di Entrata in Vigore: 24 ottobre 2025',
+        tableOfContents: 'Indice'
       },
       hero: {
         subtitle: 'Dove l\'eccellenza incontra la fiducia',
@@ -195,26 +364,49 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         portfolioPastWork: 'Portfolio e Lavori Passati',
         workAreasZones: 'Aree e Zone di Lavoro',
         myServices: 'I Miei Servizi',
-        addNewService: 'Aggiungi Nuovo Servizio'
-      },
-      common: {
-        loading: 'Caricamento...',
-        save: 'Salva',
-        cancel: 'Annulla',
-        edit: 'Modifica',
-        delete: 'Elimina',
-        view: 'Visualizza',
-        add: 'Aggiungi',
-        search: 'Cerca',
-        filter: 'Filtra',
-        back: 'Indietro',
-        next: 'Avanti',
-        close: 'Chiudi',
-        confirm: 'Conferma',
-        error: 'Errore',
-        success: 'Successo',
-        warning: 'Avviso',
-        info: 'Informazione'
+        addNewService: 'Aggiungi Nuovo Servizio',
+        verified: 'Verificato',
+        pendingVerification: 'Verifica in Sospeso',
+        uploadPhoto: 'Carica Foto',
+        saveChanges: 'Salva Modifiche',
+        editProfile: 'Modifica Profilo',
+        addPhoto: 'Aggiungi Foto',
+        describeServices: 'Descrivi i tuoi servizi ed esperienza...',
+        addSkillPlaceholder: 'Aggiungi una competenza e premi Invio',
+        yourBusiness: 'Il tuo business o nome professionale',
+        googleMapsIntegration: 'Integrazione Google Maps',
+        clickToSelect: 'Clicca per selezionare le tue aree di lavoro',
+        manageWorkAreasTitle: 'Gestisci Aree di Lavoro',
+        howToUse: 'Come utilizzare:',
+        howToUseSteps: {
+          step1: 'Clicca "Aggiungi Area di Lavoro" per iniziare ad aggiungere una nuova area di servizio',
+          step2: 'Inserisci il nome dell\'area e il raggio, poi clicca sulla mappa',
+          step3: 'Clicca sui marker esistenti per modificare o eliminare le aree',
+          step4: 'Le aree verdi sono attive, le aree grigie sono inattive'
+        },
+        addWorkArea: 'Aggiungi Area di Lavoro',
+        areaName: 'Nome area (es. Milano Centro)',
+        radiusKm: 'Raggio (km)',
+        clickMap: 'Clicca Mappa',
+        active: 'Attivo',
+        inactive: 'Inattivo',
+        loadingYourExperience: 'Caricamento della tua esperienza...',
+        recentJobs: 'Lavori Recenti',
+        job: 'Lavoro',
+        client: 'Cliente',
+        category: 'Categoria',
+        amount: 'Importo',
+        status: 'Stato',
+        date: 'Data',
+        completed: 'Completato',
+        pendingPaymentStatus: 'Pagamento in Sospeso',
+        inProgress: 'In Corso',
+        totalEarned: 'Totale Guadagnato',
+        activate: 'Attiva',
+        deactivate: 'Disattiva',
+        hourly: 'orario',
+        fixed: 'fisso',
+        customPricing: 'Prezzo personalizzato'
       },
       cookies: {
         banner: {
@@ -234,12 +426,15 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         services: 'Services',
         research: 'Universities & Research',
         contact: 'Contact',
-        language: 'Language'
+        language: 'Language',
+        dashboard: 'Dashboard',
+        browse: 'Browse'
       },
       auth: {
         signin: 'Sign In',
         signup: 'Sign Up',
         getstarted: 'Get Started',
+        getStarted: 'Get Started',
         login: 'Sign In',
         createAccount: 'Create Account',
         welcomeBack: 'Welcome Back',
@@ -266,6 +461,36 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         enterEmail: 'Enter your email',
         enterPassword: 'Enter your password',
         enterFullName: 'Enter your full name'
+      },
+      common: {
+        loading: 'Loading...',
+        save: 'Save',
+        cancel: 'Cancel',
+        edit: 'Edit',
+        delete: 'Delete',
+        add: 'Add',
+        create: 'Create',
+        update: 'Update',
+        search: 'Search',
+        filter: 'Filter',
+        view: 'View',
+        close: 'Close',
+        back: 'Back',
+        next: 'Next',
+        previous: 'Previous',
+        lightMode: 'Light Mode',
+        darkMode: 'Dark Mode',
+        language: 'Language',
+        settings: 'Settings',
+        profile: 'Profile',
+        logout: 'Logout',
+        yes: 'Yes',
+        no: 'No',
+        ok: 'OK',
+        error: 'Error',
+        success: 'Success',
+        warning: 'Warning',
+        info: 'Information'
       },
       hero: {
         subtitle: 'Where excellence meets trust',
@@ -364,24 +589,72 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         myServices: 'My Services',
         addNewService: 'Add New Service'
       },
-      common: {
-        loading: 'Loading...',
-        save: 'Save',
-        cancel: 'Cancel',
-        edit: 'Edit',
-        delete: 'Delete',
-        view: 'View',
-        add: 'Add',
-        search: 'Search',
-        filter: 'Filter',
-        back: 'Back',
-        next: 'Next',
-        close: 'Close',
-        confirm: 'Confirm',
-        error: 'Error',
-        success: 'Success',
-        warning: 'Warning',
-        info: 'Info'
+      aboutPage: {
+        title: 'About ERTUNO',
+        subtitle: 'ERTUNO is built for speed, trust, and simplicity. We connect citizens with verified service providers across Europe—instantly. Whether you need a plumber in Palermo or a designer in Berlin, ERTUNO finds the right match in seconds.',
+        description: 'Our platform is secure, multilingual, and optimized for mobile.',
+        tagline: 'Built in Sicily, designed for the world.',
+        valuesDesc: 'Everything we build is guided by four core principles that put users first.',
+        stats: {
+          activeUsers: 'Active Users',
+          citiesCovered: 'Cities Covered',
+          completedJobs: 'Completed Jobs',
+          userSatisfaction: 'User Satisfaction'
+        },
+        values: {
+          title: 'Our Values',
+          speed: {
+            title: 'Speed',
+            description: 'Find the right professional in seconds, not days. Our platform is built for instant connections.'
+          },
+          trust: {
+            title: 'Trust',
+            description: 'Every service provider is verified, rated, and background-checked for your peace of mind.'
+          },
+          simplicity: {
+            title: 'Simplicity',
+            description: 'Intuitive chat interface makes communication effortless. No complex forms or confusing processes.'
+          },
+          multilingual: {
+            title: 'Multilingual',
+            description: 'Supporting multiple languages across Europe. Breaking down language barriers for better service.'
+          }
+        }
+      },
+      footer: {
+        product: 'Product',
+        company: 'Company',
+        legal: 'Legal',
+        settings: 'Settings',
+        features: 'Features',
+        featuresDesc: 'Live messaging, service marketplace, professional verification — built for real-time collaboration and trust.',
+        pricing: 'Pricing',
+        pricingDesc: 'Free for requesters. Commissions for providers. Transparent, scalable, founder-friendly.',
+        api: 'API',
+        apiDesc: 'RESTful API for third-party integrations. Secure endpoints for job posting, user roles, and messaging.',
+        documentation: 'Documentation',
+        docsDesc: 'Technical guides, integration tutorials, and backend flow diagrams for developers and architects.',
+        aboutUs: 'About Us',
+        aboutDesc: 'The sacred site where connections, traders, and deals prosper. ERTUNO is built on Sicilian grit and global technology.',
+        blog: 'Blog',
+        blogDesc: 'Success stories, industry insights, and platform updates from the ERTUNO team.',
+        careers: 'Careers',
+        careersDesc: 'Join the sacred mission. Remote and European opportunities available for builders, designers, and strategists.',
+        contact: 'Contact',
+        contactDesc: 'Get in touch: hello@ertuno.com — we respond quickly and build together.',
+        privacyPolicy: 'Privacy Policy',
+        privacyDesc: 'GDPR-compliant data protection and user privacy. We never sell your data.',
+        termsOfService: 'Terms of Service',
+        termsDesc: 'Platform usage terms and service agreements.',
+        cookiePolicy: 'Cookie Policy',
+        cookieDesc: 'Manage preferences. We use cookies to improve performance, not to track.',
+        gdpr: 'GDPR',
+        gdprDesc: 'Full compliance with European data protection laws. Your rights are respected.',
+        builtWith: 'Built with',
+        inItaly: 'in Italy',
+        allRightsReserved: 'All rights reserved.',
+        contactTitle: 'Get in Touch',
+        contactSubtext: 'We respond quickly and build together'
       },
       cookies: {
         banner: {
@@ -401,12 +674,15 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         services: 'Servicios',
         research: 'Universidades e Investigación',
         contact: 'Contacto',
-        language: 'Idioma'
+        language: 'Idioma',
+        dashboard: 'Panel',
+        browse: 'Explorar'
       },
       auth: {
         signin: 'Iniciar Sesión',
         signup: 'Registrarse',
         getstarted: 'Comenzar',
+        getStarted: 'Comenzar',
         login: 'Iniciar Sesión',
         createAccount: 'Crear Cuenta',
         welcomeBack: 'Bienvenido de Vuelta',
@@ -433,6 +709,36 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         enterEmail: 'Ingresa tu correo electrónico',
         enterPassword: 'Ingresa tu contraseña',
         enterFullName: 'Ingresa tu nombre completo'
+      },
+      common: {
+        loading: 'Cargando...',
+        save: 'Guardar',
+        cancel: 'Cancelar',
+        edit: 'Editar',
+        delete: 'Eliminar',
+        add: 'Agregar',
+        create: 'Crear',
+        update: 'Actualizar',
+        search: 'Buscar',
+        filter: 'Filtrar',
+        view: 'Ver',
+        close: 'Cerrar',
+        back: 'Atrás',
+        next: 'Siguiente',
+        previous: 'Anterior',
+        lightMode: 'Modo Claro',
+        darkMode: 'Modo Oscuro',
+        language: 'Idioma',
+        settings: 'Configuración',
+        profile: 'Perfil',
+        logout: 'Cerrar Sesión',
+        yes: 'Sí',
+        no: 'No',
+        ok: 'OK',
+        error: 'Error',
+        success: 'Éxito',
+        warning: 'Advertencia',
+        info: 'Información'
       },
       hero: {
         subtitle: 'Donde la excelencia se encuentra con la confianza',
@@ -531,24 +837,72 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         myServices: 'Mis Servicios',
         addNewService: 'Agregar Nuevo Servicio'
       },
-      common: {
-        loading: 'Cargando...',
-        save: 'Guardar',
-        cancel: 'Cancelar',
-        edit: 'Editar',
-        delete: 'Eliminar',
-        view: 'Ver',
-        add: 'Agregar',
-        search: 'Buscar',
-        filter: 'Filtrar',
-        back: 'Atrás',
-        next: 'Siguiente',
-        close: 'Cerrar',
-        confirm: 'Confirmar',
-        error: 'Error',
-        success: 'Éxito',
-        warning: 'Advertencia',
-        info: 'Información'
+      aboutPage: {
+        title: 'Acerca de ERTUNO',
+        subtitle: 'ERTUNO está construido para velocidad, confianza y simplicidad. Conectamos ciudadanos con proveedores de servicios verificados en toda Europa—al instante. Ya sea que necesites un fontanero en Palermo o un diseñador en Berlín, ERTUNO encuentra la coincidencia correcta en segundos.',
+        description: 'Nuestra plataforma es segura, multilingüe y optimizada para móviles.',
+        tagline: 'Construido en Sicilia, diseñado para el mundo.',
+        valuesDesc: 'Todo lo que construimos está guiado por cuatro principios fundamentales que priorizan a los usuarios.',
+        stats: {
+          activeUsers: 'Usuarios Activos',
+          citiesCovered: 'Ciudades Cubiertas',
+          completedJobs: 'Trabajos Completados',
+          userSatisfaction: 'Satisfacción del Usuario'
+        },
+        values: {
+          title: 'Nuestros Valores',
+          speed: {
+            title: 'Velocidad',
+            description: 'Encuentra al profesional correcto en segundos, no días. Nuestra plataforma está construida para conexiones instantáneas.'
+          },
+          trust: {
+            title: 'Confianza',
+            description: 'Cada proveedor de servicios está verificado, calificado y revisado para tu tranquilidad.'
+          },
+          simplicity: {
+            title: 'Simplicidad',
+            description: 'La interfaz de chat intuitiva hace que la comunicación sea sin esfuerzo. Sin formularios complejos o procesos confusos.'
+          },
+          multilingual: {
+            title: 'Multilingüe',
+            description: 'Apoyamos múltiples idiomas en toda Europa. Rompiendo barreras lingüísticas para un mejor servicio.'
+          }
+        }
+      },
+      footer: {
+        product: 'Producto',
+        company: 'Empresa',
+        legal: 'Legal',
+        settings: 'Configuración',
+        features: 'Características',
+        featuresDesc: 'Mensajería en vivo, mercado de servicios, verificación profesional — construido para la colaboración en tiempo real y la confianza.',
+        pricing: 'Precios',
+        pricingDesc: 'Gratis para solicitantes. Comisiones para proveedores. Transparente, escalable, amigo del fundador.',
+        api: 'API',
+        apiDesc: 'API RESTful para integraciones de terceros. Endpoints seguros para publicación de trabajos, roles de usuario y mensajería.',
+        documentation: 'Documentación',
+        docsDesc: 'Guías técnicas, tutoriales de integración y diagramas de flujo backend para desarrolladores y arquitectos.',
+        aboutUs: 'Acerca de Nosotros',
+        aboutDesc: 'El sitio sagrado donde prosperan las conexiones, comerciantes y acuerdos. ERTUNO está construido sobre determinación siciliana y tecnología global.',
+        blog: 'Blog',
+        blogDesc: 'Historias de éxito, perspectivas de la industria y actualizaciones de la plataforma del equipo ERTUNO.',
+        careers: 'Carreras',
+        careersDesc: 'Únete a la misión sagrada. Oportunidades remotas y europeas disponibles para constructores, diseñadores y estrategas.',
+        contact: 'Contacto',
+        contactDesc: 'Ponte en contacto: hello@ertuno.com — respondemos rápidamente y construimos juntos.',
+        privacyPolicy: 'Política de Privacidad',
+        privacyDesc: 'Protección de datos compatible con GDPR y privacidad del usuario. Nunca vendemos tus datos.',
+        termsOfService: 'Términos de Servicio',
+        termsDesc: 'Términos de uso de la plataforma y acuerdos de servicio.',
+        cookiePolicy: 'Política de Cookies',
+        cookieDesc: 'Gestiona preferencias. Usamos cookies para mejorar el rendimiento, no para rastrear.',
+        gdpr: 'GDPR',
+        gdprDesc: 'Cumplimiento total con las leyes europeas de protección de datos. Tus derechos son respetados.',
+        builtWith: 'Construido con',
+        inItaly: 'en Italia',
+        allRightsReserved: 'Todos los derechos reservados.',
+        contactTitle: 'Ponte en Contacto',
+        contactSubtext: 'Respondemos rápidamente y construimos juntos'
       },
       cookies: {
         banner: {

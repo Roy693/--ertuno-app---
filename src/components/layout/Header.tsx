@@ -5,6 +5,7 @@ import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { LanguageSelector } from '../ui/LanguageSelector';
 import { NAV_ITEMS } from '../../utils/constants';
+import { useI18n } from '../../hooks/useI18n';
 
 
 interface HeaderProps {
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   onThemeChange
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useI18n();
 
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -50,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item.name}
+                {t(item.key, item.name)}
               </motion.a>
             ))}
           </nav>
@@ -72,10 +74,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Auth Buttons */}
             <Button variant="ghost" onClick={onLoginClick}>
-              Accedi
+              {t('auth.login', 'Accedi')}
             </Button>
             <Button variant="primary" onClick={onSignupClick}>
-              Inizia Ora
+              {t('auth.getStarted', 'Inizia Ora')}
             </Button>
           </div>
 
@@ -106,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
-              {item.name}
+              {t(item.key, item.name)}
             </a>
           ))}
 
@@ -119,16 +121,16 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center w-full text-left text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium py-2 transition-colors duration-200"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5 mr-2" /> : <Moon className="w-5 h-5 mr-2" />}
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+            {theme === 'dark' ? t('common.lightMode', 'Light Mode') : t('common.darkMode', 'Dark Mode')}
           </button>
 
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
             <Button variant="ghost" fullWidth onClick={onLoginClick}>
-              Accedi
+              {t('auth.login', 'Accedi')}
             </Button>
             <Button variant="primary" fullWidth onClick={onSignupClick}>
-              Inizia Ora
+              {t('auth.getStarted', 'Inizia Ora')}
             </Button>
           </div>
         </div>

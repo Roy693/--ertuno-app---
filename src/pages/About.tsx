@@ -11,35 +11,38 @@ import {
   CheckCircle
 } from 'lucide-react';
 import { BackButton } from '../components/ui/BackButton';
+import { useI18n } from '../hooks/useI18n';
 
 export const About: React.FC = () => {
+  const { t } = useI18n();
+  
   const stats = [
-    { label: 'Active Users', value: '50K+', icon: Users },
-    { label: 'Cities Covered', value: '25+', icon: MapPin },
-    { label: 'Completed Jobs', value: '15K+', icon: CheckCircle },
-    { label: 'User Satisfaction', value: '98%', icon: Star }
+    { label: t('aboutPage.stats.activeUsers', 'Active Users'), value: '50K+', icon: Users },
+    { label: t('aboutPage.stats.citiesCovered', 'Cities Covered'), value: '25+', icon: MapPin },
+    { label: t('aboutPage.stats.completedJobs', 'Completed Jobs'), value: '15K+', icon: CheckCircle },
+    { label: t('aboutPage.stats.userSatisfaction', 'User Satisfaction'), value: '98%', icon: Star }
   ];
 
   const values = [
     {
       icon: Zap,
-      title: 'Speed',
-      description: 'Find the right professional in seconds, not days. Our platform is built for instant connections.'
+      title: t('aboutPage.values.speed.title', 'Speed'),
+      description: t('aboutPage.values.speed.description', 'Find the right professional in seconds, not days. Our platform is built for instant connections.')
     },
     {
       icon: Shield,
-      title: 'Trust', 
-      description: 'Every service provider is verified, rated, and background-checked for your peace of mind.'
+      title: t('aboutPage.values.trust.title', 'Trust'), 
+      description: t('aboutPage.values.trust.description', 'Every service provider is verified, rated, and background-checked for your peace of mind.')
     },
     {
       icon: MessageCircle,
-      title: 'Simplicity',
-      description: 'Intuitive chat interface makes communication effortless. No complex forms or confusing processes.'
+      title: t('aboutPage.values.simplicity.title', 'Simplicity'),
+      description: t('aboutPage.values.simplicity.description', 'Intuitive chat interface makes communication effortless. No complex forms or confusing processes.')
     },
     {
       icon: Globe,
-      title: 'Multilingual',
-      description: 'Supporting multiple languages across Europe. Breaking down language barriers for better service.'
+      title: t('aboutPage.values.multilingual.title', 'Multilingual'),
+      description: t('aboutPage.values.multilingual.description', 'Supporting multiple languages across Europe. Breaking down language barriers for better service.')
     }
   ];
 
@@ -59,16 +62,14 @@ export const About: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl font-bold text-white mb-6">
-              About ERTUNO
+              {t('aboutPage.title', 'About ERTUNO')}
             </h1>
             <p className="text-xl text-purple-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              ERTUNO is built for speed, trust, and simplicity.
-              We connect citizens with verified service providers across Europe—instantly.
-              Whether you need a plumber in Palermo or a designer in Berlin, ERTUNO finds the right match in seconds.
+              {t('aboutPage.subtitle', 'ERTUNO is built for speed, trust, and simplicity. We connect citizens with verified service providers across Europe—instantly. Whether you need a plumber in Palermo or a designer in Berlin, ERTUNO finds the right match in seconds.')}
             </p>
             <p className="text-lg text-purple-200 max-w-2xl mx-auto">
-              Our platform is secure, multilingual, and optimized for mobile.
-              <span className="font-semibold text-yellow-400"> Built in Sicily, designed for the world.</span>
+              {t('aboutPage.description', 'Our platform is secure, multilingual, and optimized for mobile.')}
+              <span className="font-semibold text-yellow-400"> {t('aboutPage.tagline', 'Built in Sicily, designed for the world.')}</span>
             </p>
           </motion.div>
         </div>
@@ -106,9 +107,9 @@ export const About: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Our Values</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">{t('aboutPage.values.title', 'Our Values')}</h2>
             <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-              Everything we build is guided by four core principles that put users first.
+              {t('aboutPage.valuesDesc', 'Everything we build is guided by four core principles that put users first.')}
             </p>
           </motion.div>
 

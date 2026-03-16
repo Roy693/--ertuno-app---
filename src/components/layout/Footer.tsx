@@ -24,69 +24,69 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
   const footerLinks = {
     product: [
       { 
-        name: 'Funzionalità', 
+        name: t('footer.features', 'Funzionalità'), 
         href: '/features',
-        description: 'Messaggistica live, marketplace dei servizi, verifica professionale — costruito per la collaborazione in tempo reale e la fiducia.',
+        description: t('footer.featuresDesc', 'Messaggistica live, marketplace dei servizi, verifica professionale — costruito per la collaborazione in tempo reale e la fiducia.'),
         tagline: 'Live Messaging incontra Trusted Providers. Chat istantanea con professionisti verificati. Trova, chatta, risolvi. Tutto in un\'app.'
       },
       { 
-        name: 'Prezzi', 
+        name: t('footer.pricing', 'Prezzi'), 
         href: '/pricing',
-        description: 'Gratuito per i richiedenti. Commissioni per i provider. Trasparente, scalabile, amico del fondatore.'
+        description: t('footer.pricingDesc', 'Gratuito per i richiedenti. Commissioni per i provider. Trasparente, scalabile, amico del fondatore.')
       },
       { 
-        name: 'API', 
+        name: t('footer.api', 'API'), 
         href: '/api',
-        description: 'API RESTful per integrazioni di terze parti. Endpoint sicuri per pubblicazione lavori, ruoli utente e messaggistica.'
+        description: t('footer.apiDesc', 'API RESTful per integrazioni di terze parti. Endpoint sicuri per pubblicazione lavori, ruoli utente e messaggistica.')
       },
       { 
-        name: 'Documentazione', 
+        name: t('footer.documentation', 'Documentazione'), 
         href: '/docs',
-        description: 'Guide tecniche, tutorial di integrazione e diagrammi di flusso backend per sviluppatori e architetti.'
+        description: t('footer.docsDesc', 'Guide tecniche, tutorial di integrazione e diagrammi di flusso backend per sviluppatori e architetti.')
       },
     ],
     company: [
       { 
-        name: 'Chi Siamo', 
+        name: t('footer.aboutUs', 'Chi Siamo'), 
         href: '/about',
-        description: 'Il sito sacro dove connessioni, trader e deal prosperano. ERTUNO è costruito su grinta siciliana e tecnologia globale.'
+        description: t('footer.aboutDesc', 'Il sito sacro dove connessioni, trader e deal prosperano. ERTUNO è costruito su grinta siciliana e tecnologia globale.')
       },
       { 
-        name: 'Blog', 
+        name: t('footer.blog', 'Blog'), 
         href: '/blog',
-        description: 'Storie di successo, approfondimenti del settore e aggiornamenti della piattaforma dal team ERTUNO.'
+        description: t('footer.blogDesc', 'Storie di successo, approfondimenti del settore e aggiornamenti della piattaforma dal team ERTUNO.')
       },
       { 
-        name: 'Carriere', 
+        name: t('footer.careers', 'Carriere'), 
         href: '/careers',
-        description: 'Unisciti alla missione sacra. Opportunità remote e europee disponibili per costruttori, designer e strateghi.'
+        description: t('footer.careersDesc', 'Unisciti alla missione sacra. Opportunità remote e europee disponibili per costruttori, designer e strateghi.')
       },
       { 
-        name: 'Contatti', 
+        name: t('footer.contact', 'Contatti'), 
         href: '/contact',
-        description: 'Mettiti in contatto: hello@ertuno.com — rispondiamo velocemente e costruiamo insieme.'
+        description: t('footer.contactDesc', 'Mettiti in contatto: hello@ertuno.com — rispondiamo velocemente e costruiamo insieme.')
       },
     ],
     legal: [
       { 
-        name: 'Privacy Policy', 
+        name: t('footer.privacyPolicy', 'Privacy Policy'), 
         href: '/privacy',
-        description: 'Protezione dei dati conforme al GDPR e privacy degli utenti. Non vendiamo mai i tuoi dati.'
+        description: t('footer.privacyDesc', 'Protezione dei dati conforme al GDPR e privacy degli utenti. Non vendiamo mai i tuoi dati.')
       },
       { 
-        name: 'Termini di Servizio', 
+        name: t('footer.termsOfService', 'Termini di Servizio'), 
         href: '/terms',
-        description: 'Termini di utilizzo della piattaforma e accordi di servizio.'
+        description: t('footer.termsDesc', 'Termini di utilizzo della piattaforma e accordi di servizio.')
       },
       { 
-        name: 'Cookie Policy', 
+        name: t('footer.cookiePolicy', 'Cookie Policy'), 
         href: '/cookies',
-        description: 'Gestisci le preferenze. Usiamo i cookie per migliorare le prestazioni, non per tracciare.'
+        description: t('footer.cookieDesc', 'Gestisci le preferenze. Usiamo i cookie per migliorare le prestazioni, non per tracciare.')
       },
       { 
-        name: 'GDPR', 
+        name: t('footer.gdpr', 'GDPR'), 
         href: '/gdpr',
-        description: 'Piena conformità alle leggi europee sulla protezione dei dati. I tuoi diritti sono rispettati.'
+        description: t('footer.gdprDesc', 'Piena conformità alle leggi europee sulla protezione dei dati. I tuoi diritti sono rispettati.')
       },
     ],
   };
@@ -138,17 +138,17 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
             {/* Mission Statement */}
             <div className="bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-lg p-4 mb-6 border border-orange-100 dark:border-orange-800/30">
               <p className="text-sm text-gray-700 dark:text-gray-300 font-medium italic">
-                "Costruito su grinta siciliana e tecnologia globale — collegando il talento europeo con le opportunità attraverso legami sacri di fiducia e innovazione."
+                "{t('footer.builtWith', 'Costruito su grinta siciliana e tecnologia globale — collegando il talento europeo con le opportunità attraverso legami sacri di fiducia e innovazione.')}"
               </p>
             </div>
             
             {/* Contact Info */}
             <div className="mb-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
               <div className="text-sm text-gray-700 dark:text-gray-300">
-                <div className="font-semibold mb-1">Mettiti in Contatto:</div>
+                <div className="font-semibold mb-1">{t('footer.contactTitle', 'Mettiti in Contatto')}:</div>
                 <div>📧 hello@ertuno.com</div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Rispondiamo velocemente e costruiamo insieme
+                  {t('footer.contactSubtext', 'Rispondiamo velocemente e costruiamo insieme')}
                 </div>
               </div>
             </div>
@@ -175,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Product Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              Prodotto
+              {t('footer.product', 'Prodotto')}
             </h3>
             <ul className="space-y-4">
               {footerLinks.product.map((link) => (
@@ -208,7 +208,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Company Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              Azienda
+              {t('footer.company', 'Azienda')}
             </h3>
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
@@ -233,7 +233,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
           {/* Legal Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              Legale
+              {t('footer.legal', 'Legale')}
             </h3>
             <ul className="space-y-4">
               {footerLinks.legal.map((link) => (
@@ -264,7 +264,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
               className="border-l-2 border-orange-200 dark:border-orange-800 pl-4"
             >
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-                Impostazioni
+                {t('footer.settings', 'Impostazioni')}
               </h3>
               
               {/* User Role Badge */}
