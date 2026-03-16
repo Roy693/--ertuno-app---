@@ -131,7 +131,12 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         error: 'Errore',
         success: 'Successo',
         warning: 'Attenzione',
-        info: 'Informazione'
+        info: 'Informazione',
+        active: 'Attivo',
+        inactive: 'Inattivo',
+        completed: 'Completato',
+        inProgress: 'In Corso',
+        changes: 'Modifiche'
       },
       footer: {
         product: 'Prodotto',
@@ -341,8 +346,12 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         }
       },
       dashboard: {
-        welcome: 'Benvenuto',
-        serviceProvider: 'Fornitore di Servizi',
+        welcome: 'Bentornato',
+        serviceProvider: 'Dashboard Fornitore Servizi',
+        professional: 'Professionista',
+        verified: '✓ Verificato',
+        pendingVerification: '⏳ Verifica Pendente',
+        pendingPayments: 'Pagamenti Pendenti',
         serviceRequester: 'Richiedente Servizi',
         overview: 'Panoramica',
         profile: 'Profilo Professionale',
@@ -490,7 +499,17 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         error: 'Error',
         success: 'Success',
         warning: 'Warning',
-        info: 'Information'
+        info: 'Information',
+        active: 'Active',
+        inactive: 'Inactive',
+        completed: 'Completed',
+        inProgress: 'In Progress',
+        changes: 'Changes'
+      },
+      pricing: {
+        hourly: '/hour',
+        fixed: 'fixed',
+        customPricing: 'Custom pricing'
       },
       hero: {
         subtitle: 'Where excellence meets trust',
@@ -564,8 +583,12 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         }
       },
       dashboard: {
-        welcome: 'Welcome',
-        serviceProvider: 'Service Provider',
+        welcome: 'Welcome back',
+        serviceProvider: 'Service Provider Dashboard',
+        professional: 'Professional',
+        verified: '✓ Verified',
+        pendingVerification: '⏳ Pending Verification',
+        pendingPayments: 'Pending Payments',
         serviceRequester: 'Service Requester',
         overview: 'Overview',
         profile: 'Professional Profile',
@@ -738,7 +761,17 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         error: 'Error',
         success: 'Éxito',
         warning: 'Advertencia',
-        info: 'Información'
+        info: 'Información',
+        active: 'Activo',
+        inactive: 'Inactivo',
+        completed: 'Completado',
+        inProgress: 'En Progreso',
+        changes: 'Cambios'
+      },
+      pricing: {
+        hourly: '/hora',
+        fixed: 'fijo',
+        customPricing: 'Precio personalizado'
       },
       hero: {
         subtitle: 'Donde la excelencia se encuentra con la confianza',
@@ -812,8 +845,12 @@ function getInlineTranslations(languageCode: LanguageCode): TranslationObject {
         }
       },
       dashboard: {
-        welcome: 'Bienvenido',
-        serviceProvider: 'Proveedor de Servicios',
+        welcome: 'Bienvenido de vuelta',
+        serviceProvider: 'Panel Proveedor de Servicios',
+        professional: 'Profesional',
+        verified: '✓ Verificado',
+        pendingVerification: '⏳ Verificación Pendiente',
+        pendingPayments: 'Pagos Pendientes',
         serviceRequester: 'Solicitante de Servicios',
         overview: 'Resumen',
         profile: 'Perfil Profesional',

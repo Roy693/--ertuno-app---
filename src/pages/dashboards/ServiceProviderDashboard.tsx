@@ -32,6 +32,7 @@ import {
 import { Button } from '../../components/ui/Button';
 import { BackButton } from '../../components/ui/BackButton';
 import { useAuth } from '../../hooks/useAuth';
+import { useI18n } from '../../hooks/useI18n';
 import { GoogleMapsWorkAreaSelector } from '../../components/ui/GoogleMapsWorkAreaSelector';
 import { ServicesService, ServiceProvider } from '../../services/servicesService';
 
@@ -67,6 +68,7 @@ interface Job {
 
 export const ServiceProviderDashboard: React.FC = () => {
   const { user } = useAuth();
+  const { t } = useI18n();
   const [activeSection, setActiveSection] = useState<'overview' | 'profile' | 'services' | 'workspace' | 'accounting'>('overview');
   const [loading, setLoading] = useState(false);
   const [serviceProvider, setServiceProvider] = useState<ServiceProvider | null>(null);
@@ -227,10 +229,10 @@ export const ServiceProviderDashboard: React.FC = () => {
               <BackButton />
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Service Provider Dashboard
+                  {t('dashboard.serviceProvider', 'Service Provider Dashboard')}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Welcome back, {profileData.businessName || user?.name || 'Professional'}!
+                  {t('dashboard.welcome', 'Welcome back')}, {profileData.businessName || user?.name || t('dashboard.professional', 'Professional')}!
                 </p>
               </div>
             </div>
@@ -242,7 +244,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                   ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
                   : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
               }`}>
-                {serviceProvider?.verificationStatus === 'verified' ? '✓ Verified' : '⏳ Pending Verification'}
+                {serviceProvider?.verificationStatus === 'verified' ? t('dashboard.verified', '✓ Verified') : t('dashboard.pendingVerification', '⏳ Pending Verification')}
               </div>
               <div className="flex items-center space-x-1 text-sm text-gray-600 dark:text-gray-300">
                 <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -259,11 +261,11 @@ export const ServiceProviderDashboard: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex space-x-8">
             {[
-              { id: 'overview', label: 'Overview', icon: BarChart3 },
-              { id: 'profile', label: 'Professional Profile', icon: Users },
-              { id: 'services', label: 'My Services', icon: Wrench },
-              { id: 'workspace', label: 'Work Areas', icon: MapPin },
-              { id: 'accounting', label: 'Accounting', icon: DollarSign }
+              { id: 'overview', label: t('dashboard.overview', 'Overview'), icon: BarChart3 },
+              { id: 'profile', label: t('dashboard.profile', 'Professional Profile'), icon: Users },
+              { id: 'services', label: t('dashboard.services', 'My Services'), icon: Wrench },
+              { id: 'workspace', label: t('dashboard.workspace', 'Work Areas'), icon: MapPin },
+              { id: 'accounting', label: t('dashboard.accounting', 'Accounting'), icon: DollarSign }
             ].map(tab => {
               const Icon = tab.icon;
               return (
@@ -305,7 +307,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Total Earnings</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.totalEarnings', 'Total Earnings')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">€{totalEarnings}</p>
                     </div>
                   </div>
@@ -317,7 +319,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <Calendar className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">This Month</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.thisMonth', 'This Month')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">€{thisMonthEarnings}</p>
                     </div>
                   </div>
@@ -329,7 +331,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <Clock className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Pending Payment</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.pendingPayment', 'Pending Payment')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">€{pendingPayments}</p>
                     </div>
                   </div>
@@ -341,7 +343,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Completed Jobs</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.completedJobs', 'Completed Jobs')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">
                         {jobs.filter(job => job.status === 'completed').length}
                       </p>
@@ -352,19 +354,19 @@ export const ServiceProviderDashboard: React.FC = () => {
 
               {/* Quick Actions */}
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.quickActions', 'Quick Actions')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Button onClick={() => setActiveSection('profile')} variant="outline" className="justify-start">
                     <Edit className="w-4 h-4 mr-2" />
-                    Update Profile
+                    {t('dashboard.updateProfile', 'Update Profile')}
                   </Button>
                   <Button onClick={() => setActiveSection('services')} variant="outline" className="justify-start">
                     <Plus className="w-4 h-4 mr-2" />
-                    Add Service
+                    {t('dashboard.addService', 'Add Service')}
                   </Button>
                   <Button onClick={() => setActiveSection('workspace')} variant="outline" className="justify-start">
                     <MapPin className="w-4 h-4 mr-2" />
-                    Manage Work Areas
+                    {t('dashboard.manageWorkAreas', 'Manage Work Areas')}
                   </Button>
                 </div>
               </div>
@@ -387,7 +389,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                     <div className="flex space-x-2">
                       <Button onClick={saveProfile} disabled={loading}>
                         <Save className="w-4 h-4 mr-2" />
-                        Save Changes
+                        {t('common.save', 'Save')} {t('common.changes', 'Changes')}
                       </Button>
                       <Button onClick={() => setEditingProfile(false)} variant="outline">
                         <X className="w-4 h-4" />
@@ -427,7 +429,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                   <div className="lg:col-span-2 space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Business Name
+                        {t('dashboard.businessName', 'Business Name')}
                       </label>
                       <input
                         type="text"
@@ -441,7 +443,7 @@ export const ServiceProviderDashboard: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Professional Description
+                        {t('dashboard.professionalDescription', 'Professional Description')}
                       </label>
                       <textarea
                         value={profileData.description}
@@ -455,7 +457,7 @@ export const ServiceProviderDashboard: React.FC = () => {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Years of Experience
+                        {t('dashboard.yearsExperience', 'Years of Experience')}
                       </label>
                       <input
                         type="text"
@@ -470,7 +472,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                     {/* Skills */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Skills & Specialties
+                        {t('dashboard.skillsSpecialties', 'Skills & Specialties')}
                       </label>
                       <div className="flex flex-wrap gap-2 mb-2">
                         {profileData.skills.map((skill, index) => (
@@ -510,7 +512,7 @@ export const ServiceProviderDashboard: React.FC = () => {
 
               {/* Portfolio Section */}
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Portfolio & Past Work</h3>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.portfolioPastWork', 'Portfolio & Past Work')}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {portfolioImages.map((image, index) => (
                     <div key={index} className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden relative group">
@@ -548,10 +550,10 @@ export const ServiceProviderDashboard: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">My Services</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('dashboard.myServices', 'My Services')}</h3>
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
-                    Add New Service
+                    {t('dashboard.addNewService', 'Add New Service')}
                   </Button>
                 </div>
 
@@ -570,16 +572,16 @@ export const ServiceProviderDashboard: React.FC = () => {
                               <p className="text-sm text-gray-500 dark:text-gray-400">{service.description}</p>
                               <div className="flex items-center space-x-2 mt-1">
                                 <span className="text-sm font-medium text-gray-900 dark:text-white">
-                                  {service.pricing.type === 'hourly' ? '€' + service.pricing.amount + '/hour' : 
-                                   service.pricing.type === 'fixed' ? '€' + service.pricing.amount + ' fixed' :
-                                   'Custom pricing'}
+                                  {service.pricing.type === 'hourly' ? '€' + service.pricing.amount + t('pricing.hourly', '/hour') : 
+                                   service.pricing.type === 'fixed' ? '€' + service.pricing.amount + ' ' + t('pricing.fixed', 'fixed') :
+                                   t('pricing.customPricing', 'Custom pricing')}
                                 </span>
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                                   service.active 
                                     ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
                                     : 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
                                 }`}>
-                                  {service.active ? 'Active' : 'Inactive'}
+                                  {service.active ? t('common.active', 'Active') : t('common.inactive', 'Inactive')}
                                 </span>
                               </div>
                             </div>
@@ -611,7 +613,7 @@ export const ServiceProviderDashboard: React.FC = () => {
               className="space-y-6"
             >
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Work Areas & Zones</h3>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.workAreasZones', 'Work Areas & Zones')}</h3>
                 
                 <GoogleMapsWorkAreaSelector
                   workAreas={workZones.map(zone => ({
@@ -663,7 +665,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <Clock className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Pending Payments</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.pendingPayments', 'Pending Payments')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">€{pendingPayments}</p>
                     </div>
                   </div>
@@ -675,7 +677,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Completed Jobs</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{t('dashboard.completedJobs', 'Completed Jobs')}</p>
                       <p className="text-2xl font-bold text-gray-900 dark:text-white">
                         {jobs.filter(job => job.status === 'completed').length}
                       </p>
@@ -719,12 +721,12 @@ export const ServiceProviderDashboard: React.FC = () => {
                                 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
                                 : 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
                             }`}>
-                              {job.status === 'completed' ? 'Completed' : 
-                               job.status === 'pending_payment' ? 'Pending Payment' : 'In Progress'}
+                              {job.status === 'completed' ? t('common.completed', 'Completed') : 
+                               job.status === 'pending_payment' ? t('dashboard.pendingPayment', 'Pending Payment') : t('common.inProgress', 'In Progress')}
                             </span>
                           </td>
                           <td className="py-4 px-4 text-gray-600 dark:text-gray-300">
-                            {job.completedAt || 'In Progress'}
+                            {job.completedAt || t('common.inProgress', 'In Progress')}
                           </td>
                         </tr>
                       ))}

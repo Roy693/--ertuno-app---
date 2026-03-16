@@ -17,5 +17,5 @@ export const AUTH_CONFIG = {
 } as const;
 
 // Export auth mode detection
-export const isMockMode = () => AUTH_CONFIG.USE_MOCK_AUTH;
+export const isMockMode = () => AUTH_CONFIG.USE_MOCK_AUTH || !AUTH_CONFIG.HAS_FIREBASE_CONFIG;
 export const hasFirebaseConfig = () => AUTH_CONFIG.HAS_FIREBASE_CONFIG;
