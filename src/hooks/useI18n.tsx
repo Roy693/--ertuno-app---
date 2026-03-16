@@ -218,5 +218,5 @@ export function withI18n<P extends object>(Component: React.ComponentType<P>) {
 }
 
 // Re-export types and constants for convenience
-export type { LanguageCode, TranslationKey };
+export type { LanguageCode, TranslationKey } from '../i18n';
 export { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE };

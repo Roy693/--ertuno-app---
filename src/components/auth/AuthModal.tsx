@@ -120,30 +120,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
         {/* Modal */}
         <motion.div
-          className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden"
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm mx-4 max-h-[90vh] overflow-y-auto"
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0, scale: 0.95, y: 10 }}
+          transition={{ duration: 0.2 }}
         >
           {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
             {/* Logo and Title */}
-            <div className="flex items-center justify-center mb-3">
+            <div className="flex items-center justify-center mb-2">
               <Logo 
                 variant="light" 
-                size="md" 
+                size="sm" 
                 showText={false}
-                className="mr-3"
+                className="mr-2"
               />
-              <h2 className="text-2xl font-display font-bold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-display font-bold text-gray-900 dark:text-white">
                 ERTUNO
               </h2>
             </div>
             
             {/* Welcome Text and Close Button */}
             <div className="flex items-center justify-between">
-              <p className="text-lg text-gray-700 dark:text-gray-300">
+              <p className="text-base text-gray-700 dark:text-gray-300">
                 {mode === 'login' ? 'Welcome Back' : 'Create Account'}
               </p>
               <button
@@ -156,7 +156,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
 
           {/* Content */}
-          <div className="px-6 py-6">
+          <div className="px-4 py-4">
             {/* Mock Mode Notice */}
             {import.meta.env.VITE_FIREBASE_API_KEY === 'demo-key-replace-with-real-firebase-key' && (
               <motion.div
@@ -184,7 +184,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             )}
 
             {/* Social Login Buttons */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 mb-4">
               <Button
                 variant="outline"
                 fullWidth
@@ -208,7 +208,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             {/* Divider */}
-            <div className="relative mb-6">
+            <div className="relative mb-4">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300 dark:border-gray-600" />
               </div>
@@ -218,7 +218,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
               {mode === 'signup' && (
                 <>
                   <div>
@@ -241,11 +241,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       I want to:
                     </label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'service_requester' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className={`relative flex cursor-pointer rounded-lg border p-2 ${formData.role === 'service_requester' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
                         <input
                           type="radio"
                           name="role"
@@ -256,16 +256,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                         />
                         <div className="flex flex-col">
                           <div className="flex items-center">
-                            <div className="text-lg">🏠</div>
+                            <div className="text-base">🏠</div>
                             <div className="ml-2">
-                              <div className="text-sm font-medium text-gray-900 dark:text-white">Service Requester</div>
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">Service Requester</div>
                               <div className="text-xs text-gray-500 dark:text-gray-400">Find and hire professionals</div>
                             </div>
                           </div>
                         </div>
                       </label>
                       
-                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'service_provider' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                      <label className={`relative flex cursor-pointer rounded-lg border p-2 ${formData.role === 'service_provider' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
                         <input
                           type="radio"
                           name="role"
@@ -276,9 +276,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                         />
                         <div className="flex flex-col">
                           <div className="flex items-center">
-                            <div className="text-lg">🔧</div>
+                            <div className="text-base">🔧</div>
                             <div className="ml-2">
-                              <div className="text-sm font-medium text-gray-900 dark:text-white">Service Provider</div>
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">Service Provider</div>
                               <div className="text-xs text-gray-500 dark:text-gray-400">Offer professional services</div>
                             </div>
                           </div>
@@ -431,7 +431,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             )}
 
             {/* Toggle Mode */}
-            <div className="mt-6 text-center">
+            <div className="mt-4 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 {mode === 'login' ? "Don't have an account?" : "Already have an account?"}
                 <button
