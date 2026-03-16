@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   Settings,
   MapPin, 
@@ -69,6 +70,7 @@ interface Job {
 export const ServiceProviderDashboard: React.FC = () => {
   const { user } = useAuth();
   const { t } = useI18n();
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<'overview' | 'profile' | 'services' | 'workspace' | 'accounting'>('overview');
   const [loading, setLoading] = useState(false);
   const [serviceProvider, setServiceProvider] = useState<ServiceProvider | null>(null);
@@ -356,7 +358,7 @@ export const ServiceProviderDashboard: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('dashboard.quickActions', 'Quick Actions')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Button onClick={() => setActiveSection('profile')} variant="outline" className="justify-start">
+                  <Button onClick={() => navigate('/account/provider')} variant="outline" className="justify-start">
                     <Edit className="w-4 h-4 mr-2" />
                     {t('dashboard.updateProfile', 'Update Profile')}
                   </Button>
@@ -630,7 +632,7 @@ export const ServiceProviderDashboard: React.FC = () => {
                       active: area.active
                     })));
                   }}
-                  googleMapsApiKey={process.env.VITE_GOOGLE_MAPS_API_KEY}
+                  googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
                 />
               </div>
             </motion.div>

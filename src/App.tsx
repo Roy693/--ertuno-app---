@@ -4,6 +4,7 @@ import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { Logo } from './components/ui/Logo';
 import { AuthModal } from './components/auth/AuthModal';
+import { OnboardingGuard, ProviderRoute, RequesterRoute } from './components/auth/OnboardingGuard';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { BrowseRequests } from './pages/BrowseRequests';
@@ -13,6 +14,12 @@ import { Services } from './pages/Services';
 import { Research } from './pages/Research';
 import { TermsOfService } from './pages/TermsOfService';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { ProviderOnboarding } from './pages/onboarding/ProviderOnboarding';
+import { RequesterOnboarding } from './pages/onboarding/RequesterOnboarding';
+import { ProviderProfile } from './pages/profiles/ProviderProfile';
+import { RequesterProfile } from './pages/profiles/RequesterProfile';
+import { ProviderAccount } from './pages/account/ProviderAccount';
+import { RequesterAccount } from './pages/account/RequesterAccount';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import { ThemeProvider, useTheme } from './hooks/useTheme';
 import { I18nProvider } from './hooks/useI18n';
@@ -60,9 +67,17 @@ const RoleDashboard: React.FC = () => {
 
   switch (user.role) {
     case 'service_requester':
-      return <Dashboard />;
+      return (
+        <OnboardingGuard requiredRole="service_requester">
+          <Dashboard />
+        </OnboardingGuard>
+      );
     case 'service_provider':
-      return <ServiceProviderDashboard />;
+      return (
+        <OnboardingGuard requiredRole="service_provider">
+          <ServiceProviderDashboard />
+        </OnboardingGuard>
+      );
     default:
       // Fallback to generic dashboard for unknown roles
       return <Dashboard />;
@@ -148,6 +163,48 @@ const AppContent: React.FC = () => {
               </ProtectedRoute>
             }
           />
+
+          {/* Onboarding Routes */}
+          <Route
+            path="/onboarding/provider"
+            element={
+              <ProtectedRoute>
+                <ProviderOnboarding />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/onboarding/requester"
+            element={
+              <ProtectedRoute>
+                <RequesterOnboarding />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Public Profile Routes */}
+          <Route path="/provider/:providerId" element={<ProviderProfile />} />
+          <Route path="/requester/:requesterId" element={<RequesterProfile />} />
+
+          {/* Private Account Routes */}
+          <Route
+            path="/account/provider"
+            element={
+              <ProviderRoute>
+                <ProviderAccount />
+              </ProviderRoute>
+            }
+          />
+          <Route
+            path="/account/requester"
+            element={
+              <RequesterRoute>
+                <RequesterAccount />
+              </RequesterRoute>
+            }
+          />
+
+          {/* Public Pages */}
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/research" element={<Research />} />

@@ -12,6 +12,7 @@ import {
   type User as FirebaseUser
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { FIREBASE_CONFIG } from '../utils/constants';
 import type { User, Service } from '../types';
 
@@ -19,6 +20,7 @@ import type { User, Service } from '../types';
 const app = initializeApp(FIREBASE_CONFIG);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 // Providers
 const googleProvider = new GoogleAuthProvider();
