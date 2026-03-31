@@ -5,7 +5,7 @@ import { KycService } from '../../services/kycService';
 
 interface OnboardingGuardProps {
   children: React.ReactNode;
-  requiredRole?: 'service_provider' | 'service_requester';
+  requiredRole?: 'service_provider' | 'service_requester' | 'student' | 'university';
 }
 
 export const OnboardingGuard: React.FC<OnboardingGuardProps> = ({ 
@@ -92,6 +92,58 @@ export const OnboardingGuard: React.FC<OnboardingGuardProps> = ({
           // KYC complete
           setKycStatus({ loading: false, needsOnboarding: false });
 
+        } else if (user.role === 'student') {
+          const studentKyc = await KycService.getStudentKyc(user.id);
+          
+          if (!studentKyc) {
+            // No KYC data exists, needs onboarding
+            setKycStatus({ 
+              loading: false, 
+              needsOnboarding: true,
+              redirectPath: '/onboarding/student'
+            });
+            return;
+          }
+
+          if (!studentKyc.legal_declaration_accepted || studentKyc.verification_status === 'pending') {
+            // KYC incomplete, continue onboarding
+            setKycStatus({ 
+              loading: false, 
+              needsOnboarding: true,
+              redirectPath: '/onboarding/student'
+            });
+            return;
+          }
+
+          // KYC complete
+          setKycStatus({ loading: false, needsOnboarding: false });
+
+        } else if (user.role === 'university') {
+          const universityKyc = await KycService.getUniversityKyc(user.id);
+          
+          if (!universityKyc) {
+            // No KYC data exists, needs onboarding
+            setKycStatus({ 
+              loading: false, 
+              needsOnboarding: true,
+              redirectPath: '/onboarding/university'
+            });
+            return;
+          }
+
+          if (!universityKyc.legal_declaration_accepted || universityKyc.verification_status === 'pending') {
+            // KYC incomplete, continue onboarding
+            setKycStatus({ 
+              loading: false, 
+              needsOnboarding: true,
+              redirectPath: '/onboarding/university'
+            });
+            return;
+          }
+
+          // KYC complete
+          setKycStatus({ loading: false, needsOnboarding: false });
+
         } else {
           // Unknown role, allow access
           setKycStatus({ loading: false, needsOnboarding: false });
@@ -142,6 +194,20 @@ export const ProviderRoute: React.FC<{ children: React.ReactNode }> = ({ childre
 // Convenience wrapper for requester-only routes
 export const RequesterRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <OnboardingGuard requiredRole="service_requester">
+    {children}
+  </OnboardingGuard>
+);
+
+// Convenience wrapper for student-only routes
+export const StudentRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <OnboardingGuard requiredRole="student">
+    {children}
+  </OnboardingGuard>
+);
+
+// Convenience wrapper for university-only routes
+export const UniversityRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <OnboardingGuard requiredRole="university">
     {children}
   </OnboardingGuard>
 );

@@ -78,6 +78,30 @@ const RoleDashboard: React.FC = () => {
           <ServiceProviderDashboard />
         </OnboardingGuard>
       );
+    case 'student':
+      return (
+        <OnboardingGuard requiredRole="student">
+          <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+            <div className="text-center p-8">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">🎓 Student Dashboard</h1>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">Welcome to your student dashboard!</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Student features are coming soon.</p>
+            </div>
+          </div>
+        </OnboardingGuard>
+      );
+    case 'university':
+      return (
+        <OnboardingGuard requiredRole="university">
+          <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+            <div className="text-center p-8">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">🏛️ University Dashboard</h1>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">Welcome to your institutional dashboard!</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">University features are coming soon.</p>
+            </div>
+          </div>
+        </OnboardingGuard>
+      );
     default:
       // Fallback to generic dashboard for unknown roles
       return <Dashboard />;
@@ -178,6 +202,46 @@ const AppContent: React.FC = () => {
             element={
               <ProtectedRoute>
                 <RequesterOnboarding />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/onboarding/student"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+                  <div className="text-center p-8">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">🎓 Student Onboarding</h1>
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">Your student account has been created successfully!</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Our team is reviewing your documents. You'll be notified once verification is complete.</p>
+                    <button 
+                      onClick={() => window.location.href = '/'}
+                      className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                    >
+                      Return to Homepage
+                    </button>
+                  </div>
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/onboarding/university"
+            element={
+              <ProtectedRoute>
+                <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+                  <div className="text-center p-8">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">🏛️ University Onboarding</h1>
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">Your university account has been created successfully!</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Our team is reviewing your institutional documents. You'll be notified once verification is complete.</p>
+                    <button 
+                      onClick={() => window.location.href = '/'}
+                      className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                    >
+                      Return to Homepage
+                    </button>
+                  </div>
+                </div>
               </ProtectedRoute>
             }
           />

@@ -9,7 +9,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   error: string | null;
-  signUp: (email: string, password: string, name: string, role?: 'service_requester' | 'service_provider') => Promise<void>;
+  signUp: (email: string, password: string, name: string, role?: 'service_requester' | 'service_provider' | 'student' | 'university') => Promise<User>;
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
@@ -59,11 +59,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, name: string, role: 'service_requester' | 'service_provider' = 'service_requester') => {
+  const signUp = async (email: string, password: string, name: string, role: 'service_requester' | 'service_provider' | 'student' | 'university' = 'service_requester'): Promise<User> => {
     try {
       setAuthState(prev => ({ ...prev, loading: true, error: null }));
       const user = await AuthService.signUp(email, password, name, role);
       setAuthState(prev => ({ ...prev, user, loading: false }));
+      return user;
     } catch (error: any) {
       setAuthState(prev => ({ 
         ...prev, 

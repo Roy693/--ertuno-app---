@@ -5,7 +5,7 @@ export class MockAuthService {
   private static users: Map<string, User> = new Map();
   private static currentUser: User | null = null;
   
-  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' = 'service_requester'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' | 'student' | 'university' = 'service_requester'): Promise<User> {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
@@ -23,7 +23,7 @@ export class MockAuthService {
       role,
       createdAt: new Date().toISOString(),
       isProfessional: role === 'service_provider',
-      verificationStatus: role === 'service_provider' ? 'pending' : undefined,
+      verificationStatus: ['service_provider', 'student', 'university'].includes(role) ? 'pending' : undefined,
     };
     
     this.users.set(userData.id, userData);

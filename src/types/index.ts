@@ -6,7 +6,7 @@ export interface User {
   avatar?: string;
   createdAt: string;
   // User role system - Production role hierarchy
-  role: 'service_requester' | 'service_provider';
+  role: 'service_requester' | 'service_provider' | 'student' | 'university';
   // Professional provider fields
   isProfessional?: boolean;
   verificationStatus?: 'pending' | 'verified' | 'rejected';

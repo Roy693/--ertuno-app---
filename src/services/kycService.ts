@@ -63,6 +63,52 @@ export interface RequesterKycData {
   legal_declaration_timestamp: string;
 }
 
+export interface StudentKycData {
+  uid: string;
+  verification_status: 'pending' | 'approved' | 'rejected';
+  created_at: string;
+  updated_at: string;
+  
+  // Identity documents
+  identity_front: string;
+  identity_back: string;
+  selfie_verification: string;
+  university_card: string; // Student ID or enrollment certificate
+  
+  // Profile information
+  profile_image: string;
+  full_name: string;
+  description: string;
+  university_name?: string;
+  field_of_study?: string;
+  
+  legal_declaration_accepted: boolean;
+  legal_declaration_timestamp: string;
+}
+
+export interface UniversityKycData {
+  uid: string;
+  verification_status: 'pending' | 'approved' | 'rejected';
+  created_at: string;
+  updated_at: string;
+  
+  // Identity documents (for institution representative)
+  identity_front: string;
+  identity_back: string;
+  selfie_verification: string;
+  institutional_document: string; // Official university/institution document
+  
+  // Institution information
+  profile_image: string;
+  full_name: string; // Representative name
+  institution_name: string;
+  description: string;
+  official_website?: string;
+  
+  legal_declaration_accepted: boolean;
+  legal_declaration_timestamp: string;
+}
+
 export class KycService {
   // Provider KYC Methods
   static async saveProviderKyc(data: ProviderKycData): Promise<void> {
@@ -104,6 +150,52 @@ export class KycService {
 
   static async updateRequesterKyc(uid: string, updates: Partial<RequesterKycData>): Promise<void> {
     const docRef = doc(db, 'requesters_pending_verification', uid);
+    await updateDoc(docRef, {
+      ...updates,
+      updated_at: new Date().toISOString()
+    });
+  }
+
+  // Student KYC Methods
+  static async saveStudentKyc(data: StudentKycData): Promise<void> {
+    const docRef = doc(db, 'students_pending_verification', data.uid);
+    await setDoc(docRef, {
+      ...data,
+      updated_at: new Date().toISOString()
+    });
+  }
+
+  static async getStudentKyc(uid: string): Promise<StudentKycData | null> {
+    const docRef = doc(db, 'students_pending_verification', uid);
+    const docSnap = await getDoc(docRef);
+    return docSnap.exists() ? docSnap.data() as StudentKycData : null;
+  }
+
+  static async updateStudentKyc(uid: string, updates: Partial<StudentKycData>): Promise<void> {
+    const docRef = doc(db, 'students_pending_verification', uid);
+    await updateDoc(docRef, {
+      ...updates,
+      updated_at: new Date().toISOString()
+    });
+  }
+
+  // University KYC Methods  
+  static async saveUniversityKyc(data: UniversityKycData): Promise<void> {
+    const docRef = doc(db, 'universities_pending_verification', data.uid);
+    await setDoc(docRef, {
+      ...data,
+      updated_at: new Date().toISOString()
+    });
+  }
+
+  static async getUniversityKyc(uid: string): Promise<UniversityKycData | null> {
+    const docRef = doc(db, 'universities_pending_verification', uid);
+    const docSnap = await getDoc(docRef);
+    return docSnap.exists() ? docSnap.data() as UniversityKycData : null;
+  }
+
+  static async updateUniversityKyc(uid: string, updates: Partial<UniversityKycData>): Promise<void> {
+    const docRef = doc(db, 'universities_pending_verification', uid);
     await updateDoc(docRef, {
       ...updates,
       updated_at: new Date().toISOString()
@@ -173,6 +265,38 @@ export class KycService {
     }
 
     const pendingData = await this.getRequesterKyc(uid);
+    if (pendingData && pendingData.verification_status === 'approved') {
+      return pendingData;
+    }
+
+    return null;
+  }
+
+  static async getPublicStudentProfile(uid: string): Promise<StudentKycData | null> {
+    const approvedRef = doc(db, 'students_approved', uid);
+    const approvedSnap = await getDoc(approvedRef);
+    
+    if (approvedSnap.exists()) {
+      return approvedSnap.data() as StudentKycData;
+    }
+
+    const pendingData = await this.getStudentKyc(uid);
+    if (pendingData && pendingData.verification_status === 'approved') {
+      return pendingData;
+    }
+
+    return null;
+  }
+
+  static async getPublicUniversityProfile(uid: string): Promise<UniversityKycData | null> {
+    const approvedRef = doc(db, 'universities_approved', uid);
+    const approvedSnap = await getDoc(approvedRef);
+    
+    if (approvedSnap.exists()) {
+      return approvedSnap.data() as UniversityKycData;
+    }
+
+    const pendingData = await this.getUniversityKyc(uid);
     if (pendingData && pendingData.verification_status === 'approved') {
       return pendingData;
     }
@@ -257,6 +381,51 @@ export class KycService {
     if (!data.identity_front) errors.push('Identity document front is required');
     if (!data.identity_back) errors.push('Identity document back is required');
     if (!data.selfie_verification) errors.push('Selfie verification is required');
+    if (!data.legal_declaration_accepted) {
+      errors.push('Legal declaration must be accepted');
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
+  }
+
+  static validateStudentKyc(data: Partial<StudentKycData>): {
+    isValid: boolean;
+    errors: string[];
+  } {
+    const errors: string[] = [];
+
+    if (!data.full_name?.trim()) errors.push('Full name is required');
+    if (!data.description?.trim()) errors.push('Description is required');
+    if (!data.identity_front) errors.push('Identity document front is required');
+    if (!data.identity_back) errors.push('Identity document back is required');
+    if (!data.selfie_verification) errors.push('Selfie verification is required');
+    if (!data.university_card) errors.push('University card or enrollment certificate is required');
+    if (!data.legal_declaration_accepted) {
+      errors.push('Legal declaration must be accepted');
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
+  }
+
+  static validateUniversityKyc(data: Partial<UniversityKycData>): {
+    isValid: boolean;
+    errors: string[];
+  } {
+    const errors: string[] = [];
+
+    if (!data.full_name?.trim()) errors.push('Representative name is required');
+    if (!data.institution_name?.trim()) errors.push('Institution name is required');
+    if (!data.description?.trim()) errors.push('Institution description is required');
+    if (!data.identity_front) errors.push('Representative identity document front is required');
+    if (!data.identity_back) errors.push('Representative identity document back is required');
+    if (!data.selfie_verification) errors.push('Representative selfie verification is required');
+    if (!data.institutional_document) errors.push('Official institutional document is required');
     if (!data.legal_declaration_accepted) {
       errors.push('Legal declaration must be accepted');
     }

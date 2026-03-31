@@ -10,7 +10,7 @@ export class UnifiedAuthService {
     return isMockMode() ? MockAuthService : FirebaseAuthService;
   }
 
-  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' = 'service_requester'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' | 'student' | 'university' = 'service_requester'): Promise<User> {
     if (isMockMode()) {
       console.log('🚧 Using Mock Auth Service - Firebase credentials not configured');
       return MockAuthService.signUp(email, password, name, role);

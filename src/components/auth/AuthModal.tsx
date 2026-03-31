@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Lock, User, AlertCircle } from 'lucide-react';
+import { X, Mail, Lock, User, AlertCircle, Upload, FileText } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Logo } from '../ui/Logo';
 import { useAuth } from '../../hooks/useAuth';
+import { useI18n } from '../../hooks/useI18n';
+import { KycService, RequesterKycData, StudentKycData, UniversityKycData } from '../../services/kycService';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   onClose,
   initialMode = 'login'
 }) => {
+  const { t } = useI18n();
   const [mode, setMode] = useState<'login' | 'signup'>(initialMode);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
@@ -25,7 +28,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     password: '',
     name: '',
     confirmPassword: '',
-    role: 'service_requester' as 'service_requester' | 'service_provider'
+    role: 'service_requester' as 'service_requester' | 'service_provider' | 'student' | 'university',
+    // KYC Document Files
+    identityDocument: null as File | null,
+    selfieVerification: null as File | null,
+    professionalCertifications: [] as File[],
+    licenseVat: null as File | null,
+    universityCard: null as File | null,
+    institutionalDocument: null as File | null
   });
 
   const { signIn, signUp, signInWithGoogle, signInWithFacebook, sendPasswordReset, loading, error, clearError } = useAuth();
@@ -34,6 +44,122 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     if (error) clearError();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    if (fieldName === 'professionalCertifications') {
+      // Handle multiple files for professional certifications
+      setFormData(prev => ({ 
+        ...prev, 
+        [fieldName]: Array.from(files) 
+      }));
+    } else {
+      // Handle single file for other documents
+      setFormData(prev => ({ 
+        ...prev, 
+        [fieldName]: files[0] 
+      }));
+    }
+  };
+
+  // Upload KYC documents based on user role
+  const uploadKycDocuments = async (userId: string) => {
+    const timestamp = new Date().toISOString();
+    
+    try {
+      // Upload common documents (required for all roles except service_requester)
+      let identityFrontUrl = '';
+      let identityBackUrl = '';
+      let selfieVerificationUrl = '';
+      
+      if (formData.identityDocument) {
+        identityFrontUrl = await KycService.uploadFile(formData.identityDocument, 'identity', userId);
+        // For simplicity, using the same file for both front and back
+        // In a real app, you'd have separate inputs for front and back
+        identityBackUrl = identityFrontUrl;
+      }
+      
+      if (formData.selfieVerification) {
+        selfieVerificationUrl = await KycService.uploadFile(formData.selfieVerification, 'selfie', userId);
+      }
+
+      // Upload role-specific documents
+      switch (formData.role) {
+        case 'service_requester': {
+          // Service requesters need minimal KYC (handled in existing onboarding flow)
+          break;
+        }
+        
+        case 'service_provider': {
+          // Service providers are handled by existing onboarding flow
+          // Just save basic KYC for now 
+          break;
+        }
+        
+        case 'student': {
+          if (!formData.universityCard || !formData.identityDocument || !formData.selfieVerification) {
+            throw new Error('All documents are required for student registration');
+          }
+          
+          const universityCardUrl = await KycService.uploadFile(formData.universityCard, 'university_card', userId);
+          
+          const studentKycData: StudentKycData = {
+            uid: userId,
+            verification_status: 'pending',
+            created_at: timestamp,
+            updated_at: timestamp,
+            identity_front: identityFrontUrl,
+            identity_back: identityBackUrl,
+            selfie_verification: selfieVerificationUrl,
+            university_card: universityCardUrl,
+            profile_image: '', // Will be set during onboarding
+            full_name: formData.name,
+            description: '', // Will be set during onboarding
+            legal_declaration_accepted: true,
+            legal_declaration_timestamp: timestamp
+          };
+          
+          await KycService.saveStudentKyc(studentKycData);
+          break;
+        }
+        
+        case 'university': {
+          if (!formData.institutionalDocument || !formData.identityDocument || !formData.selfieVerification) {
+            throw new Error('All documents are required for university registration');
+          }
+          
+          const institutionalDocUrl = await KycService.uploadFile(formData.institutionalDocument, 'institutional', userId);
+          
+          const universityKycData: UniversityKycData = {
+            uid: userId,
+            verification_status: 'pending',
+            created_at: timestamp,
+            updated_at: timestamp,
+            identity_front: identityFrontUrl,
+            identity_back: identityBackUrl,
+            selfie_verification: selfieVerificationUrl,
+            institutional_document: institutionalDocUrl,
+            profile_image: '', // Will be set during onboarding
+            full_name: formData.name,
+            institution_name: '', // Will be set during onboarding
+            description: '', // Will be set during onboarding
+            legal_declaration_accepted: true,
+            legal_declaration_timestamp: timestamp
+          };
+          
+          await KycService.saveUniversityKyc(universityKycData);
+          break;
+        }
+      }
+      
+      console.log('✅ KYC documents uploaded successfully for role:', formData.role);
+    } catch (error) {
+      console.error('❌ Error uploading KYC documents:', error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +174,25 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         await signIn(formData.email, formData.password);
         // Success for login - user will be redirected by auth state change
       } else {
-        await signUp(formData.email, formData.password, formData.name, formData.role);
+        // Validate required KYC documents before signup
+        const hasRequiredDocs = 
+          (formData.role === 'service_requester') || // Service requesters don't need docs at signup
+          (formData.role === 'service_provider') || // Service providers use existing onboarding flow
+          (formData.role === 'student' && formData.identityDocument && formData.selfieVerification && formData.universityCard) ||
+          (formData.role === 'university' && formData.identityDocument && formData.selfieVerification && formData.institutionalDocument);
+        
+        if (!hasRequiredDocs) {
+          throw new Error('Please upload all required documents before creating your account.');
+        }
+        
+        // Create user account first
+        const user = await signUp(formData.email, formData.password, formData.name, formData.role);
+        
+        // Upload KYC documents for student and university roles
+        if (formData.role === 'student' || formData.role === 'university') {
+          await uploadKycDocuments(user.id);
+        }
+        
         // Success for signup - show welcome message
         setTimeout(() => {
           console.log('✅ Registration successful!', { 
@@ -61,9 +205,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       
       // Close modal on success - dashboard redirect will be handled by auth state
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       // Error is handled by useAuth hook and displayed in UI
       console.error('❌ Authentication failed:', error);
+      // Show specific error message for KYC document issues
+      if (error.message && error.message.includes('documents')) {
+        // The useAuth hook will display this error
+      }
     }
   };
 
@@ -87,7 +235,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       password: '', 
       name: '', 
       confirmPassword: '',
-      role: 'service_requester'
+      role: 'service_requester',
+      // Reset KYC files
+      identityDocument: null,
+      selfieVerification: null,
+      professionalCertifications: [],
+      licenseVat: null,
+      universityCard: null,
+      institutionalDocument: null
     });
     setShowForgotPassword(false);
     setPasswordResetSent(false);
@@ -242,10 +397,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      I want to:
+                      {t('auth.iWantTo', 'I want to:')}
                     </label>
                     <div className="grid grid-cols-2 gap-2">
-                      <label className={`relative flex cursor-pointer rounded-lg border p-2 ${formData.role === 'service_requester' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                      {/* Service Requester */}
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'service_requester' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
                         <input
                           type="radio"
                           name="role"
@@ -254,18 +410,19 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                           onChange={handleInputChange}
                           className="sr-only"
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col w-full">
                           <div className="flex items-center">
                             <div className="text-base">🏠</div>
-                            <div className="ml-2">
-                              <div className="text-xs font-medium text-gray-900 dark:text-white">Service Requester</div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">Find and hire professionals</div>
+                            <div className="ml-2 flex-1">
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">{t('auth.serviceRequester', 'Service Requester')}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{t('auth.findHireProfessionals', 'Find and hire professionals')}</div>
                             </div>
                           </div>
                         </div>
                       </label>
                       
-                      <label className={`relative flex cursor-pointer rounded-lg border p-2 ${formData.role === 'service_provider' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                      {/* Service Provider */}
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'service_provider' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
                         <input
                           type="radio"
                           name="role"
@@ -274,17 +431,229 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                           onChange={handleInputChange}
                           className="sr-only"
                         />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col w-full">
                           <div className="flex items-center">
                             <div className="text-base">🔧</div>
-                            <div className="ml-2">
-                              <div className="text-xs font-medium text-gray-900 dark:text-white">Service Provider</div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">Offer professional services</div>
+                            <div className="ml-2 flex-1">
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">{t('auth.serviceProvider', 'Service Provider')}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{t('auth.offerServices', 'Offer professional services')}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+
+                      {/* Student */}
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'student' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="student"
+                          checked={formData.role === 'student'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center">
+                            <div className="text-base">🎓</div>
+                            <div className="ml-2 flex-1">
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">{t('auth.student', 'Student')}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{t('auth.studyResearch', 'Study and academic research')}</div>
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+
+                      {/* University */}
+                      <label className={`relative flex cursor-pointer rounded-lg border p-3 ${formData.role === 'university' ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-300 dark:border-gray-600'}`}>
+                        <input
+                          type="radio"
+                          name="role"
+                          value="university"
+                          checked={formData.role === 'university'}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <div className="flex flex-col w-full">
+                          <div className="flex items-center">
+                            <div className="text-base">🏛️</div>
+                            <div className="ml-2 flex-1">
+                              <div className="text-xs font-medium text-gray-900 dark:text-white">{t('auth.university', 'University')}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{t('auth.educationalInstitution', 'Educational institution')}</div>
                             </div>
                           </div>
                         </div>
                       </label>
                     </div>
+                  </div>
+
+                  {/* KYC Documents Section */}
+                  <div className="mt-4 space-y-3">
+                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {t('auth.documentsRequired', 'Required Documents')}
+                    </h3>
+                    
+                    {/* Identity Document - Required for all roles */}
+                    <div>
+                      <label htmlFor="identityDocument" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                        {t('auth.identityDocument', 'Identity Document')}
+                      </label>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        {t('auth.identityDocumentDesc', 'Upload a photo of your identity document')}
+                      </p>
+                      <div className="relative">
+                        <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input
+                          type="file"
+                          id="identityDocument"
+                          name="identityDocument"
+                          accept="image/*"
+                          onChange={(e) => handleFileChange(e, 'identityDocument')}
+                          required
+                          className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                        />
+                      </div>
+                      {formData.identityDocument && (
+                        <p className="mt-1 text-xs text-green-600">✓ {formData.identityDocument.name}</p>
+                      )}
+                    </div>
+
+                    {/* Selfie Verification - Required for all roles */}
+                    <div>
+                      <label htmlFor="selfieVerification" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                        {t('auth.selfieVerification', 'Selfie Verification')}
+                      </label>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        {t('auth.selfieVerificationDesc', 'Take a selfie for identity verification')}
+                      </p>
+                      <div className="relative">
+                        <Upload className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <input
+                          type="file"
+                          id="selfieVerification"
+                          name="selfieVerification"
+                          accept="image/*"
+                          capture="user"
+                          onChange={(e) => handleFileChange(e, 'selfieVerification')}
+                          required
+                          className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                        />
+                      </div>
+                      {formData.selfieVerification && (
+                        <p className="mt-1 text-xs text-green-600">✓ {formData.selfieVerification.name}</p>
+                      )}
+                    </div>
+
+                    {/* Service Provider specific documents */}
+                    {formData.role === 'service_provider' && (
+                      <>
+                        <div className="pt-2">
+                          <h4 className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                            {t('auth.documentsOptional', 'Optional Documents')}
+                          </h4>
+                        </div>
+
+                        <div>
+                          <label htmlFor="professionalCertifications" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                            {t('auth.professionalCertifications', 'Professional Certifications')}
+                          </label>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                            {t('auth.professionalCertificationsDesc', 'Upload your professional certifications (optional)')}
+                          </p>
+                          <div className="relative">
+                            <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <input
+                              type="file"
+                              id="professionalCertifications"
+                              name="professionalCertifications"
+                              accept="image/*,.pdf"
+                              multiple
+                              onChange={(e) => handleFileChange(e, 'professionalCertifications')}
+                              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                            />
+                          </div>
+                          {formData.professionalCertifications.length > 0 && (
+                            <p className="mt-1 text-xs text-green-600">✓ {formData.professionalCertifications.length} file(s) selected</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label htmlFor="licenseVat" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                            {t('auth.licenseVat', 'License/VAT')}
+                          </label>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                            {t('auth.licenseVatDesc', 'Upload professional license or VAT document (optional)')}
+                          </p>
+                          <div className="relative">
+                            <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <input
+                              type="file"
+                              id="licenseVat"
+                              name="licenseVat"
+                              accept="image/*,.pdf"
+                              onChange={(e) => handleFileChange(e, 'licenseVat')}
+                              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                            />
+                          </div>
+                          {formData.licenseVat && (
+                            <p className="mt-1 text-xs text-green-600">✓ {formData.licenseVat.name}</p>
+                          )}
+                        </div>
+                      </>
+                    )}
+
+                    {/* Student specific documents */}
+                    {formData.role === 'student' && (
+                      <div>
+                        <label htmlFor="universityCard" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                          {t('auth.universityCard', 'University Card')}
+                        </label>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          {t('auth.universityCardDesc', 'Upload university card or enrollment certificate')}
+                        </p>
+                        <div className="relative">
+                          <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                          <input
+                            type="file"
+                            id="universityCard"
+                            name="universityCard"
+                            accept="image/*,.pdf"
+                            onChange={(e) => handleFileChange(e, 'universityCard')}
+                            required
+                            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                          />
+                        </div>
+                        {formData.universityCard && (
+                          <p className="mt-1 text-xs text-green-600">✓ {formData.universityCard.name}</p>
+                        )}
+                      </div>
+                    )}
+
+                    {/* University specific documents */}
+                    {formData.role === 'university' && (
+                      <div>
+                        <label htmlFor="institutionalDocument" className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">
+                          {t('auth.institutionalDocument', 'Institutional Document')}
+                        </label>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                          {t('auth.institutionalDocumentDesc', 'Upload official institution document (for universities)')}
+                        </p>
+                        <div className="relative">
+                          <FileText className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                          <input
+                            type="file"
+                            id="institutionalDocument"
+                            name="institutionalDocument"
+                            accept="image/*,.pdf"
+                            onChange={(e) => handleFileChange(e, 'institutionalDocument')}
+                            required
+                            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                          />
+                        </div>
+                        {formData.institutionalDocument && (
+                          <p className="mt-1 text-xs text-green-600">✓ {formData.institutionalDocument.name}</p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </>
               )}

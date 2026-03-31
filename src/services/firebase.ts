@@ -28,7 +28,7 @@ const facebookProvider = new FacebookAuthProvider();
 
 // Auth Service
 export class AuthService {
-  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' = 'service_requester'): Promise<User> {
+  static async signUp(email: string, password: string, name: string, role: 'service_requester' | 'service_provider' | 'student' | 'university' = 'service_requester'): Promise<User> {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const firebaseUser = userCredential.user;
@@ -42,7 +42,7 @@ export class AuthService {
         createdAt: new Date().toISOString(),
         // Set role-specific fields
         isProfessional: role === 'service_provider',
-        verificationStatus: role === 'service_provider' ? 'pending' : undefined,
+        verificationStatus: ['service_provider', 'student', 'university'].includes(role) ? 'pending' : undefined,
       };
 
       await setDoc(doc(db, 'users', firebaseUser.uid), userData);
